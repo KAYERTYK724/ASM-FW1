@@ -1,0 +1,311 @@
+<!-- BREADCRUMB -->
+<section class="shop-header">
+  <div class="container">
+    <h3 class="mb-1">Shop</h3>
+    <p class="text-muted mb-0">
+      Home / Shop
+    </p>
+  </div>
+</section>
+
+
+<!-- SHOP -->
+<section class="shop-page py-5">
+  <div class="container">
+    <div class="row">
+      <!-- SIDEBAR -->
+      <div class="col-lg-3">
+        <div class="shop-sidebar">
+          <!-- SEARCH -->
+          <div class="mb-4">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search...">
+              <button class="btn btn-light border">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="accordion" id="shopFilter">
+
+            <!-- CATEGORIES -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#cat">
+                  CATEGORIES
+                </button>
+              </h2>
+              <div id="cat" class="accordion-collapse collapse show">
+                <div class="accordion-body p-0">
+                  <ul class="filter-list">
+                    <li>Men (20)</li>
+                    <li>Women (20)</li>
+                    <li>Bags (20)</li>
+                    <li>Clothing (20)</li>
+                    <li>Shoes (20)</li>
+                    <li>Accessories (20)</li>
+                    <li>Kids (20)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- BRAND -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#brand">
+                  BRANDING
+                </button>
+              </h2>
+              <div id="brand" class="accordion-collapse collapse show">
+                <div class="accordion-body p-0">
+                  <ul class="filter-list">
+                    <li>Louis Vuitton</li>
+                    <li>Chanel</li>
+                    <li>Hermes</li>
+                    <li>Gucci</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- PRICE -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#price">
+                  FILTER PRICE
+                </button>
+              </h2>
+              <div id="price" class="accordion-collapse collapse show">
+                <div class="accordion-body p-0">
+                  <ul class="filter-list">
+                    <li>$0.00 - $50.00</li>
+                    <li>$50.00 - $100.00</li>
+                    <li>$100.00 - $150.00</li>
+                    <li>$150.00 - $200.00</li>
+                    <li>$200.00 - $250.00</li>
+                    <li>$250.00+</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- SIZE -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#size">
+                  SIZE
+                </button>
+              </h2>
+              <div id="size" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                  <div class="size-grid">
+                    <button class="btn btn-outline-secondary btn-sm">XS</button>
+                    <button class="btn btn-outline-secondary btn-sm">S</button>
+                    <button class="btn btn-outline-secondary btn-sm">M</button>
+                    <button class="btn btn-outline-secondary btn-sm">XL</button>
+                    <button class="btn btn-outline-secondary btn-sm">2XL</button>
+                    <button class="btn btn-outline-secondary btn-sm">XXL</button>
+                    <button class="btn btn-outline-secondary btn-sm">3XL</button>
+                    <button class="btn btn-outline-secondary btn-sm">4XL</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COLORS -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#color">
+                  COLORS
+                </button>
+              </h2>
+              <div id="color" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                  <div class="color-grid">
+                    <span class="color c1"></span>
+                    <span class="color c2"></span>
+                    <span class="color c3"></span>
+                    <span class="color c4"></span>
+                    <span class="color c5"></span>
+                    <span class="color c6"></span>
+                    <span class="color c7"></span>
+                    <span class="color c8"></span>
+                    <span class="color c9"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- TAG -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#tag">
+                  TAGS
+                </button>
+              </h2>
+              <div id="tag" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                  <div class="tag-grid">
+                    <span>Product</span>
+                    <span>Bags</span>
+                    <span>Shoes</span>
+                    <span>Fashion</span>
+                    <span>Clothing</span>
+                    <span>Hats</span>
+                    <span>Accessories</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCTS -->
+      <div class="col-lg-9">
+        <!-- SORT -->
+        <div class="shop-toolbar">
+          <p>
+            Showing 1–12 of 126 results
+          </p>
+          <select class="form-select w-auto">
+            <option>Sort by Price</option>
+            <option>Low to High</option>
+            <option>High to Low</option>
+          </select>
+        </div>
+
+        <!-- PRODUCT GRID -->
+        <div class="row g-4">
+          <!-- PRODUCT -->
+          <div class="col-lg-4 col-md-6">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
+                <div class="product-hover">
+                  Thêm vào giỏ hàng
+                </div>
+              </div>
+              <div class="product-info">
+                <h6>Quần jeans nam rách nhẹ</h6>
+                <div class="price">
+                  <span class="old">480.000 đ</span>
+                  <span class="new">420.000 đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
+                <div class="product-hover">
+                  Thêm vào giỏ hàng
+                </div>
+              </div>
+              <div class="product-info">
+                <h6>Quần jeans nam rách nhẹ</h6>
+                <div class="price">
+                  <span class="old">480.000 đ</span>
+                  <span class="new">420.000 đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
+                <div class="product-hover">
+                  Thêm vào giỏ hàng
+                </div>
+              </div>
+              <div class="product-info">
+                <h6>Quần jeans nam rách nhẹ</h6>
+                <div class="price">
+                  <span class="old">480.000 đ</span>
+                  <span class="new">420.000 đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
+                <div class="product-hover">
+                  Thêm vào giỏ hàng
+                </div>
+              </div>
+
+              <div class="product-info">
+                <h6>Quần jeans nam rách nhẹ</h6>
+                <div class="price">
+                  <span class="old">480.000 đ</span>
+                  <span class="new">420.000 đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
+                <div class="product-hover">
+                  Thêm vào giỏ hàng
+                </div>
+              </div>
+              <div class="product-info">
+                <h6>Quần jeans nam rách nhẹ</h6>
+                <div class="price">
+                  <span class="old">480.000 đ</span>
+                  <span class="new">420.000 đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
+                <div class="product-hover">
+                  Thêm vào giỏ hàng
+                </div>
+              </div>
+              <div class="product-info">
+                <h6>Quần jeans nam rách nhẹ</h6>
+                <div class="price">
+                  <span class="old">480.000 đ</span>
+                  <span class="new">420.000 đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="pagination-box">
+          <nav class="pagination-section mt-5">
+            <ul class="pagination justify-content-center">
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">
+                  <i class="bi bi-chevron-right"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

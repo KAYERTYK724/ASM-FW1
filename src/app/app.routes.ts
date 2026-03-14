@@ -11,6 +11,34 @@ export const routes: Routes = [
         path: '',
         loadComponent: () => import('./pages/client/home/home').then(m => m.Home)
       },
+      {
+        path: 'product',
+        loadComponent: () => import('./pages/client/product/product').then(m => m.Product)
+      },
+      {
+        path: 'blog',
+        loadComponent: () => import('./pages/client/blog/blog').then(m => m.Blog)
+      },
+      {
+        path: 'about',
+        loadComponent: () => import('./pages/client/about/about').then(m => m.About)
+      },
+      {
+        path: 'contact',
+        loadComponent: () => import('./pages/client/contact/contact').then(m => m.Contact)
+      },
+      {
+        path: 'cart',
+        loadComponent: () => import('./pages/client/cart/cart').then(m => m.Cart)
+      },
+      {
+        path: 'register',
+        loadComponent: () => import('./pages/client/register/register').then(m => m.Register)
+      },
+      {
+        path: 'login',
+        loadComponent: () => import('./pages/client/login/login').then(m => m.Login)
+      },
     ],
   },
   {
