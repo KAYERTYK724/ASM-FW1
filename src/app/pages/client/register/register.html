@@ -1,1 +1,60 @@
-<p>register works!</p>
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card shadow-sm register-card">
+    <div class="card-body p-5">
+      <!-- LOGO -->
+      <div class="text-center mb-4">
+        <a href="#" class="d-inline-flex align-items-center text-decoration-none text-dark fw-bold fs-3">
+          <span class="text-danger">Male</span> fashion<span class="text-danger">.</span>
+        </a>
+      </div>
+
+      <h5 class="text-center mb-4 fw-semibold">
+        Tạo tài khoản của bạn
+      </h5>
+
+      <form class="needs-validation" novalidate>
+        <!-- HỌ TÊN -->
+        <div class="mb-3">
+          <label class="form-label">
+            Họ và tên
+          </label>
+          <input type="text" class="form-control" placeholder="Nguyễn Văn A" required>
+          <div class="invalid-feedback">
+            Vui lòng nhập họ tên.
+          </div>
+        </div>
+        <!-- EMAIL -->
+        <div class="mb-3">
+          <label class="form-label">
+            Địa chỉ Email
+          </label>
+          <input type="email" class="form-control" placeholder="email@example.com" required>
+          <div class="invalid-feedback">
+            Vui lòng nhập email hợp lệ.
+          </div>
+        </div>
+        <!-- MẬT KHẨU -->
+        <div class="mb-3">
+          <label class="form-label">
+            Mật khẩu
+          </label>
+          <input type="password" id="password" class="form-control" placeholder="Tạo mật khẩu" required minlength="6">
+          <div class="invalid-feedback">
+            Mật khẩu tối thiểu 6 ký tự.
+          </div>
+        </div>
+        <!-- BUTTON -->
+        <button class="btn btn-register w-100">
+          Đăng ký
+        </button>
+      </form>
+      <!-- SIGN IN -->
+      <div class="text-center mt-4 small text-muted">
+        Bạn đã có tài khoản?
+        <a href="login" class="link-primary">
+          Đăng nhập
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

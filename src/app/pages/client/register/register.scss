@@ -1,0 +1,56 @@
+body {
+  background: #f3f4f6;
+  font-family: system-ui;
+}
+
+.register-card {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+}
+
+.form-control {
+  height: 46px;
+  border-radius: 6px;
+  border: 1px solid #e5e5e5;
+  font-size: 14px;
+}
+
+.form-control:focus {
+  border-color: #ff6a3d;
+  box-shadow: 0 0 0 0.15rem rgba(255, 106, 61, 0.25);
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-register {
+  height: 46px;
+  border-radius: 6px;
+
+  background: linear-gradient(90deg, #ff6a3d, #ff7e45);
+
+  border: none;
+
+  color: white;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.btn-register:hover {
+  background: linear-gradient(90deg, #ff5c2b, #ff6a3d);
+}
+
+.form-check-label a {
+  color: #ff6a3d;
+  text-decoration: none;
+}
+
+.form-check-label a:hover {
+  text-decoration: underline;
+}
