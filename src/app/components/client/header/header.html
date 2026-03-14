@@ -1,36 +1,60 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<div class="bg-dark text-white py-1">
+  <div class="container d-flex justify-content-between small">
+    <div>Free shipping, 30-day return or refund guarantee</div>
+    <div class="col-lg-6 col-md-5">
+      <div class="d-flex justify-content-end align-items-center gap-4">
+        <div class="d-flex gap-3">
+          <a href="#" class="text-decoration-none text-white">Sign in</a>
+          <a href="#" class="text-decoration-none text-white">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-3" href="#">
+      <span class="text-danger">Male</span> fashion<span class="text-danger">.</span>
+    </a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item fw-semibold">
+          <a class="nav-link" href="#">TRANG CHỦ</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+        <li class="nav-item fw-semibold">
+          <a class="nav-link" href="#">CỬA HÀNG</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+        <li class="nav-item fw-semibold">
+          <a class="nav-link" href="#">GIỚI THIỆU</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        <li class="nav-item fw-semibold">
+          <a class="nav-link" href="#">TIN TỨC</a>
+        </li>
+        <li class="nav-item fw-semibold">
+          <a class="nav-link" href="#">LIÊN HỆ</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <div class="col-lg-3 col-md-3">
+        <div class="d-flex align-items-center justify-content-end gap-3">
+          <!-- Cart -->
+          <a href="#" class="text-dark fs-5 position-relative">
+            <i class="bi bi-bag"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+              0
+            </span>
+          </a>
+          <!-- Price -->
+          <span class="fw-semibold">
+              <span class="text-danger">0</span> VND
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
