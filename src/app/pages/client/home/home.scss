@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 120px 0;
+  padding: 100px 0;
   position: relative;
 }
 
@@ -85,59 +85,58 @@
 }
 
 .banner-section {
+  justify-self: center;
+
   .banner-item {
     position: relative;
+  }
 
-    img {
-      width: 100%;
-    }
+  .banner-item img {
+    width: 100%;
+    display: block;
   }
 
   .banner-text {
     position: absolute;
-    left: -150px;
-    top: 40%;
+    left: -140px;
+    top: 50%;
     transform: translateY(-50%);
-
-    h3 {
-      font-weight: 600;
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    a {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-decoration: none;
-      color: black;
-      border-bottom: 2px solid black;
-      padding-bottom: 2px;
-      transition: 0.3s;
-    }
-
-    a:hover {
-      color: #e53637;
-      border-color: #e53637;
-    }
+    max-width: 250px;
   }
 
-  h4 {
+  .banner-text h3 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .banner-text h4 {
+    font-size: 24px;
     font-weight: 600;
+    margin-bottom: 10px;
   }
 
-  a {
-    text-decoration: none;
+  .banner-text a {
     font-size: 12px;
     letter-spacing: 2px;
+    text-decoration: none;
     border-bottom: 2px solid black;
     color: black;
-    transition: 0.3s;
+    padding-bottom: 2px;
   }
 
-  a:hover {
+  .banner-text a:hover {
     color: #e53637;
     border-color: #e53637;
   }
+
+  /* Banner dưới */
+
+  .banner-text-2 {
+    position: static;
+    margin-top: 20px;
+  }
+
 }
 
 .product-section {
