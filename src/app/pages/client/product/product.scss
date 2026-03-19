@@ -9,6 +9,7 @@
   border-radius: 6px;
 }
 
+
 .accordion-item {
   border: none;
   border-bottom: 1px solid #eee;
@@ -25,6 +26,38 @@
 .accordion-button:not(.collapsed) {
   background: none;
   box-shadow: none;
+}
+
+.accordion-button {
+  background: transparent;
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 0;
+
+  &::after {
+    transform: scale(0.8);
+  }
+
+  &:not(.collapsed) {
+    color: #e53637;
+    background: transparent;
+  }
+}
+
+.accordion-body {
+  ul li {
+    font-size: 13px;
+    color: #666;
+    padding: 5px 0;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      color: #e53637;
+      padding-left: 5px;
+    }
+  }
 }
 
 .filter-list {
