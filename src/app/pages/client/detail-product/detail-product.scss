@@ -1,0 +1,282 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.thumbs {
+  gap: 15px;
+  margin-right: 110px;
+}
+
+.thumb {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 1px solid #eee;
+  transition: all 0.3s;
+  background: white;
+  padding: 5px;
+
+  &:hover {
+    border: 1px solid #000;
+  }
+
+  &.active {
+    border: 2px solid #000;
+  }
+}
+
+.video-thumb {
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 10px;
+  }
+}
+
+.main-image-wrapper {
+  background: #efefef;
+  padding: 40px;
+}
+
+.main-img {
+  max-height: 550px;
+  object-fit: contain;
+  transition: 0.3s;
+}
+
+.product-info {
+  .price {
+    font-weight: 700;
+    font-size: 32px;
+    color: #000;
+
+    .old-price {
+      font-size: 18px;
+      color: #aaa;
+      text-decoration: line-through;
+      margin-left: 10px;
+    }
+  }
+
+  .size-group {
+    display: flex;
+    gap: 10px;
+
+    input {
+      display: none;
+    }
+
+    label {
+      border: 1px solid #ddd;
+      padding: 8px 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input:checked + label {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+  }
+
+  .color-group {
+    display: flex;
+    gap: 10px;
+
+    .color {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid #ccc;
+
+      &.active {
+        border: 2px solid #000;
+      }
+    }
+  }
+
+  .qty-input {
+    width: 80px;
+    text-align: center;
+  }
+
+  button {
+    letter-spacing: 2px;
+  }
+
+  .payment {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+  }
+}
+
+$primary-color: #e63946;
+$text-color: #333;
+$muted-color: #777;
+
+.custom-tabs {
+  border-bottom: 1px solid #eee;
+
+  .nav-link {
+    border: none;
+    color: $muted-color;
+    font-weight: 500;
+    padding: 12px 20px;
+    position: relative;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $text-color;
+    }
+
+    &.active {
+      color: $text-color;
+      background: transparent;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: $primary-color;
+      }
+    }
+  }
+}
+
+.custom-tab-content {
+  padding: 30px 0;
+  border-top: none;
+
+  p {
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+}
+
+.product-section {
+  h4 {
+    letter-spacing: 2px;
+  }
+
+  .product-card {
+    background: white;
+    padding: 10px;
+    transition: 0.3s;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  .product-img {
+    position: relative;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 370px;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+
+    .product-hover {
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      width: 100%;
+      background: black;
+      color: white;
+      text-align: center;
+      padding: 8px;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+  }
+
+  .product-card:hover .product-hover {
+    bottom: 0;
+  }
+
+  .product-info {
+    padding-top: 10px;
+
+    h6 {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .price {
+    font-size: 14px;
+
+    .old {
+      text-decoration: line-through;
+      color: #999;
+      margin-right: 5px;
+    }
+
+    .new {
+      color: #e53637;
+      font-weight: 600;
+    }
+  }
+}
+
+.pagination-section {
+  .pagination {
+    gap: 10px;
+
+    .page-item {
+      .page-link {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #111;
+        font-weight: 500;
+        transition: 0.3s;
+        background: white;
+      }
+
+      .page-link:hover {
+        background: #111;
+        color: white;
+        border-color: #111;
+      }
+    }
+
+    .active .page-link {
+      background: #111;
+      color: white;
+      border-color: #111;
+    }
+  }
+}

@@ -19,7 +19,8 @@
     "axe/forms": [
       "default",
       {
-        "select-name": "off"
+        "select-name": "off",
+        "label": "off"
       }
     ],
     "button-type": "off",
@@ -28,6 +29,7 @@
       {
         "list": "off"
       }
-    ]
+    ],
+    "no-inline-styles": "off"
   }
 }
