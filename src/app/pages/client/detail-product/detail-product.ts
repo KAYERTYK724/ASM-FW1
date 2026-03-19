@@ -1,151 +1,23 @@
 import { Component } from '@angular/core';
-import { ICategory } from '../../../interfaces/category.interface';
 import { IProduct } from '../../../interfaces/product.interface';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
+import { Star } from '../star/star';
 
 @Component({
-  selector: 'app-product',
-  imports: [CommonModule, RouterLink],
-  templateUrl: './product.html',
-  styleUrl: './product.scss',
+  selector: 'app-detail-product',
+  imports: [CommonModule, Star],
+  templateUrl: './detail-product.html',
+  styleUrl: './detail-product.scss',
 })
-export class Product {
-  parentCategories: ICategory[] = [];
-  childCategories: ICategory[] = [];
-
+export class DetailProduct {
+  constructor(private route: ActivatedRoute) {}
   ngOnInit() {
-    this.parentCategories = this.categories.filter((c) => !c.parent_id);
-    this.childCategories = this.categories.filter((c) => c.parent_id);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.product = this.products.find((p) => p.id === id)!;
   }
 
-  getChildCategories(parentId: number): ICategory[] {
-    return this.categories.filter((c) => c.parent_id === parentId);
-  }
-
-  categories: ICategory[] = [
-    // CHA
-    {
-      id: 1,
-      name: 'Thời trang nam',
-      parent_id: undefined,
-      status: true,
-    },
-    {
-      id: 2,
-      name: 'Phụ kiện',
-      parent_id: undefined,
-      status: true,
-    },
-    {
-      id: 10,
-      name: 'Thời trang theo mùa',
-      parent_id: undefined,
-      status: true,
-    },
-    {
-      id: 11,
-      name: 'Phong cách',
-      parent_id: undefined,
-      status: true,
-    },
-    // CON cấp 1 - Thời trang nam
-    {
-      id: 3,
-      name: 'Áo nam',
-      parent_id: 1,
-      status: true,
-    },
-    {
-      id: 4,
-      name: 'Quần nam',
-      parent_id: 1,
-      status: true,
-    },
-    // CON cấp 1 - Phụ kiện
-    {
-      id: 5,
-      name: 'Thắt lưng',
-      parent_id: 2,
-      status: true,
-    },
-    {
-      id: 6,
-      name: 'Ví',
-      parent_id: 2,
-      status: true,
-    },
-    // CON cấp 2 - Áo nam
-    {
-      id: 7,
-      name: 'Áo thun',
-      parent_id: 3,
-      status: true,
-    },
-    {
-      id: 8,
-      name: 'Áo sơ mi',
-      parent_id: 3,
-      status: true,
-    },
-    // CON cấp 2 - Quần nam
-    {
-      id: 9,
-      name: 'Quần jeans',
-      parent_id: 4,
-      status: true,
-    },
-    // Thời trang theo mùa
-    {
-      id: 12,
-      name: 'Mùa hè',
-      parent_id: 10,
-      status: true,
-    },
-    {
-      id: 13,
-      name: 'Mùa đông',
-      parent_id: 10,
-      status: true,
-    },
-    {
-      id: 14,
-      name: 'Mùa thu',
-      parent_id: 10,
-      status: true,
-    },
-    {
-      id: 15,
-      name: 'Mùa xuân',
-      parent_id: 10,
-      status: true,
-    },
-    // Phong cách
-    {
-      id: 16,
-      name: 'Casual (thường ngày)',
-      parent_id: 11,
-      status: true,
-    },
-    {
-      id: 17,
-      name: 'Streetwear',
-      parent_id: 11,
-      status: true,
-    },
-    {
-      id: 18,
-      name: 'Công sở',
-      parent_id: 11,
-      status: true,
-    },
-    {
-      id: 19,
-      name: 'Thể thao',
-      parent_id: 11,
-      status: true,
-    },
-  ];
+  product!: IProduct;
 
   products: IProduct[] = [
     {
@@ -155,8 +27,9 @@ export class Product {
       sale_price: 150000,
       image: 'https://i.pinimg.com/736x/07/14/96/071496e9f98929dbe19325ffb13e6695.jpg',
       gallery: [
-        'https://via.placeholder.com/300?text=ao-thun-1-1',
-        'https://via.placeholder.com/300?text=ao-thun-1-2',
+        'https://i.pinimg.com/736x/07/14/96/071496e9f98929dbe19325ffb13e6695.jpg',
+        'https://i.pinimg.com/736x/c3/d1/66/c3d1660b8b11aa2b3a3689ed81eaff7e.jpg',
+        'https://i.pinimg.com/736x/db/34/cc/db34cc5d6990bc2452c9f1d78a6fc2a2.jpg',
       ],
       description: 'Áo thun chất liệu cotton mềm mại, thoáng mát',
       category_id: 7,
@@ -172,7 +45,10 @@ export class Product {
       price: 350000,
       sale_price: 299000,
       image: 'https://i.pinimg.com/1200x/d9/6e/9d/d96e9dc9083ee1d90026a6a50d8ec8c9.jpg',
-      gallery: ['https://via.placeholder.com/300?text=ao-so-mi-1'],
+      gallery: [
+        'https://i.pinimg.com/1200x/d9/6e/9d/d96e9dc9083ee1d90026a6a50d8ec8c9.jpg',
+        'https://i.pinimg.com/736x/e7/52/85/e75285724e2cac3902d6c30eea83f60e.jpg'
+      ],
       description: 'Áo sơ mi lịch sự, phù hợp đi làm',
       category_id: 8,
       stock: 40,
@@ -187,7 +63,10 @@ export class Product {
       price: 500000,
       sale_price: 450000,
       image: 'https://i.pinimg.com/1200x/35/51/14/3551143058277743c47a18b150759c8b.jpg',
-      gallery: ['https://via.placeholder.com/300?text=quan-jeans-1'],
+      gallery: [
+        'https://i.pinimg.com/1200x/35/51/14/3551143058277743c47a18b150759c8b.jpg',
+        'https://i.pinimg.com/736x/f0/df/e0/f0dfe05099a04acb07add799f5910a26.jpg'
+      ],
       description: 'Quần jeans ôm dáng, phong cách hiện đại',
       category_id: 9,
       stock: 20,
@@ -202,7 +81,10 @@ export class Product {
       price: 300000,
       sale_price: 270000,
       image: 'https://i.pinimg.com/736x/76/54/36/765436fa43979f10e163ebdab2f9b218.jpg',
-      gallery: ['https://via.placeholder.com/300?text=that-lung-1'],
+      gallery: [
+        'https://i.pinimg.com/736x/76/54/36/765436fa43979f10e163ebdab2f9b218.jpg',
+        'https://i.pinimg.com/736x/39/39/8c/39398ce773b34a2ae2829624a11eb097.jpg'
+      ],
       description: 'Thắt lưng da thật, bền đẹp',
       category_id: 5,
       stock: 60,
@@ -217,7 +99,11 @@ export class Product {
       price: 400000,
       sale_price: 350000,
       image: 'https://i.pinimg.com/736x/47/58/8e/47588e53628f8d6887fdb5a5aa405ff9.jpg',
-      gallery: ['https://via.placeholder.com/300?text=vi-1'],
+      gallery: [
+        'https://i.pinimg.com/736x/47/58/8e/47588e53628f8d6887fdb5a5aa405ff9.jpg',
+        'https://i.pinimg.com/736x/b4/5a/6b/b45a6bba45d6cb81fdf318f447ec7ca8.jpg',
+        'https://i.pinimg.com/736x/df/14/6f/df146f796da32277bf31c85508f4d2ad.jpg'
+      ],
       description: 'Ví da cao cấp, thiết kế sang trọng',
       category_id: 6,
       stock: 35,
@@ -232,7 +118,11 @@ export class Product {
       price: 600000,
       sale_price: 550000,
       image: 'https://i.pinimg.com/1200x/b8/c9/ad/b8c9ad6cb1be15a9c47844b7addeca4c.jpg',
-      gallery: ['https://via.placeholder.com/300?text=hoodie-1'],
+      gallery: [
+        'https://i.pinimg.com/1200x/b8/c9/ad/b8c9ad6cb1be15a9c47844b7addeca4c.jpg',
+        'https://i.pinimg.com/736x/fb/ca/c0/fbcac0a074c31ba71bf0e299a44b7cb2.jpg',
+        'https://i.pinimg.com/1200x/d6/b8/20/d6b8206526bb66867bc5ca474e419eaf.jpg'
+      ],
       description: 'Hoodie phong cách streetwear cá tính',
       category_id: 17,
       stock: 15,
@@ -247,7 +137,11 @@ export class Product {
       price: 800000,
       sale_price: 750000,
       image: 'https://i.pinimg.com/1200x/27/97/9d/27979d675f5b1506c637fa9ab285cad6.jpg',
-      gallery: ['https://via.placeholder.com/300?text=ao-khoac-1'],
+      gallery: [
+        'https://i.pinimg.com/1200x/27/97/9d/27979d675f5b1506c637fa9ab285cad6.jpg',
+        'https://i.pinimg.com/1200x/c0/62/c8/c062c800af7d8b2dca9fe9665825aa0a.jpg',
+        'https://i.pinimg.com/1200x/c7/ea/ed/c7eaedb9a22d7d4e5789eb36ed270191.jpg'
+      ],
       description: 'Áo khoác giữ ấm tốt cho mùa đông',
       category_id: 13,
       stock: 10,

@@ -1,7 +1,7 @@
 <!-- HERO -->
 <section class="hero-section">
 
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="row align-items-center">
       <!-- LEFT CONTENT -->
@@ -29,23 +29,17 @@
         </div>
       </div>
     </div>
-
   </div>
-
 </section>
-
-
 
 <!-- CATEGORY -->
 <section class="banner-section py-5">
   <div class="container">
     <div class="row align-items-center">
-
       <!-- Banner 1 -->
       <div class="col-lg-6 offset-lg-6">
         <div class="banner-item">
           <img src="https://preview.colorlib.com/theme/malefashion/img/banner/banner-1.jpg" class="img-fluid">
-
           <div class="banner-text">
             <h3>Bộ sưu tập quần áo 2030</h3>
             <a href="#">MUA NGAY</a>
@@ -64,34 +58,28 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <section class="product-section py-5">
   <div class="container">
-
     <h4 class="text-center mb-5 fw-semibold">
       SẢN PHẨM CỦA CHÚNG TÔI
     </h4>
-
     <div class="row g-4">
-
       <!-- Product -->
+      @for (p of products; track $index) {
       <div class="col-lg-3 col-md-6">
         <div class="product-card">
-
           <div class="product-img">
-            <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
+            <img [src]="p.image" class="img-fluid">
             <div class="product-hover">
               Thêm vào giỏ hàng
             </div>
           </div>
-
           <div class="product-info">
-            <h6>Quần jeans nam rách nhẹ</h6>
-
+            <h6>{{ p.name }}</h6>
             <div class="price">
               <span class="old">480.000 đ</span>
               <span class="new">420.000 đ</span>
@@ -119,156 +107,13 @@
               <span class="new">460.000 đ</span>
             </div>
           </div>
-
         </div>
       </div>
-
-
-      <!-- Product -->
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-
-          <div class="product-img">
-            <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
-            <div class="product-hover">
-              Thêm vào giỏ hàng
-            </div>
-          </div>
-
-          <div class="product-info">
-            <h6>Quần short kaki nam</h6>
-
-            <div class="price">
-              <span class="old">280.000 đ</span>
-              <span class="new">250.000 đ</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <!-- Product -->
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-
-          <div class="product-img">
-            <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
-            <div class="product-hover">
-              Thêm vào giỏ hàng
-            </div>
-          </div>
-
-          <div class="product-info">
-            <h6>Quần jogger nam thể thao</h6>
-
-            <div class="price">
-              <span class="old">350.000 đ</span>
-              <span class="new">299.000 đ</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-
-          <div class="product-img">
-            <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
-            <div class="product-hover">
-              Thêm vào giỏ hàng
-            </div>
-          </div>
-
-          <div class="product-info">
-            <h6>Quần jeans nam rách nhẹ</h6>
-
-            <div class="price">
-              <span class="old">480.000 đ</span>
-              <span class="new">420.000 đ</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <!-- Product -->
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-
-          <div class="product-img">
-            <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
-            <div class="product-hover">
-              Thêm vào giỏ hàng
-            </div>
-          </div>
-
-          <div class="product-info">
-            <h6>Quần jeans nam xanh đậm</h6>
-            <div class="price">
-              <span class="new">460.000 đ</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <!-- Product -->
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-
-          <div class="product-img">
-            <img src="https://i.pinimg.com/1200x/ce/8a/46/ce8a467d94e7669c3bfd560c14000c40.jpg" class="img-fluid">
-            <div class="product-hover">
-              Thêm vào giỏ hàng
-            </div>
-          </div>
-
-          <div class="product-info">
-            <h6>Quần short kaki nam</h6>
-
-            <div class="price">
-              <span class="old">280.000 đ</span>
-              <span class="new">250.000 đ</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <!-- Product -->
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-
-          <div class="product-img">
-            <img src="" class="img-fluid">
-            <div class="product-hover">
-              Thêm vào giỏ hàng
-            </div>
-          </div>
-
-          <div class="product-info">
-            <h6>Quần jogger nam thể thao</h6>
-
-            <div class="price">
-              <span class="old">350.000 đ</span>
-              <span class="new">299.000 đ</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
+      }
     </div>
-
 
     <nav class="pagination-section mt-5">
       <ul class="pagination justify-content-center">
-
         <li class="page-item active">
           <a class="page-link" href="#">1</a>
         </li>
@@ -286,58 +131,40 @@
             <i class="bi bi-chevron-right"></i>
           </a>
         </li>
-
       </ul>
     </nav>
-
   </div>
 </section>
 
 <!-- DEAL OF WEEK -->
-
 <section class="deal-section">
-
   <div class="container">
-
     <div class="row align-items-center">
-
       <!-- LEFT TEXT -->
       <div class="col-lg-3 deal-left">
-
         <div class="deal-box">
-
           <h3>Quần áo nổi bật</h3>
           <p>Phụ kiện</p>
-
         </div>
-
       </div>
 
       <!-- PRODUCT IMAGE -->
       <div class="col-lg-4 text-center position-relative">
-
         <img src="https://preview.colorlib.com/theme/malefashion/img/product-sale.png" class="img-fluid">
-
         <div class="sale-badge">
           <span>Giảm giá</span>
           <h5>20%</h5>
         </div>
-
       </div>
-
       <!-- RIGHT CONTENT -->
       <div class="col-lg-5 deal-content">
-
         <p class="deal-subtitle">ƯU ĐÃI TRONG TUẦN</p>
-
         <h2>
           Túi đeo ngực nhiều <br>
           ngăn màu đen
         </h2>
-
         <!-- COUNTDOWN -->
         <div class="deal-timer">
-
           <div>
             <h4>30</h4>
             <span>Ngày</span>
@@ -357,78 +184,53 @@
             <h4>25</h4>
             <span>Giây</span>
           </div>
-
         </div>
 
         <a href="#" class="btn deal-btn">
           MUA NGAY
         </a>
-
       </div>
     </div>
   </div>
 </section>
 
-
-
 <!-- INSTAGRAM -->
-
 <section class="py-5 bg-light">
-
   <div class="container">
-
     <div class="row">
-
       <div class="col-lg-8">
-
         <div class="row g-3">
-
           <div class="col-4">
             <img src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-1.jpg" class="img-fluid">
           </div>
-
           <div class="col-4">
             <img src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-2.jpg" class="img-fluid">
           </div>
-
           <div class="col-4">
             <img src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-3.jpg" class="img-fluid">
           </div>
-
           <div class="col-4">
             <img src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-4.jpg" class="img-fluid">
           </div>
-
           <div class="col-4">
             <img src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-5.jpg" class="img-fluid">
           </div>
-
           <div class="col-4">
             <img src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-6.jpg" class="img-fluid">
           </div>
-
         </div>
-
       </div>
-
       <div class="col-lg-4">
-
         <h4>Instagram</h4>
-
         <p class="text-muted">
           Chia sẻ những khoảnh khắc thời trang mới nhất,
           cập nhật xu hướng phong cách và khám phá
           các bộ sưu tập nổi bật của chúng tôi.
         </p>
-
         <h5 class="text-danger">
           #ThoiTrangNam
         </h5>
-
       </div>
-
     </div>
-
   </div>
-
 </section>
