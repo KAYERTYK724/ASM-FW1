@@ -50,14 +50,22 @@ export const routes: Routes = [
     ],
   },
   {
-    path: "admin",
-    component: AdminLayout,
-    children: [
-      {
-        path: 'dashboard',
-        loadComponent: () => import('./pages/admin/dashboard/dashboard').then(m => m.Dashboard)
-      },
-    ],
-  },
+  path: "admin",
+  component: AdminLayout,
+  children: [
+    {
+      path: '',
+      loadComponent: () => import('./pages/admin/dashboard/dashboard').then(m => m.Dashboard)
+    },
+    {
+      path: 'category',
+      loadComponent: () => import('./pages/admin/category/category').then(m => m.Category)
+    },
+     {
+        path: 'product', 
+        loadComponent: () => import('./pages/admin/product/product').then(m => m.Product)
+      }
+  ],
+},
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
