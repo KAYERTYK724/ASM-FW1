@@ -1,1 +1,164 @@
-<p>dashboard works!</p>
+<div class="container-fluid p-4">
+
+  <!-- Title -->
+  <h4 class="fw-bold">Tổng quan Dashboard</h4>
+  <p class="text-muted">Chào mừng quay lại! Đây là tình hình cửa hàng thời trang của bạn hôm nay.</p>
+
+  <!-- Stats -->
+  <div class="row g-3 mb-4">
+
+    <!-- Card 1 -->
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <small>Doanh thu quần áo</small>
+            <h5 class="fw-bold">₫120,500,000</h5>
+            <span class="text-success small">+18.5% so với tháng trước</span>
+          </div>
+          <div class="icon-box icon-green">
+            <i class="bi bi-currency-dollar"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <small>Khách mua hàng</small>
+            <h5 class="fw-bold">1,820</h5>
+            <span class="text-success small">+12.4% so với tháng trước</span>
+          </div>
+          <div class="icon-box icon-blue">
+            <i class="bi bi-people"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <small>Đơn hàng quần áo</small>
+            <h5 class="fw-bold">2,456</h5>
+            <span class="text-success small">+6.2% so với tháng trước</span>
+          </div>
+          <div class="icon-box icon-red">
+            <i class="bi bi-cart"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <small>Tỷ lệ mua hàng</small>
+            <h5 class="fw-bold">4.85%</h5>
+            <span class="text-success small">+10.2% so với tháng trước</span>
+          </div>
+          <div class="icon-box icon-green">
+            <i class="bi bi-graph-up"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Charts -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h6 class="fw-semibold">Doanh thu theo tháng (quần áo)</h6>
+        <canvas id="lineChart"></canvas>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h6 class="fw-semibold">Lợi nhuận & Chi phí nhập hàng</h6>
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom -->
+  <div class="row g-3">
+
+    <!-- Recent Orders -->
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h6 class="fw-semibold">Đơn hàng gần đây</h6>
+
+        <div class="d-flex justify-content-between py-2 border-bottom">
+          <div>
+            <strong>Nguyễn Văn A</strong><br>
+            <small class="text-muted">Áo thun nam form rộng</small>
+          </div>
+          <div class="text-end">
+            <div>₫250,000</div>
+            <span class="badge bg-success">Hoàn thành</span>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between py-2 border-bottom">
+          <div>
+            <strong>Trần Thị B</strong><br>
+            <small class="text-muted">Váy nữ mùa hè</small>
+          </div>
+          <div class="text-end">
+            <div>₫420,000</div>
+            <span class="badge bg-warning">Đang xử lý</span>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between py-2">
+          <div>
+            <strong>Lê Văn C</strong><br>
+            <small class="text-muted">Quần jeans slim fit</small>
+          </div>
+          <div class="text-end">
+            <div>₫390,000</div>
+            <span class="badge bg-success">Hoàn thành</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Top Products -->
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h6 class="fw-semibold">Sản phẩm bán chạy</h6>
+
+        <div class="d-flex justify-content-between py-2 border-bottom">
+          <span>Áo thun basic</span>
+          <span class="text-success">₫85,000,000</span>
+        </div>
+
+        <div class="d-flex justify-content-between py-2 border-bottom">
+          <span>Quần jeans</span>
+          <span class="text-success">₫72,500,000</span>
+        </div>
+
+        <div class="d-flex justify-content-between py-2">
+          <span>Áo khoác hoodie</span>
+          <span class="text-danger">₫41,200,000</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

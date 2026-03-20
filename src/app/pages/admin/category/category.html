@@ -1,1 +1,77 @@
-<p>category works!</p>
+<div class="container-fluid p-4">
+
+  <!-- Title -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h4 class="fw-bold">Quản lý danh mục</h4>
+      <p class="text-muted mb-0">Danh sách danh mục</p>
+    </div>
+
+    <button class="btn btn-danger">
+      <i class="bi bi-plus"></i> Thêm danh mục
+    </button>
+  </div>
+
+  <!-- Table -->
+  <div class="card shadow-sm p-3">
+
+    <div class="table-responsive">
+      <table class="table align-middle">
+
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Tên danh mục</th>
+            <th>Danh mục cha</th>
+            <th>Trạng thái</th>
+            <th>Ngày tạo</th>
+            <th class="text-end">Hành động</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let c of categories; index as i">
+            <td>{{ i + 1 }}</td>
+
+            <td class="fw-semibold">{{ c.name }}</td>
+
+            <td>
+              {{ c.parent_id === 0 ? 'Danh mục gốc' : c.parent_id }}
+            </td>
+
+            <td>
+              <span 
+                class="badge"
+                [ngClass]="c.status ? 'bg-success' : 'bg-secondary'">
+                {{ c.status ? 'Hiển thị' : 'Ẩn' }}
+              </span>
+            </td>
+
+            <td>{{ c.created_at }}</td>
+
+            <td class="text-end">
+              <button class="btn btn-sm btn-warning me-1">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-sm btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+
+          <!-- empty -->
+          <tr *ngIf="categories.length === 0">
+            <td colspan="6" class="text-center text-muted py-4">
+              Không có danh mục
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+
+</div>
