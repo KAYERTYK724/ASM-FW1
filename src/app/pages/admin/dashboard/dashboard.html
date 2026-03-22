@@ -1,164 +1,190 @@
-<div class="container-fluid p-4">
-
-  <!-- Title -->
-  <h4 class="fw-bold">Tổng quan Dashboard</h4>
-  <p class="text-muted">Chào mừng quay lại! Đây là tình hình cửa hàng thời trang của bạn hôm nay.</p>
-
-  <!-- Stats -->
-  <div class="row g-3 mb-4">
-
-    <!-- Card 1 -->
-    <div class="col-md-3">
-      <div class="card shadow-sm p-3">
-        <div class="d-flex justify-content-between">
-          <div>
-            <small>Doanh thu quần áo</small>
-            <h5 class="fw-bold">₫120,500,000</h5>
-            <span class="text-success small">+18.5% so với tháng trước</span>
-          </div>
-          <div class="icon-box icon-green">
-            <i class="bi bi-currency-dollar"></i>
-          </div>
-        </div>
-      </div>
+<div class="container-fluid p-4 bg-light" style="min-height: 100vh;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h4 class="fw-bold mb-1 text-dark">Tổng quan Dashboard</h4>
     </div>
-
-    <!-- Card 2 -->
-    <div class="col-md-3">
-      <div class="card shadow-sm p-3">
-        <div class="d-flex justify-content-between">
-          <div>
-            <small>Khách mua hàng</small>
-            <h5 class="fw-bold">1,820</h5>
-            <span class="text-success small">+12.4% so với tháng trước</span>
-          </div>
-          <div class="icon-box icon-blue">
-            <i class="bi bi-people"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="col-md-3">
-      <div class="card shadow-sm p-3">
-        <div class="d-flex justify-content-between">
-          <div>
-            <small>Đơn hàng quần áo</small>
-            <h5 class="fw-bold">2,456</h5>
-            <span class="text-success small">+6.2% so với tháng trước</span>
-          </div>
-          <div class="icon-box icon-red">
-            <i class="bi bi-cart"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="col-md-3">
-      <div class="card shadow-sm p-3">
-        <div class="d-flex justify-content-between">
-          <div>
-            <small>Tỷ lệ mua hàng</small>
-            <h5 class="fw-bold">4.85%</h5>
-            <span class="text-success small">+10.2% so với tháng trước</span>
-          </div>
-          <div class="icon-box icon-green">
-            <i class="bi bi-graph-up"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <button class="btn btn-primary btn-sm shadow-sm">
+      <i class="bi bi-download me-1"></i> Xuất báo cáo
+    </button>
   </div>
 
-  <!-- Charts -->
   <div class="row g-3 mb-4">
-
-    <div class="col-md-6">
-      <div class="card shadow-sm p-3">
-        <h6 class="fw-semibold">Doanh thu theo tháng (quần áo)</h6>
-        <canvas id="lineChart"></canvas>
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm p-3 h-100">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <p class="text-muted small fw-medium mb-1">Doanh thu quần áo</p>
+            <h4 class="fw-bold mb-2">₫120.5M</h4>
+            <span class="badge bg-success-subtle text-success border border-success-subtle">
+              <i class="bi bi-arrow-up-short"></i> 18.5%
+            </span>
+          </div>
+          <div class="rounded-3 bg-primary bg-opacity-10 p-2">
+            <i class="bi bi-currency-dollar text-primary fs-4"></i>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-6">
-      <div class="card shadow-sm p-3">
-        <h6 class="fw-semibold">Lợi nhuận & Chi phí nhập hàng</h6>
-        <canvas id="barChart"></canvas>
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm p-3 h-100">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <p class="text-muted small fw-medium mb-1">Khách mua hàng</p>
+            <h4 class="fw-bold mb-2">1,820</h4>
+            <span class="badge bg-success-subtle text-success border border-success-subtle">
+              <i class="bi bi-arrow-up-short"></i> 12.4%
+            </span>
+          </div>
+          <div class="rounded-3 bg-info bg-opacity-10 p-2">
+            <i class="bi bi-people text-info fs-4"></i>
+          </div>
+        </div>
       </div>
     </div>
 
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm p-3 h-100">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <p class="text-muted small fw-medium mb-1">Đơn hàng mới</p>
+            <h4 class="fw-bold mb-2">2,456</h4>
+            <span class="badge bg-success-subtle text-success border border-success-subtle">
+              <i class="bi bi-arrow-up-short"></i> 6.2%
+            </span>
+          </div>
+          <div class="rounded-3 bg-warning bg-opacity-10 p-2">
+            <i class="bi bi-bag-check text-warning fs-4"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm p-3 h-100">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <p class="text-muted small fw-medium mb-1">Tỷ lệ chuyển đổi</p>
+            <h4 class="fw-bold mb-2">4.85%</h4>
+            <span class="badge bg-danger-subtle text-danger border border-danger-subtle">
+              <i class="bi bi-graph-up"></i> 10.2%
+            </span>
+          </div>
+          <div class="rounded-3 bg-danger bg-opacity-10 p-2">
+            <i class="bi bi-pie-chart text-danger fs-4"></i>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Bottom -->
+<div class="row g-3 mb-4">
+  <div class="col-md-7">
+    <div class="card border-0 shadow-sm p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h6 class="fw-bold mb-0">Biểu đồ doanh thu năm 2026</h6>
+        <select class="form-select form-select-sm w-auto border-0 bg-light">
+          <option>Theo tháng</option>
+          <option>Theo tuần</option>
+        </select>
+      </div>
+      
+      <div class="text-center bg-light rounded-3 d-flex align-items-center justify-content-center" style="height: 300px;">
+        <img src="https://quickchart.io/chart?c={type:'bar',data:{labels:['T1','T2','T3','T4','T5','T6'],datasets:[{label:'Doanh thu',data:[50,60,70,180,190,200],backgroundColor:'rgba(13,110,253,0.8)'}]}}" 
+             class="img-fluid rounded" 
+             alt="Doanh thu mẫu"
+             style="max-height: 280px; object-fit: contain;">
+      </div>
+      
+      <canvas id="lineChart" style="display: none;"></canvas>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="card border-0 shadow-sm p-4 h-100">
+      <h6 class="fw-bold mb-4">Lợi nhuận vs Chi phí</h6>
+      
+      <div class="text-center bg-light rounded-3 d-flex align-items-center justify-content-center" style="height: 300px;">
+        <img src="https://clevercfo.com/wp-content/uploads/2020/08/dashboard-doanh-thu-loi-nhua-770x410.png" 
+             class="img-fluid rounded" 
+             alt="Lợi nhuận mẫu"
+             style="max-height: 280px; object-fit: contain;">
+      </div>
+
+      <canvas id="barChart" style="display: none;"></canvas>
+    </div>
+  </div>
+</div>
+
   <div class="row g-3">
-
-    <!-- Recent Orders -->
-    <div class="col-md-6">
-      <div class="card shadow-sm p-3">
-        <h6 class="fw-semibold">Đơn hàng gần đây</h6>
-
-        <div class="d-flex justify-content-between py-2 border-bottom">
-          <div>
-            <strong>Nguyễn Văn A</strong><br>
-            <small class="text-muted">Áo thun nam form rộng</small>
-          </div>
-          <div class="text-end">
-            <div>₫250,000</div>
-            <span class="badge bg-success">Hoàn thành</span>
+    <div class="col-md-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-0 pt-4 px-4 d-flex justify-content-between align-items-center">
+          <h6 class="fw-bold mb-0">Đơn hàng vừa đặt</h6>
+          <a href="#" class="text-primary text-decoration-none small">Xem tất cả</a>
+        </div>
+        <div class="card-body px-4">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th class="border-0 small text-muted">KHÁCH HÀNG</th>
+                  <th class="border-0 small text-muted">SẢN PHẨM</th>
+                  <th class="border-0 small text-muted text-end">SỐ TIỀN</th>
+                  <th class="border-0 small text-muted text-center">TRẠNG THÁI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="fw-semibold">Nguyễn Văn A</span></td>
+                  <td><small class="text-muted">Áo thun nam form rộng</small></td>
+                  <td class="text-end fw-bold">₫250,000</td>
+                  <td class="text-center"><span class="badge rounded-pill bg-success-subtle text-success px-3">Hoàn thành</span></td>
+                </tr>
+                <tr>
+                  <td><span class="fw-semibold">Trần Thị B</span></td>
+                  <td><small class="text-muted">Váy nữ mùa hè</small></td>
+                  <td class="text-end fw-bold">₫420,000</td>
+                  <td class="text-center"><span class="badge rounded-pill bg-warning-subtle text-warning px-3">Đang xử lý</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-
-        <div class="d-flex justify-content-between py-2 border-bottom">
-          <div>
-            <strong>Trần Thị B</strong><br>
-            <small class="text-muted">Váy nữ mùa hè</small>
-          </div>
-          <div class="text-end">
-            <div>₫420,000</div>
-            <span class="badge bg-warning">Đang xử lý</span>
-          </div>
-        </div>
-
-        <div class="d-flex justify-content-between py-2">
-          <div>
-            <strong>Lê Văn C</strong><br>
-            <small class="text-muted">Quần jeans slim fit</small>
-          </div>
-          <div class="text-end">
-            <div>₫390,000</div>
-            <span class="badge bg-success">Hoàn thành</span>
-          </div>
-        </div>
-
       </div>
     </div>
 
-    <!-- Top Products -->
-    <div class="col-md-6">
-      <div class="card shadow-sm p-3">
-        <h6 class="fw-semibold">Sản phẩm bán chạy</h6>
-
-        <div class="d-flex justify-content-between py-2 border-bottom">
-          <span>Áo thun basic</span>
-          <span class="text-success">₫85,000,000</span>
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm p-4">
+        <h6 class="fw-bold mb-4">Top Sản Phẩm Bán Chạy</h6>
+        <div class="mb-4">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="small fw-medium">Áo thun basic</span>
+            <span class="small text-muted">85%</span>
+          </div>
+          <div class="progress" style="height: 6px;">
+            <div class="progress-bar bg-primary" style="width: 85%"></div>
+          </div>
         </div>
-
-        <div class="d-flex justify-content-between py-2 border-bottom">
-          <span>Quần jeans</span>
-          <span class="text-success">₫72,500,000</span>
+        <div class="mb-4">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="small fw-medium">Quần Jeans Slimfit</span>
+            <span class="small text-muted">72%</span>
+          </div>
+          <div class="progress" style="height: 6px;">
+            <div class="progress-bar bg-info" style="width: 72%"></div>
+          </div>
         </div>
-
-        <div class="d-flex justify-content-between py-2">
-          <span>Áo khoác hoodie</span>
-          <span class="text-danger">₫41,200,000</span>
+        <div>
+          <div class="d-flex justify-content-between mb-1">
+            <span class="small fw-medium">Hoodie local brand</span>
+            <span class="small text-muted">45%</span>
+          </div>
+          <div class="progress" style="height: 6px;">
+            <div class="progress-bar bg-warning" style="width: 45%"></div>
+          </div>
         </div>
-
       </div>
     </div>
-
   </div>
-
 </div>
