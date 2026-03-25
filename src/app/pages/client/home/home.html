@@ -69,7 +69,7 @@
     </h4>
     <div class="row g-4">
       <!-- Product -->
-      @for (p of products; track $index) {
+      @for (p of dataListProduct(); track $index) {
       <div class="col-lg-3 col-md-6">
         <div class="product-card">
           <div class="product-img">
@@ -81,8 +81,8 @@
           <div class="product-info">
             <h6>{{ p.name }}</h6>
             <div class="price">
-              <span class="old">480.000 đ</span>
-              <span class="new">420.000 đ</span>
+              <span class="old">{{ p.price | number }} đ</span>
+              <span class="new">{{ (p.sale_price || p.price) | number }} đ</span>
             </div>
           </div>
 

@@ -42,16 +42,6 @@ const Product = connection.define('Product', {
         }
     },
 
-    stock: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
-    },
-
-    rating: {
-        type: DataTypes.FLOAT,
-        defaultValue: 0
-    },
-
     status: {
         type: DataTypes.BOOLEAN,
         defaultValue: true

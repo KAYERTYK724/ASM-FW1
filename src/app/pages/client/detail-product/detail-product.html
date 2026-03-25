@@ -7,12 +7,6 @@
         Trang chủ > Cửa hàng > <span class="text-dark">Chi tiết sản phẩm</span>
       </div>
       <div class="row align-items-start">
-        <!-- Thumbnail -->
-        <div class="col-md-2 d-flex flex-column align-items-end thumbs">
-          @for (img of product.gallery; track $index) {
-          <img [src]="img" class="thumb">
-          }
-        </div>
         <!-- Main Image -->
         <div class="col-md-6 text-center">
           <div class="main-image-wrapper">
@@ -37,9 +31,6 @@
       </span>
       }
     </h2>
-    <!-- Rating -->
-    <app-star [rating]="product.rating || 0"></app-star>
-    <!-- Size -->
     <div class="d-flex justify-content-center align-items-center gap-3 my-4">
       <span>Kích thước:</span>
       <div class="size-group">
