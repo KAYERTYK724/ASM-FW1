@@ -13,5 +13,13 @@ export const API_ENDPOINTS = {
     ADD: "/products/add",
     UPDATE: (id: number) => `/products/update/${id}`,
     DELETE: (id: number) => `/products/delete/${id}`,
+  },
+
+  BLOG : {
+    LIST: "/blogs/list",
+    GET_BY_ID: (id: number) => `/blogs/${id}`,
+    ADD: "/blogs/add",
+    UPDATE: (id: number) => `/blogs/update/${id}`,
+    DELETE: (id: number) => `/blogs/delete/${id}`,
   }
 }
