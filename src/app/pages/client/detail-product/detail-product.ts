@@ -1,215 +1,62 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal, ChangeDetectorRef } from '@angular/core';
 import { IProduct } from '../../../interfaces/product.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-detail-product',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './detail-product.html',
   styleUrl: './detail-product.scss',
 })
-export class DetailProduct {
-  constructor(private route: ActivatedRoute) {}
-  ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.products.find((p) => p.id === id)!;
+export class DetailProduct implements OnInit {
+
+  product: IProduct | null = null;
+  dataListProduct = signal<IProduct[]>([]);
+
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(async (params) => {
+      const id = Number(params.get('id'));
+      await this.fetchData(id);
+    });
   }
 
-  product!: IProduct;
+  async fetchData(id: number) {
+    try {
+      const [detail, list] = await Promise.all([
+        this.productService.getById(id),
+        this.productService.list()
+      ]);
 
-  products: IProduct[] = [
-    {
-      id: 1,
-      name: 'Áo thun basic cotton',
-      price: 200000,
-      sale_price: 150000,
-      image: 'https://i.pinimg.com/736x/07/14/96/071496e9f98929dbe19325ffb13e6695.jpg',
-      description: 'Áo thun chất liệu cotton mềm mại, thoáng mát',
-      category_id: 7,
-      status: true,
-      created_at: '2026-03-01',
-      updated_at: '2026-03-10',
-    },
-    {
-      id: 2,
-      name: 'Áo sơ mi trắng công sở',
-      price: 350000,
-      sale_price: 299000,
-      image: 'https://i.pinimg.com/1200x/d9/6e/9d/d96e9dc9083ee1d90026a6a50d8ec8c9.jpg',
-      description: 'Áo sơ mi lịch sự, phù hợp đi làm',
-      category_id: 8,
-      status: true,
-      created_at: '2026-03-02',
-      updated_at: '2026-03-11',
-    },
-    {
-      id: 3,
-      name: 'Quần jeans slim fit',
-      price: 500000,
-      sale_price: 450000,
-      image: 'https://i.pinimg.com/1200x/35/51/14/3551143058277743c47a18b150759c8b.jpg',
-      description: 'Quần jeans ôm dáng, phong cách hiện đại',
-      category_id: 9,
-      status: true,
-      created_at: '2026-03-03',
-      updated_at: '2026-03-12',
-    },
-    {
-      id: 4,
-      name: 'Thắt lưng da cao cấp',
-      price: 300000,
-      sale_price: 270000,
-      image: 'https://i.pinimg.com/736x/76/54/36/765436fa43979f10e163ebdab2f9b218.jpg',
-      description: 'Thắt lưng da thật, bền đẹp',
-      category_id: 5,
-      status: true,
-      created_at: '2026-03-04',
-      updated_at: '2026-03-13',
-    },
-    {
-      id: 5,
-      name: 'Ví da nam sang trọng',
-      price: 400000,
-      sale_price: 350000,
-      image: 'https://i.pinimg.com/736x/47/58/8e/47588e53628f8d6887fdb5a5aa405ff9.jpg',
-      description: 'Ví da cao cấp, thiết kế sang trọng',
-      category_id: 6,
-      status: true,
-      created_at: '2026-03-05',
-      updated_at: '2026-03-14',
-    },
-    {
-      id: 6,
-      name: 'Áo hoodie streetwear',
-      price: 600000,
-      sale_price: 550000,
-      image: 'https://i.pinimg.com/1200x/b8/c9/ad/b8c9ad6cb1be15a9c47844b7addeca4c.jpg',
-      description: 'Hoodie phong cách streetwear cá tính',
-      category_id: 17,
-      status: true,
-      created_at: '2026-03-06',
-      updated_at: '2026-03-15',
-    },
-    {
-      id: 7,
-      name: 'Áo khoác mùa đông',
-      price: 800000,
-      sale_price: 750000,
-      image: 'https://i.pinimg.com/1200x/27/97/9d/27979d675f5b1506c637fa9ab285cad6.jpg',
-      description: 'Áo khoác giữ ấm tốt cho mùa đông',
-      category_id: 13,
-      status: true,
-      created_at: '2026-03-07',
-      updated_at: '2026-03-16',
-    },
-    {
-      id: 8,
-      name: 'Áo thun mùa hè',
-      price: 180000,
-      sale_price: 150000,
-      image: 'https://i.pinimg.com/1200x/f7/e3/47/f7e347f9c6a18756e8a496d978a85229.jpg',
-      description: 'Áo thun thoáng mát dành cho mùa hè',
-      category_id: 12,
-      status: true,
-      created_at: '2026-03-08',
-      updated_at: '2026-03-17',
-    },
-    {
-      id: 9,
-      name: 'Áo thun form rộng unisex',
-      price: 230000,
-      sale_price: 199000,
-      image: 'https://i.pinimg.com/1200x/a6/85/93/a68593220d20e4a56bc50c88688bd1d8.jpg',
-      description: 'Áo thun form rộng phong cách streetwear',
-      category_id: 7,
-      status: true,
-      created_at: '2026-03-09',
-      updated_at: '2026-03-18',
-    },
-    {
-      id: 10,
-      name: 'Áo sơ mi đen slim fit',
-      price: 370000,
-      sale_price: 320000,
-      image: 'https://i.pinimg.com/1200x/a8/8a/c8/a88ac868893906abce42cad70d065dbb.jpg',
-      description: 'Áo sơ mi đen lịch lãm cho dân công sở',
-      category_id: 8,
-      status: true,
-      created_at: '2026-03-10',
-      updated_at: '2026-03-19',
-    },
-    {
-      id: 11,
-      name: 'Quần jeans rách phong cách',
-      price: 550000,
-      sale_price: 499000,
-      image: 'https://i.pinimg.com/736x/55/3b/f0/553bf0be6dd875ca89f28df9939c2de8.jpg',
-      description: 'Quần jeans rách trẻ trung, cá tính',
-      category_id: 9,
-      status: true,
-      created_at: '2026-03-11',
-      updated_at: '2026-03-20',
-    },
-    {
-      id: 12,
-      name: 'Thắt lưng da bò handmade',
-      price: 350000,
-      sale_price: 299000,
-      image: 'https://i.pinimg.com/1200x/0e/dc/b6/0edcb65060d6b7ab65704f26e5f353b8.jpg',
-      description: 'Thắt lưng da bò thật, bền đẹp',
-      category_id: 5,
-      status: true,
-      created_at: '2026-03-12',
-      updated_at: '2026-03-21',
-    },
-    {
-      id: 13,
-      name: 'Ví da mini tiện lợi',
-      price: 280000,
-      sale_price: 250000,
-      image: 'https://i.pinimg.com/736x/20/11/32/201132fc5328b23052b397ae9cf10fa6.jpg',
-      description: 'Ví nhỏ gọn, tiện mang theo',
-      category_id: 6,
-      status: true,
-      created_at: '2026-03-13',
-      updated_at: '2026-03-22',
-    },
-    {
-      id: 14,
-      name: 'Áo tank top mùa hè',
-      price: 150000,
-      sale_price: 120000,
-      image: 'https://i.pinimg.com/1200x/05/9e/13/059e13475cf4eb9f6d22a3d082133100.jpg',
-      description: 'Áo ba lỗ thoáng mát cho mùa hè',
-      category_id: 12,
-      status: true,
-      created_at: '2026-03-14',
-      updated_at: '2026-03-23',
-    },
-    {
-      id: 15,
-      name: 'Áo khoác dạ mùa đông',
-      price: 900000,
-      sale_price: 850000,
-      image: 'https://i.pinimg.com/1200x/66/0e/31/660e31426ba08454782f15b5da470ccf.jpg',
-      description: 'Áo khoác dạ giữ ấm tốt',
-      category_id: 13,
-      status: true,
-      created_at: '2026-03-15',
-      updated_at: '2026-03-24',
-    },
-    {
-      id: 16,
-      name: 'Áo hoodie basic',
-      price: 580000,
-      sale_price: 520000,
-      image: 'https://i.pinimg.com/1200x/67/96/df/6796df3cc2ac8c54aab0fc84d3e061f4.jpg',
-      description: 'Hoodie đơn giản, dễ phối đồ',
-      category_id: 17,
-      status: true,
-      created_at: '2026-03-16',
-      updated_at: '2026-03-25',
-    },
-  ];
+      if (detail.status === 200) {
+        this.product = detail.data.data;
+        this.cdr.detectChanges();
+      }
+
+      if (list.status === 200) {
+        this.dataListProduct.set(list.data.data);
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  relatedProducts(): IProduct[] {
+    if (!this.product) return [];
+
+    return this.dataListProduct()
+      .filter(p =>
+        p.category_id === this.product!.category_id &&
+        p.id !== this.product!.id
+      )
+      .slice(0, 4);
+  }
 }

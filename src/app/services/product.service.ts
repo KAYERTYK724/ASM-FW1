@@ -15,7 +15,7 @@ export class ProductService {
   }
 // lấy 1 product theo id
 // gọi API GET /products/{id}
-  getById(id: number){
+  getById(id: number, number?: any){
     return axios.get(API_URL + API_ENDPOINTS.PRODUCT.GET_BY_ID(id));
   }
 // thêm mới products

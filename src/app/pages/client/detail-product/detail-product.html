@@ -1,103 +1,104 @@
-<div class="container">
-  <!-- Breadcrumb -->
-  <div class="container-fluid bg-light py-5">
-    <div class="container">
-      <!-- Breadcrumb -->
-      <div class="text-center mb-5 fs-5 text-muted">
-        Trang chủ > Cửa hàng > <span class="text-dark">Chi tiết sản phẩm</span>
-      </div>
-      <div class="row justify-content-center">
-        <!-- Main Image -->
-        <div class="col-md-6 text-center">
-          <div class="main-image-wrapper">
-            <img id="mainImage" [src]="product.image" class="img-fluid main-img">
+<div *ngIf="product as p">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <div class="container-fluid bg-light py-5">
+      <div class="container">
+        <!-- Breadcrumb -->
+        <div class="text-center mb-5 fs-5 text-muted">
+          Trang chủ > Cửa hàng > <span class="text-dark">Chi tiết sản phẩm</span>
+        </div>
+        <div class="row justify-content-center">
+          <!-- Main Image -->
+          <div class="col-md-6 text-center">
+            <div class="main-image-wrapper">
+              <img id="mainImage" [src]="p.image" class="img-fluid main-img">
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Thông tin -->
-  <div class="col-lg-6 mx-auto text-center product-info p-4">
-    <h3 class="fw-semibold mb-2">{{ product.name }}</h3>
+    <!-- Thông tin -->
+    <div class="col-lg-6 mx-auto text-center product-info p-4">
+      <h3 class="fw-semibold mb-2">{{ p.name }}</h3>
 
-    <!-- Price -->
-    <h2 class="price mb-3">
-      {{ (product.sale_price || product.price) }}đ
+      <!-- Price -->
+      <h2 class="price mb-3">
+        {{ (p.sale_price || p.price) }}đ
 
-      @if (product.sale_price) {
-      <span class="old-price">
-        {{ product.price }}đ
-      </span>
-      }
-    </h2>
-    <div class="d-flex justify-content-center align-items-center gap-3 my-4">
-      <span>Kích thước:</span>
-      <div class="size-group">
-        <input type="radio" id="xxl" name="size">
-        <label for="xxl">XXL</label>
-        <input type="radio" id="xl" name="size" checked>
-        <label for="xl">XL</label>
-        <input type="radio" id="l" name="size">
-        <label for="l">L</label>
-        <input type="radio" id="s" name="size">
-        <label for="s">S</label>
+        @if (p.sale_price) {
+        <span class="old-price">
+          {{ p.price }}đ
+        </span>
+        }
+      </h2>
+      <div class="d-flex justify-content-center align-items-center gap-3 my-4">
+        <span>Kích thước:</span>
+        <div class="size-group">
+          <input type="radio" id="xxl" name="size">
+          <label for="xxl">XXL</label>
+          <input type="radio" id="xl" name="size" checked>
+          <label for="xl">XL</label>
+          <input type="radio" id="l" name="size">
+          <label for="l">L</label>
+          <input type="radio" id="s" name="size">
+          <label for="s">S</label>
+        </div>
+      </div>
+      <!-- Color -->
+      <div class="d-flex justify-content-center align-items-center gap-3 mb-4">
+        <span>Màu:</span>
+        <div class="color-group">
+          <span class="color active" style="background:#000"></span>
+          <span class="color" style="background:#2c3e50"></span>
+          <span class="color" style="background:#f1c40f"></span>
+          <span class="color" style="background:#e74c3c"></span>
+          <span class="color" style="background:#eee"></span>
+        </div>
+      </div>
+      <!-- Info -->
+      <div class="mt-3 text-muted small">
+        <p>SKU: #PRD-{{ p.id }}</p>
+        <p>Danh mục: {{ p.category_id }}</p>
+        <!-- <p>Thẻ: Quần áo, Thời trang, Nam</p> -->
+      </div>
+      <!-- Cart -->
+      <div class="d-flex justify-content-center gap-3">
+        <input type="number" value="1" class="form-control rounded-0 qty-input">
+        <button class="btn btn-dark rounded-0 px-5">
+          <i class="bi bi-cart-plus"></i>
+          THÊM VÀO GIỎ
+        </button>
       </div>
     </div>
-    <!-- Color -->
-    <div class="d-flex justify-content-center align-items-center gap-3 mb-4">
-      <span>Màu:</span>
-      <div class="color-group">
-        <span class="color active" style="background:#000"></span>
-        <span class="color" style="background:#2c3e50"></span>
-        <span class="color" style="background:#f1c40f"></span>
-        <span class="color" style="background:#e74c3c"></span>
-        <span class="color" style="background:#eee"></span>
-      </div>
-    </div>
-    <!-- Info -->
-    <div class="mt-3 text-muted small">
-      <p>SKU: {{ product.id }}</p>
-      <p>Danh mục: {{ product.category_id }}</p>
-      <!-- <p>Thẻ: Quần áo, Thời trang, Nam</p> -->
-    </div>
-    <!-- Cart -->
-    <div class="d-flex justify-content-center gap-3">
-      <input type="number" value="1" class="form-control rounded-0 qty-input">
-      <button class="btn btn-dark rounded-0 px-5">
-        <i class="bi bi-cart-plus"></i>
-        THÊM VÀO GIỎ
-      </button>
-    </div>
   </div>
-</div>
-<hr>
+  <hr>
 
-<!-- Tabs -->
-<div class="container">
   <!-- Tabs -->
-  <ul class="nav nav-tabs justify-content-center custom-tabs border-0">
-    <li class="nav-item fs-4">
-      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#desc">
-        Mô tả
-      </button>
-    </li>
-    <li class="nav-item fs-4">
-      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#review">
-        Đánh giá (5)
-      </button>
-    </li>
-  </ul>
+  <div class="container">
+    <!-- Tabs -->
+    <ul class="nav nav-tabs justify-content-center custom-tabs border-0">
+      <li class="nav-item fs-4">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#desc">
+          Mô tả
+        </button>
+      </li>
+      <li class="nav-item fs-4">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#review">
+          Đánh giá (5)
+        </button>
+      </li>
+    </ul>
 
-  <!-- Nội dung -->
-  <div class="tab-content custom-tab-content">
-    <!-- Mô tả -->
-    <div class="tab-pane fade show active" id="desc">
-      <p class="text-muted">
-        {{ product.description }}
-      </p>
+    <!-- Nội dung -->
+    <div class="tab-content custom-tab-content">
+      <!-- Mô tả -->
+      <div class="tab-pane fade show active" id="desc">
+        <p class="text-muted">
+          {{ p.description }}
+        </p>
 
-      <!-- <h5 class="fw-bold mt-4">Thông tin sản phẩm</h5>
+        <!-- <h5 class="fw-bold mt-4">Thông tin sản phẩm</h5>
       <p class="text-muted">
         Sản phẩm được thiết kế dành cho người dùng hiện đại, kết hợp giữa thời trang và tiện ích.
         Bạn có thể sử dụng trong nhiều hoàn cảnh như đi làm, đi chơi hoặc tham dự sự kiện.
@@ -114,120 +115,76 @@
         Sản phẩm sử dụng chất liệu Polyester cao cấp. Đây là loại vải tổng hợp có độ bền cao,
         ít nhăn và giữ form tốt. Ngoài ra còn có khả năng chống thấm nhẹ và dễ bảo quản.
       </p> -->
+      </div>
+      <!-- Đánh giá -->
+      <div class="tab-pane fade" id="review">
+        <p class="text-muted">
+          Khách hàng đánh giá rất cao sản phẩm này nhờ vào chất lượng tốt, thiết kế đẹp
+          và độ bền cao. Phù hợp với nhiều đối tượng sử dụng.
+        </p>
+      </div>
     </div>
-    <!-- Đánh giá -->
-    <div class="tab-pane fade" id="review">
-      <p class="text-muted">
-        Khách hàng đánh giá rất cao sản phẩm này nhờ vào chất lượng tốt, thiết kế đẹp
-        và độ bền cao. Phù hợp với nhiều đối tượng sử dụng.
-      </p>
+
+  </div>
+
+  <!-- Related -->
+  <div class="product-section py-5">
+    <div class="container">
+      <h4 class="text-center mb-5 fw-semibold">
+        SẢN PHẨM LIÊN QUAN
+      </h4>
+      <div class="row g-4">
+        <!-- Product -->
+        @for (p of relatedProducts(); track p.id) {
+        <div class="col-lg-3 col-md-6">
+          <div class="product-card" [routerLink]="['/product-detail', p.id]">
+
+            <div class="product-img">
+              <img [src]="p.image" class="img-fluid">
+              <div class="product-hover">
+                Thêm vào giỏ hàng
+              </div>
+            </div>
+
+            <div class="product-info">
+              <h6>{{ p.name }}</h6>
+
+              <div class="price">
+                <span class="old text-muted text-decoration-line-through">
+                  {{ p.price | number:'1.0-0' }} đ
+                </span>
+
+                <span class="new text-danger fw-bold">
+                  {{ (p.sale_price || p.price) | number:'1.0-0' }} đ
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        }
+      </div>
+
+      <!-- Pagination -->
+      <nav class="pagination-section mt-5">
+        <ul class="pagination justify-content-center">
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 
-</div>
-
-<!-- Related -->
-<div class="product-section py-5">
-  <div class="container">
-    <h4 class="text-center mb-5 fw-semibold">
-      SẢN PHẨM LIÊN QUAN
-    </h4>
-    <div class="row g-4">
-      <!-- Product -->
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-          <div class="product-img">
-            <img src="https://i.pinimg.com/1200x/8c/0b/9a/8c0b9a0ee789d392a8600a47080696a4.jpg" class="img-fluid">
-            <div class="product-hover">
-              Thêm vào giỏ hàng
-            </div>
-          </div>
-          <div class="product-info">
-            <h6>Quần jeans nam rách nhẹ</h6>
-
-            <div class="price">
-              <span class="old">480.000 đ</span>
-              <span class="new">420.000 đ</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Product -->
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-
-          <div class="product-img">
-            <img src="https://i.pinimg.com/1200x/8c/0b/9a/8c0b9a0ee789d392a8600a47080696a4.jpg" class="img-fluid">
-            <div class="product-hover">
-              Thêm vào giỏ hàng
-            </div>
-          </div>
-
-          <div class="product-info">
-            <h6>Quần jeans nam xanh đậm</h6>
-            <div class="price">
-              <span class="new">460.000 đ</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- Product -->
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-          <div class="product-img">
-            <img src="https://i.pinimg.com/1200x/8c/0b/9a/8c0b9a0ee789d392a8600a47080696a4.jpg" class="img-fluid">
-            <div class="product-hover">
-              Thêm vào giỏ hàng
-            </div>
-          </div>
-          <div class="product-info">
-            <h6>Quần short kaki nam</h6>
-            <div class="price">
-              <span class="old">280.000 đ</span>
-              <span class="new">250.000 đ</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Product -->
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-          <div class="product-img">
-            <img src="https://i.pinimg.com/1200x/8c/0b/9a/8c0b9a0ee789d392a8600a47080696a4.jpg" class="img-fluid">
-            <div class="product-hover">
-              Thêm vào giỏ hàng
-            </div>
-          </div>
-          <div class="product-info">
-            <h6>Quần jogger nam thể thao</h6>
-            <div class="price">
-              <span class="old">350.000 đ</span>
-              <span class="new">299.000 đ</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pagination -->
-    <nav class="pagination-section mt-5">
-      <ul class="pagination justify-content-center">
-        <li class="page-item active">
-          <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">
-            <i class="bi bi-chevron-right"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
 </div>

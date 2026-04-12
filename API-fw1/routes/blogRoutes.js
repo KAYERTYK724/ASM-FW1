@@ -3,10 +3,10 @@ const router = express.Router();
 const { checkJWT, isAdmin } = require('../controllers/authCheck')
 const BlogController = require('../controllers/blogController');
 
-router.get('/blogs/list', checkJWT, isAdmin, BlogController.get);
-router.post('/blogs/add', checkJWT, isAdmin, BlogController.create);
-router.get('/blogs/:id', checkJWT, isAdmin, BlogController.getById);
-router.put('/blogs/:id', checkJWT, isAdmin, BlogController.update);
-router.delete('/blogs/:id', checkJWT, isAdmin, BlogController.delete);
+router.get('/blogs/list', BlogController.get);
+router.post('/blogs/add', BlogController.create);
+router.get('/blogs/:id', BlogController.getById);
+router.put('/blogs/:id', BlogController.update);
+router.delete('/blogs/:id', BlogController.delete);
 
 module.exports = router;
