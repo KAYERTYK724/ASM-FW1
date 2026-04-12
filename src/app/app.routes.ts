@@ -70,7 +70,7 @@ export const routes: Routes = [
       {
         path: 'category',
         loadComponent: () =>
-          import('./pages/admin/category/category').then((m) => m.Category),
+          import('./pages/admin/category/category').then((m) => m.CategoryComponent), //  FIX
       },
       {
         path: 'product',
