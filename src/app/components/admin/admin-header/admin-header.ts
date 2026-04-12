@@ -6,4 +6,8 @@ import { Component } from "@angular/core";
   templateUrl: './admin-header.html',
   styleUrl: './admin-header.scss',
 })
-export class AdminHeader {}
+export class AdminHeader {
+toggleSidebar() {
+throw new Error('Method not implemented.');
+}
+}
