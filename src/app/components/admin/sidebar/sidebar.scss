@@ -1,0 +1,92 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: #1e293b;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  transition: 0.3s;
+}
+
+/* BRAND */
+.brand {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 5px;
+  margin-bottom: 20px;
+}
+
+.brand i {
+  font-size: 24px;
+  color: #38bdf8;
+  margin-right: 10px;
+}
+
+/* USER */
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+}
+
+.user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.user-info {
+  margin-left: 10px;
+}
+
+.user-info .name {
+  font-weight: 600;
+}
+
+.user-info .role {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* MENU */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  padding: 12px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.menu li i {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+/* HOVER */
+.menu li:hover {
+  background: #334155;
+}
+
+/* ACTIVE */
+.menu li.active {
+  background: #38bdf8;
+  color: #000;
+}
+
+/* TEXT */
+.menu li span {
+  font-size: 14px;
+}

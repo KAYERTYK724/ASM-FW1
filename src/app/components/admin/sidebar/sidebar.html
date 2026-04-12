@@ -1,72 +1,51 @@
-<div
-  class="sidebar d-flex flex-column flex-shrink-0 p-3 bg-white"
-  style="width: 280px; height: 100vh"
->
+<div class="sidebar">
 
-  <ul class="nav nav-pills flex-column mb-auto mt-3">
-    <li class="nav-item">
-      <a routerLink="/admin/dashboard" class="nav-link active d-flex align-items-center mb-1" aria-current="page">
-        <i class="bi bi-house-door me-3 fs-5"></i>
-        <span>Bảng điều khiển</span>
-      </a>
+  <!-- BRAND -->
+  <div class="brand">
+    <i class="bi bi-bootstrap-fill"></i>
+    <span class="brand-text">Mendover Admin</span>
+  </div>
+
+  <!-- USER -->
+  <div class="user">
+    <img src="https://i.pravatar.cc/100" alt="user">
+    <div class="user-info">
+      <small class="role">Quản trị viên</small>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <ul class="menu">
+
+    <li routerLink="/admin/dashboard" routerLinkActive="active">
+      <i class="bi bi-speedometer2"></i>
+      <span>Bảng điều khiển</span>
     </li>
-    <li>
-      <a routerLink="/admin/category" class="nav-link link-primary d-flex align-items-center mb-1">
-        <i class="bi bi-box-seam me-3 fs-5"></i>
-        <span>Danh Mục</span>
-      </a>
+
+    <li routerLink="/admin/category" routerLinkActive="active">
+      <i class="bi bi-tags"></i>
+      <span>Danh mục</span>
     </li>
-    <li>
-      <a routerLink="/admin/product" class="nav-link link-primary d-flex align-items-center mb-1">
-        <i class="bi bi-box-seam me-3 fs-5"></i>
-        <span>Sản Phẩm</span>
-      </a>
+
+    <li routerLink="/admin/product" routerLinkActive="active">
+      <i class="bi bi-box"></i>
+      <span>Sản phẩm</span>
     </li>
-    <li>
-      <a href="#" class="nav-link link-primary d-flex align-items-center mb-1">
-        <i class="bi bi-box-seam me-3 fs-5"></i>
-        <span>Sản Phẩm</span>
-      </a>
+    <li routerLink="/admin/comment" routerLinkActive="active">
+      <i class="bi bi-chat-dots"></i>
+      <span>Quản lý bình luận</span>
     </li>
-    <li>
-      <a href="#" class="nav-link link-primary d-flex align-items-center mb-1">
-        <i class="bi bi-plus-lg me-3 fs-5"></i>
-        <span>Thêm sản phẩm</span>
-      </a>
+
+    <li routerLink="/admin/order" routerLinkActive="active">
+      <i class="bi bi-receipt"></i>
+      <span>Đơn hàng</span>
     </li>
-    <li>
-      <a href="#" class="nav-link link-primary d-flex align-items-center mb-1">
-        <i class="bi bi-bar-chart-line me-3 fs-5"></i>
-        <span>Báo cáo</span>
-      </a>
+
+    <li routerLink="/admin/user" routerLinkActive="active">
+      <i class="bi bi-people"></i>
+      <span>Khách hàng</span>
     </li>
-    <li>
-      <a href="#" class="nav-link link-primary d-flex align-items-center mb-1">
-        <i class="bi bi-exclamation-circle me-3 fs-5"></i>
-        <span>Lỗi 404</span>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link link-primary d-flex align-items-center mb-1">
-        <i class="bi bi-file-earmark-text me-3 fs-5"></i>
-        <span>Tài liệu</span>
-      </a>
-    </li>
+
   </ul>
 
-  <hr />
-  <ul class="nav nav-pills flex-column">
-    <li>
-      <a href="#" class="nav-link link-primary d-flex align-items-center mb-1">
-        <i class="bi bi-box-arrow-in-right me-3 fs-5"></i>
-        <span>Đăng nhập</span>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link link-primary d-flex align-items-center">
-        <i class="bi bi-person-plus me-3 fs-5"></i>
-        <span>Đăng ký</span>
-      </a>
-    </li>
-  </ul>
 </div>

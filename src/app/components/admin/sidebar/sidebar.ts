@@ -7,4 +7,8 @@ import { RouterLink } from "@angular/router";
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
-export class Sidebar {}
+export class Sidebar {
+toggleSidebar() {
+throw new Error('Method not implemented.');
+}
+}
