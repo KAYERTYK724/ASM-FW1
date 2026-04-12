@@ -1,14 +1,6 @@
 <div class="bg-dark text-white py-1">
   <div class="container d-flex justify-content-between small">
     <div>Free shipping, 30-day return or refund guarantee</div>
-    <div class="col-lg-6 col-md-5">
-      <div class="d-flex justify-content-end align-items-center gap-4">
-        <div class="d-flex gap-3">
-          <a href="login" class="text-decoration-none text-white">Sign in</a>
-          <a href="#" class="text-decoration-none text-white">FAQs</a>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -25,25 +17,25 @@
     <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item fw-semibold">
-          <a class="nav-link" href="/">TRANG CHỦ</a>
+          <a class="nav-link" routerLink="/">TRANG CHỦ</a>
         </li>
         <li class="nav-item fw-semibold">
-          <a class="nav-link" href="product">CỬA HÀNG</a>
+          <a class="nav-link" routerLink="product">CỬA HÀNG</a>
         </li>
         <li class="nav-item fw-semibold">
-          <a class="nav-link" href="blog">TIN TỨC</a>
+          <a class="nav-link" routerLink="blog">TIN TỨC</a>
         </li>
         <li class="nav-item fw-semibold">
-          <a class="nav-link" href="about">GIỚI THIỆU</a>
+          <a class="nav-link" routerLink="about">GIỚI THIỆU</a>
         </li>
         <li class="nav-item fw-semibold">
-          <a class="nav-link" href="contact">LIÊN HỆ</a>
+          <a class="nav-link" routerLink="contact">LIÊN HỆ</a>
         </li>
       </ul>
       <div class="col-lg-3 col-md-3">
         <div class="d-flex align-items-center justify-content-end gap-3">
           <!-- Cart -->
-          <a href="cart" class="text-dark fs-5 position-relative">
+          <a routerLink="cart" class="text-dark fs-5 position-relative">
             <i class="bi bi-bag"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
               0
@@ -53,6 +45,31 @@
           <span class="fw-semibold">
             <span class="text-danger">0</span> VND
           </span>
+
+          <!-- ACCOUNT DROPDOWN -->
+          <div class="dropdown">
+            <a class="text-dark fs-5 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="bi bi-person"></i>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" routerLink="login">Đăng nhập</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Đăng ký</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Hồ sơ</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Đăng xuất</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

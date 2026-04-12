@@ -1,4 +1,7 @@
 export const API_ENDPOINTS = {
+  auth: {
+    login: '/users/login',
+  },
   CATEGORY : {
     LIST: "/categories/list",
     GET_BY_ID: (id: number) => `/categories/${id}`,
