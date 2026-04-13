@@ -4,7 +4,7 @@ import { AdminHeader } from "../../components/admin/admin-header/admin-header";
 import { Sidebar } from '../../components/admin/sidebar/sidebar';
 import { Dashboard } from "../../pages/admin/dashboard/dashboard";
 import { Header } from "../../components/client/header/header";
-//h
+
 @Component({
   selector: 'app-admin-layout',
   imports: [Sidebar, RouterOutlet, Dashboard, Header, AdminHeader],
