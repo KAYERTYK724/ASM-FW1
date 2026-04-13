@@ -23,12 +23,12 @@
       <h3 class="fw-semibold mb-2">{{ p.name }}</h3>
 
       <!-- Price -->
-      <h2 class="price mb-3">
-        {{ (p.sale_price || p.price) }}đ
+      <h2 class="price mb-3 text-danger">
+        {{ (p.sale_price || p.price) | number:'1.0-0' }} VND
 
         @if (p.sale_price) {
         <span class="old-price">
-          {{ p.price }}đ
+          {{ p.price | number:'1.0-0' }} VND
         </span>
         }
       </h2>
@@ -59,12 +59,12 @@
       <!-- Info -->
       <div class="mt-3 text-muted small">
         <p>SKU: #PRD-{{ p.id }}</p>
-        <p>Danh mục: {{ p.category_id }}</p>
+        <p>Danh mục: {{ p.category?.name }}</p>
         <!-- <p>Thẻ: Quần áo, Thời trang, Nam</p> -->
       </div>
       <!-- Cart -->
       <div class="d-flex justify-content-center gap-3">
-        <input type="number" value="1" class="form-control rounded-0 qty-input">
+        <input type="number" value="1" min="1" class="form-control rounded-0 qty-input">
         <button class="btn btn-dark rounded-0 px-5">
           <i class="bi bi-cart-plus"></i>
           THÊM VÀO GIỎ

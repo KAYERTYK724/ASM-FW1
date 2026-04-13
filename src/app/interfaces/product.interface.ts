@@ -1,4 +1,5 @@
 export interface IProduct {
+[x: string]: any;
   set: any;
   id : number;
   name : string;
@@ -10,4 +11,8 @@ export interface IProduct {
   status? : boolean;
   created_at? : string;
   updated_at? : string;
+  category?: {
+    id: number;
+    name: string;
+  };
 }
