@@ -1,149 +1,145 @@
 <!-- HERO -->
-<section class="blog-hero">
-  <div class="container text-center">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
+<div *ngIf="blog">
+  <section class="blog-hero">
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
 
-        <h2 class="hero-title">
-          {{ blog?.title }}
-        </h2>
-
-        <div class="hero-meta">
-          <span>Bởi Admin</span>
-          <span>|</span>
-          <span>21 Tháng 2, 2019</span>
-          <span>|</span>
-          <span>8 bình luận</span>
+          <h2 class="hero-title">
+            {{ blog.title }}
+          </h2>
         </div>
-
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- IMAGE -->
-<section class="blog-image">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
+  <!-- IMAGE -->
+  <section class="blog-image">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
 
-        <div class="image-wrapper">
-          <img [src]="blog?.image" alt="Blog Image"
-            class="img-fluid">
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTENT -->
-<section class="blog-content">
-  <div class="container">
-    <div class="row justify-content-center">
-
-      <!-- SHARE -->
-      <div class="col-lg-1 d-none d-lg-block">
-        <div class="share-bar text-center">
-          <p class="share-title">SHARE</p>
-
-          <a href="#" class="share-item facebook">
-            <i class="bi bi-facebook"></i>
-          </a>
-
-          <a href="#" class="share-item twitter">
-            <i class="bi bi-twitter-x"></i>
-          </a>
-
-          <a href="#" class="share-item youtube">
-            <i class="bi bi-youtube"></i>
-          </a>
-
-          <a href="#" class="share-item linkedin">
-            <i class="bi bi-linkedin"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- MAIN -->
-      <div class="col-lg-8">
-
-        <div class="blog-text">
-          <p>{{ blog?.content }}</p>
-
-        </div>
-
-        <!-- QUOTE -->
-        <div class="quote-wrapper">
-          <div class="quote-box position-relative">
-
-            <!-- ICON -->
-            <div class="quote-icon">
-              <i class="bi bi-quote"></i>
-            </div>
-
-            <!-- TEXT -->
-            <p class="quote-text fw-semibold">
-              “Khi thiết kế một quảng cáo cho một sản phẩm cụ thể, cần nghiên cứu kỹ
-              nhiều yếu tố như vị trí hiển thị để đạt hiệu quả tối ưu.”
-            </p>
-
-            <!-- AUTHOR -->
-            <h6 class="quote-author">
-              _ NGUYỄN VĂN A _
-            </h6>
-
-          </div>
-        </div>
-
-        <!-- NAV -->
-        <div class="row post-navigation">
-          <!-- PREV -->
-          <div class="col-md-6" *ngIf="prevBlog">
-            <div class="post-box" [routerLink]="['/blog', prevBlog.id]">
-              <span>Bài trước</span>
-              <h6>{{ prevBlog.title }}</h6>
-            </div>
-          </div>
-
-          <!-- NEXT -->
-          <div class="col-md-6 text-md-end" *ngIf="nextBlog">
-            <div class="post-box" [routerLink]="['/blog', nextBlog.id]">
-              <span>Bài tiếp theo</span>
-              <h6>{{ nextBlog.title }}</h6>
-            </div>
+          <div class="image-wrapper">
+            <img [src]="blog.image" alt="Blog Image" class="img-fluid">
           </div>
 
         </div>
-
-        <!-- COMMENT -->
-        <div class="comment-box text-center">
-          <h5>Để lại bình luận</h5>
-
-          <form>
-            <div class="row">
-              <div class="col-md-4">
-                <input type="text" placeholder="Tên">
-              </div>
-              <div class="col-md-4">
-                <input type="email" placeholder="Email">
-              </div>
-              <div class="col-md-4">
-                <input type="text" placeholder="Số điện thoại">
-              </div>
-
-              <div class="col-12">
-                <textarea placeholder="Nội dung bình luận"></textarea>
-              </div>
-
-              <div class="col-12">
-                <button type="submit">Gửi bình luận</button>
-              </div>
-            </div>
-          </form>
-        </div>
-
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="blog-content">
+    <div class="container">
+      <div class="row justify-content-center">
+
+        <!-- SHARE -->
+        <div class="col-lg-1 d-none d-lg-block">
+          <div class="share-bar text-center">
+            <p class="share-title">SHARE</p>
+
+            <a href="#" class="share-item facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+
+            <a href="#" class="share-item twitter">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+
+            <a href="#" class="share-item youtube">
+              <i class="bi bi-youtube"></i>
+            </a>
+
+            <a href="#" class="share-item linkedin">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="col-lg-8">
+
+          <div class="blog-text">
+            <p>{{ blog.content }}</p>
+
+          </div>
+
+          <!-- QUOTE -->
+          <div class="quote-wrapper">
+            <div class="quote-box position-relative">
+
+              <!-- ICON -->
+              <div class="quote-icon">
+                <i class="bi bi-quote"></i>
+              </div>
+
+              <!-- TEXT -->
+              <p class="quote-text fw-semibold">
+                “Khi thiết kế một quảng cáo cho một sản phẩm cụ thể, cần nghiên cứu kỹ
+                nhiều yếu tố như vị trí hiển thị để đạt hiệu quả tối ưu.”
+              </p>
+
+              <!-- AUTHOR -->
+              <h6 class="quote-author">
+                _ NGUYỄN VĂN A _
+              </h6>
+
+            </div>
+          </div>
+
+          <!-- NAV -->
+          <div class="row post-navigation">
+            <!-- PREV -->
+            <div class="col-md-6" *ngIf="prevBlog">
+              <div class="post-box">
+                <a class="text-decoration-none text-dark" [routerLink]="['/blog-detail', prevBlog.id]">
+                  <span>Bài trước</span>
+                  <h6>{{ prevBlog.title }}</h6>
+                </a>
+              </div>
+            </div>
+
+            <!-- NEXT -->
+            <div class="col-md-6 text-md-end" *ngIf="nextBlog">
+              <div class="post-box">
+                <a class="text-decoration-none text-dark" [routerLink]="['/blog-detail', nextBlog.id]">
+                  <span>Bài tiếp theo</span>
+                  <h6>{{ nextBlog.title }}</h6>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- COMMENT -->
+          <div class="comment-box text-center">
+            <h5>Để lại bình luận</h5>
+
+            <form>
+              <div class="row">
+                <div class="col-md-4">
+                  <input type="text" placeholder="Tên">
+                </div>
+                <div class="col-md-4">
+                  <input type="email" placeholder="Email">
+                </div>
+                <div class="col-md-4">
+                  <input type="text" placeholder="Số điện thoại">
+                </div>
+
+                <div class="col-12">
+                  <textarea placeholder="Nội dung bình luận"></textarea>
+                </div>
+
+                <div class="col-12">
+                  <button type="submit">Gửi bình luận</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,11 +1,12 @@
 import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from "@angular/router";
 import { BlogService } from '../../../services/blog.service';
 import { IBlog } from '../../../interfaces/blog.interface';
 
 @Component({
   selector: 'app-blog',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './blog.html',
   styleUrl: './blog.scss',
 })

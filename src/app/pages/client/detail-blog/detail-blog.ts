@@ -1,5 +1,5 @@
-import { Component, OnInit, signal, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, OnInit, signal, ChangeDetectorRef} from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BlogService } from '../../../services/blog.service';
 import { IBlog } from '../../../interfaces/blog.interface';
@@ -9,10 +9,9 @@ import { IBlog } from '../../../interfaces/blog.interface';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './detail-blog.html',
-  styleUrl: './detail-blog.scss',
+  styleUrls: ['./detail-blog.scss']
 })
 export class DetailBlog implements OnInit {
-
   blog: IBlog | null = null;
   dataListBlog = signal<IBlog[]>([]);
 
@@ -21,7 +20,6 @@ export class DetailBlog implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private blogService: BlogService,
     private cdr: ChangeDetectorRef
   ) {}
@@ -37,29 +35,29 @@ export class DetailBlog implements OnInit {
     try {
       const [detail, list] = await Promise.all([
         this.blogService.getById(id),
-        this.blogService.list()
+        this.blogService.list(),
       ]);
 
-      if (detail.status === 200) {
-        this.blog = detail.data;
-        this.cdr.detectChanges();
+      if (detail && detail.status === 200) {
+        this.blog = detail.data.data;
       }
 
-      if (list.status === 200) {
-        const blogs = list.data;
+      if (list && list.status === 200) {
+        const blogs = list.data.data;
         this.dataListBlog.set(blogs);
-
         this.handlePrevNext(id, blogs);
       }
 
+      this.cdr.detectChanges();
     } catch (error) {
       console.error(error);
     }
   }
 
   handlePrevNext(id: number, blogs: IBlog[]) {
-    const index = blogs.findIndex(b => b.id === id);
+    if (!Array.isArray(blogs)) return;
 
+    const index = blogs.findIndex((b) => b.id === id);
     this.prevBlog = index > 0 ? blogs[index - 1] : null;
     this.nextBlog = index < blogs.length - 1 ? blogs[index + 1] : null;
   }
