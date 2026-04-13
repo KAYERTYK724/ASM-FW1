@@ -52,7 +52,7 @@ export const routes: Routes = [
     ],
   },
 
-  // 🔥 ADMIN
+  // ADMIN
   {
     path: 'admin',
     component: AdminLayout,
