@@ -5,7 +5,7 @@
       <div class="col-lg-8">
 
         <h2 class="hero-title">
-          Bạn có phải là một trong hàng ngàn người dùng iPhone nhưng chưa biết tận dụng hết nó?
+          {{ blog?.title }}
         </h2>
 
         <div class="hero-meta">
@@ -28,7 +28,7 @@
       <div class="col-lg-10">
 
         <div class="image-wrapper">
-          <img src="https://i.pinimg.com/736x/89/15/7a/89157abb54f871c767b2f33eab778890.jpg" alt="Blog Image"
+          <img [src]="blog?.image" alt="Blog Image"
             class="img-fluid">
         </div>
 
@@ -69,15 +69,8 @@
       <div class="col-lg-8">
 
         <div class="blog-text">
-          <p>
-            Đây là dòng sản phẩm chăm sóc da cao cấp giúp làm chậm quá trình lão hóa
-            và duy trì làn da săn chắc, khỏe mạnh theo thời gian.
-          </p>
+          <p>{{ blog?.content }}</p>
 
-          <p>
-            Thành phần chính là các protein tự nhiên được chọn lọc kỹ lưỡng,
-            giúp cải thiện độ đàn hồi và mang lại vẻ ngoài trẻ trung hơn.
-          </p>
         </div>
 
         <!-- QUOTE -->
@@ -103,32 +96,24 @@
           </div>
         </div>
 
-        <div class="blog-text">
-          <p>
-            Ngoài ra, sản phẩm còn giúp giảm quầng thâm mắt, bọng mắt và các dấu hiệu lão hóa khác.
-          </p>
-
-          <p>
-            Đây là giải pháp toàn diện giúp cải thiện làn da từ sâu bên trong,
-            mang lại vẻ ngoài tươi trẻ và đầy sức sống.
-          </p>
-        </div>
-
         <!-- NAV -->
         <div class="row post-navigation">
-          <div class="col-md-6">
-            <div class="post-box">
+          <!-- PREV -->
+          <div class="col-md-6" *ngIf="prevBlog">
+            <div class="post-box" [routerLink]="['/blog', prevBlog.id]">
               <span>Bài trước</span>
-              <h6>Cách sử dụng trang rao vặt miễn phí hiệu quả</h6>
+              <h6>{{ prevBlog.title }}</h6>
             </div>
           </div>
 
-          <div class="col-md-6 text-md-end">
-            <div class="post-box">
+          <!-- NEXT -->
+          <div class="col-md-6 text-md-end" *ngIf="nextBlog">
+            <div class="post-box" [routerLink]="['/blog', nextBlog.id]">
               <span>Bài tiếp theo</span>
-              <h6>Cách chọn son bóng phù hợp với bạn</h6>
+              <h6>{{ nextBlog.title }}</h6>
             </div>
           </div>
+
         </div>
 
         <!-- COMMENT -->
