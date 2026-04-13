@@ -84,6 +84,12 @@
 
   button {
     font-size: 12px;
+    color: #000;
+
+    &:hover{
+      border: none;
+      background-color: #e53637;
+    }
   }
 }
 
@@ -93,8 +99,8 @@
   gap: 10px;
 
   .color {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     cursor: pointer;
   }
@@ -135,10 +141,16 @@
   gap: 10px;
 
   span {
-    font-size: 12px;
+    font-size: 14px;
+    color: #000;
     padding: 6px 10px;
     border: 1px solid #ddd;
     cursor: pointer;
+
+    &:hover {
+      border: none;
+      background-color: #e53637;
+    }
   }
 }
 

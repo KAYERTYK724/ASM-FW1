@@ -35,7 +35,7 @@
                 </button>
               </h2>
               <div id="cat" class="accordion-collapse collapse show">
-                @for (parent of parentCategories; track parent.id) {
+                @for (parent of parentCategories(); track parent.id) {
                 <div class="accordion-item border-0">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed px-0" type="button" data-bs-toggle="collapse"
@@ -48,7 +48,9 @@
                     <div class="accordion-body py-2">
                       <ul class="list-unstyled ps-3">
                         @for (child of getChildCategories(parent.id); track child.id) {
-                        <li>{{ child.name }}</li>
+                          <li (click)="selectedCategoryId.set(child.id)">
+                            {{ child.name }}
+                          </li>
                         }
                       </ul>
                     </div>
@@ -105,14 +107,14 @@
               <div id="size" class="accordion-collapse collapse show">
                 <div class="accordion-body">
                   <div class="size-grid">
-                    <button class="btn btn-outline-secondary btn-sm">XS</button>
-                    <button class="btn btn-outline-secondary btn-sm">S</button>
-                    <button class="btn btn-outline-secondary btn-sm">M</button>
-                    <button class="btn btn-outline-secondary btn-sm">XL</button>
-                    <button class="btn btn-outline-secondary btn-sm">2XL</button>
-                    <button class="btn btn-outline-secondary btn-sm">XXL</button>
-                    <button class="btn btn-outline-secondary btn-sm">3XL</button>
-                    <button class="btn btn-outline-secondary btn-sm">4XL</button>
+                    <button class="btn btn-outline-secondary btn-sm rounded-0">XS</button>
+                    <button class="btn btn-outline-secondary btn-sm rounded-0">S</button>
+                    <button class="btn btn-outline-secondary btn-sm rounded-0">M</button>
+                    <button class="btn btn-outline-secondary btn-sm rounded-0">XL</button>
+                    <button class="btn btn-outline-secondary btn-sm rounded-0">2XL</button>
+                    <button class="btn btn-outline-secondary btn-sm rounded-0">XXL</button>
+                    <button class="btn btn-outline-secondary btn-sm rounded-0">3XL</button>
+                    <button class="btn btn-outline-secondary btn-sm rounded-0">4XL</button>
                   </div>
                 </div>
               </div>
@@ -183,7 +185,7 @@
         <!-- PRODUCT GRID -->
         <div class="row g-4">
           <!-- PRODUCT -->
-          @for (p of products; track $index) {
+          @for (p of filterProducts(); track p.id) {
           <div class="col-lg-4 col-md-6">
             <div class="product-card" [routerLink]="['/product-detail', p.id]">
               <div class="product-img">
@@ -195,12 +197,12 @@
               <div class="product-info">
                 <h6>{{ p.name }}</h6>
                 <div class="price">
-                  <span class="old" *ngIf="p.sale_price">
-                    {{ p.price }} đ
+                  <span class="old text-muted text-decoration-line-through">
+                    {{ p.price | number:'1.0-0' }} VND
                   </span>
 
-                  <span class="new">
-                    {{ (p.sale_price || p.price) }} đ
+                  <span class="new text-danger fw-bold">
+                    {{ (p.sale_price || p.price) | number:'1.0-0' }} VND
                   </span>
                 </div>
               </div>

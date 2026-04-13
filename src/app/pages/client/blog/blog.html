@@ -10,7 +10,7 @@
   <div class="container">
     <div class="row g-4">
       <!-- BLOG ITEM -->
-      @for (b of blogs; track $index) {
+      @for (b of dataBloglist(); track $index) {
       <div class="col-lg-4 col-md-6">
         <div class="card blog-card border-0">
           <img [src]="b.image" class="card-img-top">

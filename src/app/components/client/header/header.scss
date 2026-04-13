@@ -1,0 +1,14 @@
+.dropdown-menu {
+  min-width: 180px;
+  border-radius: 8px;
+}
+
+.dropdown-item {
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+  color: #e53637;
+}
