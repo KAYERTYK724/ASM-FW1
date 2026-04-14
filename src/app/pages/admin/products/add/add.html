@@ -1,0 +1,81 @@
+<div class="inventory-container container mt-5">
+  <div class="card shadow-sm border-0 p-4">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+
+        <div class="col-md-6 mb-4">
+          <label class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên sản phẩm"
+            [class.is-invalid]="isInvalid('name')">
+          @if (isInvalid('name')) {
+            <div class="invalid-feedback">
+              @if (productForm.get('name')?.errors?.['required']) { Tên không được để trống }
+              @if (productForm.get('name')?.errors?.['minlength']) { Tên phải có ít nhất 3 ký tự }
+            </div>
+          }
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <label class="form-label">Danh mục <span class="text-danger">*</span></label>
+          <select class="form-select" formControlName="category_id" [class.is-invalid]="isInvalid('category_id')">
+            <option value="" disabled>-- Chọn danh mục --</option>
+            @for (cat of categories(); track cat.id) {
+              <option [value]="cat.id">{{ cat.parent_id ? '— ' : '' }}{{ cat.name }}</option>
+            }
+          </select>
+          @if (isInvalid('category_id')) {
+            <div class="invalid-feedback">Vui lòng chọn một danh mục</div>
+          }
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <label class="form-label">Giá (VNĐ) <span class="text-danger">*</span></label>
+          <input type="number" class="form-control" formControlName="price" [class.is-invalid]="isInvalid('price')">
+          @if (isInvalid('price')) {
+            <div class="invalid-feedback">Giá phải lớn hơn hoặc bằng 1,000</div>
+          }
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <label class="form-label">Giá giảm (Sale)</label>
+          <input type="number" class="form-control" formControlName="sale_price" [class.is-invalid]="isInvalid('sale_price')">
+          @if (isInvalid('sale_price')) {
+            <div class="invalid-feedback">Giá giảm không được nhỏ hơn 0</div>
+          }
+        </div>
+
+        <div class="col-12 mb-4">
+          <label class="form-label">Trạng thái</label>
+          <select class="form-select" formControlName="status">
+            <option [value]="1">Còn hàng (Hiển thị)</option>
+            <option [value]="0">Hết hàng (Ẩn)</option>
+          </select>
+        </div>
+
+        <div class="col-12 mb-4">
+          <label class="form-label">Hình ảnh sản phẩm <span class="text-danger">*</span></label>
+          <app-image-upload (imagesChanged)="handleImagesUpdate($event)"></app-image-upload>
+          @if (productImages().length === 0 && productForm.touched) {
+            <small class="text-danger d-block mt-1">Vui lòng tải lên ít nhất một hình ảnh</small>
+          }
+        </div>
+
+        <div class="col-12 mb-4">
+          <label class="form-label">Mô tả <span class="text-danger">*</span></label>
+          <textarea class="form-control" rows="4" formControlName="description"
+            placeholder="Nhập mô tả sản phẩm" [class.is-invalid]="isInvalid('description')"></textarea>
+          @if (isInvalid('description')) {
+            <div class="invalid-feedback">Mô tả không được để trống (tối đa 500 ký tự)</div>
+          }
+        </div>
+      </div>
+
+      <div class="actions-footer mt-3">
+        <button type="submit" class="btn btn-orange-fill me-2" [disabled]="productForm.invalid && productForm.touched">
+          Thêm sản phẩm
+        </button>
+        <button type="button" class="btn btn-dark-grey" (click)="productForm.reset()">Hủy</button>
+      </div>
+    </form>
+  </div>
+</div>

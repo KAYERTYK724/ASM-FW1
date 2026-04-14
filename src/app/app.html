@@ -1,1 +1,12 @@
+@if (notificationService.alert(); as alert) {
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 1080">
+    <div class="alert alert-{{ alert.type }} alert-dismissible fade show shadow border-0" role="alert">
+      <i class="bi" [class.bi-check-circle-fill]="alert.type === 'success'"
+                   [class.bi-exclamation-triangle-fill]="alert.type === 'danger'"></i>
+      <span class="ms-2">{{ alert.message }}</span>
+      <button type="button" class="btn-close" (click)="notificationService.alert.set(null)"></button>
+    </div>
+  </div>
+}
+
 <router-outlet />

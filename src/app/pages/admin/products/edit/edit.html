@@ -1,0 +1,69 @@
+<div class="inventory-container container mt-5 pb-5">
+  <div class="header-section d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Chỉnh Sửa Sản Phẩm</h2>
+    <button class="btn btn-dark-grey" (click)="router.navigate(['/admin/product'])">Quay lại</button>
+  </div>
+
+  <div class="card shadow-sm border-0 p-4">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <label class="form-label fw-bold">Tên sản phẩm <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" formControlName="name" [class.is-invalid]="isInvalid('name')">
+          @if (isInvalid('name')) {
+            <div class="invalid-feedback">Tên sản phẩm tối thiểu 3 ký tự</div>
+          }
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <label class="form-label fw-bold">Danh mục <span class="text-danger">*</span></label>
+          <select class="form-select" formControlName="category_id" [class.is-invalid]="isInvalid('category_id')">
+            <option value="" disabled>-- Chọn danh mục --</option>
+            @for (cat of categories(); track cat.id) {
+              <option [value]="cat.id">{{ cat.parent_id ? '— ' : '' }}{{ cat.name }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <label class="form-label fw-bold">Giá bán <span class="text-danger">*</span></label>
+          <input type="number" class="form-control" formControlName="price" [class.is-invalid]="isInvalid('price')">
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <label class="form-label fw-bold">Giá giảm</label>
+          <input type="number" class="form-control" formControlName="sale_price">
+        </div>
+
+        <div class="col-12 mb-4">
+          <label class="form-label fw-bold">Trạng thái</label>
+          <select class="form-select" formControlName="status">
+            <option [value]="1">Còn hàng (Hiển thị)</option>
+            <option [value]="0">Hết hàng (Ẩn)</option>
+          </select>
+        </div>
+
+        <div class="col-12 mb-4">
+          <label class="form-label fw-bold">Hình ảnh sản phẩm</label>
+          <app-image-upload (imagesChanged)="handleImagesUpdate($event)"></app-image-upload>
+          @if (productImages().length > 0) {
+            <div class="mt-2">
+              <small class="text-muted d-block mb-1">Ảnh hiện tại:</small>
+              <img [src]="productImages()[0]" width="100" class="rounded border">
+            </div>
+          }
+        </div>
+
+        <div class="col-12 mb-4">
+          <label class="form-label fw-bold">Mô tả <span class="text-danger">*</span></label>
+          <textarea class="form-control" rows="4" formControlName="description" [class.is-invalid]="isInvalid('description')"></textarea>
+        </div>
+      </div>
+
+      <div class="actions-footer mt-3">
+        <button type="submit" class="btn btn-outline-warning me-2">Cập nhật sản phẩm</button>
+        <button type="button" class="btn btn-dark-grey" (click)="router.navigate(['/admin/product'])">Hủy</button>
+      </div>
+    </form>
+  </div>
+</div>

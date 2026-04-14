@@ -1,0 +1,99 @@
+<div class="inventory-container container mt-5 pb-5">
+  @if (product(); as data) {
+
+    <div class="header-section d-flex justify-content-between align-items-center mb-4">
+      <div class="d-flex align-items-center">
+        <button class="btn btn-light rounded-circle me-3">
+          <i class="bi bi-arrow-left"></i>
+        </button>
+        <div>
+          <h2 class="fw-bold mb-0">Chi tiết sản phẩm</h2>
+        </div>
+      </div>
+      <div class="actions">
+        <button [routerLink]="['/admin/product-edit', data.id]" class="btn btn-outline-dark px-4">
+          <i class="bi bi-pencil-square"></i> Chỉnh sửa
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-5 mb-4">
+        <div class="card shadow-sm border-0 p-3 sticky-top" style="top: 20px;">
+          <div class="main-image-container mb-3">
+            <img [src]="data.image" class="img-fluid rounded w-100"
+                 style="height: 400px; object-fit: cover;" [alt]="data.name">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="card shadow-sm border-0 p-4 mb-4">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <span class="badge bg-info text-black mb-2">
+                <i class="bi bi-tag-fill me-1"></i>
+                {{ data.category?.name || 'Danh mục #' + data.category_id }}
+              </span>
+              <h1 class="fw-bold h2 text-dark">{{ data.name }}</h1>
+            </div>
+            <div class="text-end">
+              @if (data.status) {
+                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2">Còn hàng</span>
+              } @else {
+                <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-2">Hết hàng</span>
+              }
+            </div>
+          </div>
+
+          <div class="price-section bg-light p-3 rounded-3 mb-4">
+            <div class="row align-items-center">
+              <div class="col-6">
+                <small class="text-muted d-block">Giá bán hiện tại</small>
+                <span class="h2 fw-bold text-primary mb-0">{{ data.price | number }}đ</span>
+              </div>
+              @if (data.sale_price && data.sale_price > 0) {
+                <div class="col-6 border-start">
+                  <small class="text-muted d-block">Giá gốc (chưa giảm)</small>
+                  <span class="h4 text-decoration-line-through text-muted">{{ data.sale_price | number }}đ</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="info-grid row g-4 mb-4">
+            <div class="col-sm-6">
+              <div class="p-3 border rounded">
+                <small class="text-muted d-block mb-1">Mã sản phẩm (ID)</small>
+                <span class="fw-bold">#{{ data.id }}</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="p-3 border rounded">
+                <small class="text-muted d-block mb-1">Ngày tạo</small>
+                <span class="fw-bold">{{ data.created_at | date:'dd/MM/yyyy HH:mm' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="description-section">
+            <h5 class="fw-bold border-bottom pb-2 mb-3">Mô tả sản phẩm</h5>
+            <p class="text-secondary" style="white-space: pre-line; line-height: 1.6;">
+              {{ data.description || 'Không có mô tả cho sản phẩm này.' }}
+            </p>
+          </div>
+        </div>
+
+        <div class="card shadow-sm border-0 p-4">
+          <h5 class="fw-bold mb-3">Thông tin bổ sung</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between px-0">
+              <span class="text-muted">Cập nhật lần cuối</span>
+              <span class="fw-medium">{{ data.updated_at | date:'dd/MM/yyyy HH:mm' }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  }
+</div>

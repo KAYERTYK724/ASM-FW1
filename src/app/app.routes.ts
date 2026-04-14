@@ -75,7 +75,22 @@ export const routes: Routes = [
       {
         path: 'product',
         loadComponent: () =>
-          import('./pages/admin/product/product').then((m) => m.Product),
+          import('./pages/admin/products/list/product').then((m) => m.Product),
+      },
+      {
+        path: 'product-add',
+        loadComponent: () =>
+          import('./pages/admin/products/add/add').then((m) => m.Add),
+      },
+      {
+        path: 'product-view/:id',
+        loadComponent: () =>
+          import('./pages/admin/products/view/view').then((m) => m.View),
+      },
+      {
+        path: 'product-edit/:id',
+        loadComponent: () =>
+          import('./pages/admin/products/edit/edit').then((m) => m.Edit),
       },
     ],
   },

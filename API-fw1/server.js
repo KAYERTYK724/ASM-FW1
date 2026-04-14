@@ -29,5 +29,5 @@ app.use('/api', orderDetailRoutes);
 app.use('/api', blogRoutes);
 
 app.listen(port, () => {
-  console.log('http://localhost:4000');
+  console.log(`http://localhost:${port}`);
 });
