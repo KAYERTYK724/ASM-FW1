@@ -51,10 +51,17 @@ export const routes: Routes = [
       },
     ],
   },
+
+  // ADMIN
   {
     path: 'admin',
     component: AdminLayout,
     children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
       {
         path: 'dashboard',
         loadComponent: () =>
@@ -62,13 +69,16 @@ export const routes: Routes = [
       },
       {
         path: 'category',
-        loadComponent: () => import('./pages/admin/category/category').then((m) => m.Category),
+        loadComponent: () =>
+          import('./pages/admin/category/category').then((m) => m.CategoryComponent), //  FIX
       },
       {
         path: 'product',
-        loadComponent: () => import('./pages/admin/product/product').then((m) => m.Product),
+        loadComponent: () =>
+          import('./pages/admin/product/product').then((m) => m.Product),
       },
     ],
   },
+
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
