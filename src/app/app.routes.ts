@@ -49,6 +49,10 @@ export const routes: Routes = [
         path: 'login',
         loadComponent: () => import('./pages/client/login/login').then((m) => m.Login),
       },
+      {
+        path: 'profile',
+        loadComponent: () => import('./pages/client/profile/profile').then((m) => m.Profile),
+      },
     ],
   },
 
