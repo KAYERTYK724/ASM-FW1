@@ -44,7 +44,7 @@ export class List {
       const comments = cmtRes.data.data.map((cmt: any) => ({
         ...cmt,
         product: this.products().find((p) => p.id == cmt.product_id),
-        // user: this.users().find((u) => u.id == cmt.user_id),
+        user: this.users().find((u) => u.id == cmt.user_id),
       }));
 
       this.dataListComment.set(comments);

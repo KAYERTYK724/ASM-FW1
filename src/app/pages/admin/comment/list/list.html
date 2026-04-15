@@ -15,7 +15,6 @@
           <th>Tên sản phẩm</th>
           <th>Người dùng</th>
           <th>Ngày</th>
-          <th>Trạng thái</th>
           <th>Thao tác</th>
         </tr>
       </thead>
@@ -27,10 +26,9 @@
           <td>{{ cmt.content}}</td>
           <td>{{ cmt.product?.name }}</td>
           <td>{{ cmt.user?.name }}</td>
-          <td>{{ cmt.date }}</td>
-          <td>{{ cmt.status }}</td>
+          <td>{{ cmt.date | date:'yyyy-MM-dd' }}</td>
           <td>
-            <button [routerLink]="['/admin/product-view', cmt.id]" class="btn btn-sm btn-info me-2">
+            <button [routerLink]="['/admin/comment-view', cmt.id]" class="btn btn-sm btn-info me-2">
               <i class="bi bi-eye"></i>
             </button>
 

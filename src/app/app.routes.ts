@@ -102,6 +102,16 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/admin/products/edit/edit').then((m) => m.Edit),
       },
+      {
+        path: 'comment',
+        loadComponent: () =>
+          import('./pages/admin/comment/list/list').then((m) => m.List),
+      },
+      {
+        path: 'comment-view/:id',
+        loadComponent: () =>
+          import('./pages/admin/comment/view/view').then((m) => m.View),
+      }
     ],
   },
 

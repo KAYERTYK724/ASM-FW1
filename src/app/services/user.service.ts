@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
   list(){
-    return axios.get(API_URL + API_ENDPOINTS.USER)
+    return axios.get(API_URL + API_ENDPOINTS.USER.LIST);
   }
 
   // Register a new user

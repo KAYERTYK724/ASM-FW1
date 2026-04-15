@@ -1,5 +1,7 @@
 const connection = require('../database');
 const { DataTypes } = require('sequelize');
+const Product = require('./productModel');
+const User = require('./userModel');
 
 const Comment = connection.define('Comment', {
     id: {
@@ -45,5 +47,8 @@ const Comment = connection.define('Comment', {
     tableName: 'comments',
     timestamps: false // vì bạn dùng "date" riêng
 });
+
+Comment.belongsTo(Product, { foreignKey: 'product_id', as: 'product' });
+Comment.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 
 module.exports = Comment;
