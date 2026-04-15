@@ -1,0 +1,15 @@
+.table img {
+  object-fit: cover;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+button {
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}

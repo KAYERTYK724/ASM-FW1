@@ -70,7 +70,17 @@ export const routes: Routes = [
       {
         path: 'category',
         loadComponent: () =>
-          import('./pages/admin/category/category').then((m) => m.CategoryComponent), //  FIX
+          import('./pages/admin/category/list/category').then((m) => m.Category),
+      },
+      {
+        path: 'category/add',
+        loadComponent: () =>
+          import('./pages/admin/category/add/add').then((m) => m.Add),
+      },
+      {
+        path: 'category/edit/:id',
+        loadComponent: () =>
+          import('./pages/admin/category/edit/edit').then((m) => m.Edit),
       },
       {
         path: 'product',

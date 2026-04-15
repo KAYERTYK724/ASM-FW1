@@ -8,6 +8,12 @@ import { Injectable } from '@angular/core';
 })
 
 export class CategoryService {
+  create(payload: any) {
+    throw new Error('Method not implemented.');
+  }
+  getAll() {
+    throw new Error('Method not implemented.');
+  }
 // lấy tất cả danh sách
 // gọi API GET /categories/list
   list(){

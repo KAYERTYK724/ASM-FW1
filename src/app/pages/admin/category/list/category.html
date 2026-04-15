@@ -1,0 +1,55 @@
+<div class="container-fluid p-4">
+
+  <div class="d-flex justify-content-between mb-4">
+    <h4 class="fw-bold">Quản lý danh mục</h4>
+
+    <button type="button" routerLink="/admin/category/add" class="btn btn-danger">
+      <i class="bi bi-plus me-1"></i>
+      Thêm danh mục
+    </button>
+  </div>
+
+  <div class="card shadow-sm p-3">
+
+    <table class="table align-middle">
+
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Tên danh mục</th>
+          <th>Trạng thái</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (c of dataListCategory(); track $index) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+
+          <td>{{ c.name }}</td>
+
+          <td>
+            <span class="badge" [ngClass]="c.status ? 'bg-success' : 'bg-secondary'">
+              {{ c.status ? 'Hoạt động' : 'Ẩn' }}
+            </span>
+          </td>
+
+          <td>
+            <button [routerLink]="['/admin/category/edit', c.id]" class="btn btn-sm btn-warning me-2">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button (click)="onDelete(c.id)" class="btn btn-sm btn-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
