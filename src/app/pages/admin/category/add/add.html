@@ -1,0 +1,56 @@
+<div class="inventory-container container mt-5">
+  <div class="card shadow-sm border-0 p-4">
+
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+
+        <!-- NAME -->
+        <div class="col-md-12 mb-4">
+          <label class="form-label">
+            Tên danh mục <span class="text-danger">*</span>
+          </label>
+
+          <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên danh mục"
+            [class.is-invalid]="isInvalid('name')" />
+
+          @if (isInvalid('name')) {
+          <div class="invalid-feedback">
+            @if (categoryForm.get('name')?.errors?.['required']) {
+            Không được để trống
+            }
+            @if (categoryForm.get('name')?.errors?.['minlength']) {
+            Ít nhất 3 ký tự
+            }
+          </div>
+          }
+        </div>
+
+        <!-- STATUS -->
+        <div class="col-md-12 mb-4">
+          <label class="form-label">Trạng thái</label>
+
+          <select class="form-select" formControlName="status">
+            <option [value]="true">Hiển thị</option>
+            <option [value]="false">Ẩn</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- BUTTON -->
+      <div class="actions-footer mt-3">
+        <button type="submit" class="btn btn-orange-fill me-2"
+          [disabled]="categoryForm.invalid && categoryForm.touched">
+          Thêm danh mục
+        </button>
+
+        <button type="button" class="btn btn-dark-grey" (click)="categoryForm.reset()">
+          Hủy
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

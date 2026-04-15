@@ -1,0 +1,23 @@
+/* Nút quay lại */
+.btn-back {
+  background: #f1f3f5;
+  color: #333;
+  border-radius: 10px;
+  padding: 8px 16px;
+  border: none;
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+
+/* Hover */
+.btn-back:hover {
+  background: #ff6b00;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(255, 107, 0, 0.2);
+}
+
+/* Icon */
+.btn-back i {
+  font-size: 14px;
+}
