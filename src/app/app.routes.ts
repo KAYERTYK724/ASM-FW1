@@ -106,11 +106,6 @@ export const routes: Routes = [
         path: 'comment',
         loadComponent: () =>
           import('./pages/admin/comment/list/list').then((m) => m.List),
-      },
-      {
-        path: 'comment-view/:id',
-        loadComponent: () =>
-          import('./pages/admin/comment/view/view').then((m) => m.View),
       }
     ],
   },
