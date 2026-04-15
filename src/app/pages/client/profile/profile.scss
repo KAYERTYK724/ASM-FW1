@@ -1,0 +1,35 @@
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #000;
+}
+
+.profile-card {
+  border-radius: 20px;
+}
+
+.profile-detail {
+  border-radius: 20px;
+}
+
+.profile-page label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-control-plaintext {
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.badge {
+  padding: 6px 10px;
+  font-size: 12px;
+}
