@@ -1,0 +1,46 @@
+<div class="container-fluid p-4">
+
+  <div class="d-flex justify-content-between mb-4">
+    <h4 class="fw-bold">Quản lý bình luận</h4>
+  </div>
+
+  <div class="card shadow-sm p-3">
+
+    <table class="table align-middle">
+
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Nội dung</th>
+          <th>Tên sản phẩm</th>
+          <th>Người dùng</th>
+          <th>Ngày</th>
+          <th>Trạng thái</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (cmt of dataListComment(); track $index) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ cmt.content}}</td>
+          <td>{{ cmt.product?.name }}</td>
+          <td>{{ cmt.user?.name }}</td>
+          <td>{{ cmt.date }}</td>
+          <td>{{ cmt.status }}</td>
+          <td>
+            <button [routerLink]="['/admin/product-view', cmt.id]" class="btn btn-sm btn-info me-2">
+              <i class="bi bi-eye"></i>
+            </button>
+
+          </td>
+        </tr>
+        }
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
