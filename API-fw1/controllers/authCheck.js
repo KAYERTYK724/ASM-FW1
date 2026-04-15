@@ -1,47 +1,42 @@
 const jwt = require("jsonwebtoken");
-const { User } = require("../models"); // nếu bạn dùng index.js
+const bcrypt = require("bcryptjs");
+const { User } = require("../models");
 
+// ================= LOGIN =================
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // tìm user
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
       return res.status(400).json({
-        message: "Email không tồn tại"
+        message: "Email hoặc mật khẩu không chính xác!"
       });
     }
 
-    // check password
-    if (user.password !== password) {
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
       return res.status(400).json({
-        message: "Sai mật khẩu"
+        message: "Email hoặc mật khẩu không chính xác!"
       });
     }
 
-    // tạo token (PHẢI có role)
     const token = jwt.sign(
       {
         id: user.id,
+        name: user.name,
         email: user.email,
         role: user.role
       },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "1h" }
     );
 
-    // trả về
-    return res.json({
-      data: {
-        token,
-        user: {
-          id: user.id,
-          email: user.email,
-          role: user.role
-        }
-      }
+    return res.status(200).json({
+      message: "Đăng nhập thành công!",
+      token
     });
 
   } catch (error) {
@@ -52,8 +47,35 @@ const login = async (req, res) => {
   }
 };
 
-// nhớ export
+// ================= VERIFY TOKEN =================
+const verifyToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return res.status(401).json({ message: "Chưa đăng nhập" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: "Token không hợp lệ" });
+  }
+};
+
+// ================= CHECK ADMIN =================
+const isAdmin = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: "Không có quyền" });
+  }
+  next();
+};
+
 module.exports = {
-  ...module.exports,
-  login
+  login,
+  verifyToken,
+  isAdmin
 };

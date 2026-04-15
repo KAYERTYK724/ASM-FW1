@@ -42,10 +42,9 @@ export class Login implements OnInit {
     this.authService.login(this.loginForm.value)
       .then((res: any) => {
 
-        // vì service đã .then(res => res.data)
-        const token = res.data.token;
+        //  
+        const token = res.token;
 
-        // decode token lấy role
         const decoded: any = jwtDecode(token);
 
         const user = {
@@ -53,11 +52,9 @@ export class Login implements OnInit {
           role: decoded.role
         };
 
-        // lưu qua service (chuẩn hơn)
         this.authService.saveAuth(token, user);
 
-        // điều hướng theo role
-        if (user.role === 'admin') {
+        if (decoded.role === 'admin') {
           this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/']);

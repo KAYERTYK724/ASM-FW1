@@ -8,32 +8,43 @@ import { API_ENDPOINTS } from "../configs/end-point.config";
 })
 export class AuthService {
 
-  // login
+  // LOGIN 
   login(form: any) {
     return axios.post(API_URL + API_ENDPOINTS.auth.login, {
       email: form.email.trim(),
       password: form.password,
-    }).then(res => res.data); // quan trọng
+    }).then(res => res.data); // 🔥 trả về { message, token }
   }
 
-  // lưu token + user
+  //SAVE AUTH
   saveAuth(token: string, user: any) {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  // lấy user
+  // GET USER 
   getUser() {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
 
-  // check login
-  isLoggedIn() {
-    return !!localStorage.getItem('token');
+  //  GET TOKEN 
+  getToken() {
+    return localStorage.getItem('token');
   }
 
-  // logout
+  //CHECK LOGIN 
+  isLoggedIn() {
+    return !!this.getToken();
+  }
+
+  // CHECK ADMIN
+  isAdmin() {
+    const user = this.getUser();
+    return user && user.role === 'admin';
+  }
+
+  //  LOGOUT 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');

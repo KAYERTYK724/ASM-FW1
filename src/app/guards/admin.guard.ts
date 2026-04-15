@@ -1,17 +1,28 @@
 import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { CanActivateFn, Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
-export const adminGuard = () => {
-  const auth = inject(AuthService);
+export const adminGuard: CanActivateFn = () => {
+
   const router = inject(Router);
 
-  const user = auth.getUser();
+  const token = localStorage.getItem("token");
 
-  if (user?.role === 'admin') {
-    return true;
+  if (!token) {
+    return router.createUrlTree(['/login']);
   }
 
-  router.navigate(['/']);
-  return false;
+  try {
+    const decoded: any = jwtDecode(token);
+
+    if (decoded.role !== 'admin') {
+      return router.createUrlTree(['/']);
+    }
+
+    return true;
+
+  } catch {
+    return router.createUrlTree(['/login']);
+  }
+
 };

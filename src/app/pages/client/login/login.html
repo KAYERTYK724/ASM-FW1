@@ -26,6 +26,18 @@
               class="form-control"
               placeholder="email@example.com"
             >
+
+            <!-- VALIDATE -->
+            @if(submitted() && f['email'].errors){
+              <div class="text-danger small mt-1">
+                @if(f['email'].errors['required']){
+                  <div>Email không được để trống</div>
+                }
+                @if(f['email'].errors['email']){
+                  <div>Email không hợp lệ</div>
+                }
+              </div>
+            }
           </div>
 
           <!-- PASSWORD -->
@@ -37,12 +49,26 @@
               class="form-control"
               placeholder="Nhập mật khẩu"
             >
+
+            <!-- VALIDATE -->
+            @if(submitted() && f['password'].errors){
+              <div class="text-danger small mt-1">
+                @if(f['password'].errors['required']){
+                  <div>Password không được để trống</div>
+                }
+                @if(f['password'].errors['minlength']){
+                  <div>Password tối thiểu 6 ký tự</div>
+                }
+              </div>
+            }
           </div>
 
-          <!-- ERROR -->
-          <p class="text-danger text-center">
-            {{ errorMessage() }}
-          </p>
+          <!-- ERROR LOGIN -->
+          @if(errorMessage()){
+            <p class="text-danger text-center">
+              {{ errorMessage() }}
+            </p>
+          }
 
           <!-- BUTTON -->
           <button class="btn btn-login w-100" type="submit">

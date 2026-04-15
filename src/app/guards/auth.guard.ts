@@ -1,15 +1,43 @@
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { inject, PLATFORM_ID } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+import { jwtDecode } from 'jwt-decode';
 
-export const authGuard = () => {
-  const auth = inject(AuthService);
+export const authGuard: CanActivateFn = () => {
+
   const router = inject(Router);
+  const platformId = inject(PLATFORM_ID);
 
-  if (auth.isLoggedIn()) {
+  if (!isPlatformBrowser(platformId)) {
     return true;
   }
 
-  router.navigate(['/login']);
-  return false;
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return router.createUrlTree(['/login']);
+  }
+
+  try {
+    const decoded: any = jwtDecode(token);
+
+    if (!decoded.exp) {
+      localStorage.removeItem("token");
+      return router.createUrlTree(['/login']);
+    }
+
+    const now = Math.floor(Date.now() / 1000);
+
+    if (decoded.exp < now) {
+      localStorage.removeItem("token");
+      return router.createUrlTree(['/login']);
+    }
+
+    return true;
+
+  } catch {
+    localStorage.removeItem("token");
+    return router.createUrlTree(['/login']);
+  }
+
 };
