@@ -1,0 +1,76 @@
+@use "sass:color";
+
+.inventory-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  .header-section {
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 4px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .card {
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  .form-label {
+    font-weight: 500;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .form-control, .form-select {
+    border: 1px solid #e9ecef;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fff;
+
+    &:focus {
+      // 2. Thay lighten($color, 20%) -> color.adjust($color, $lightness: 20%)
+      border-color: color.adjust(#f0653d, $lightness: 20%);
+      box-shadow: 0 0 0 0.2rem rgba(#f0653d, 0.1);
+    }
+
+    &::placeholder {
+      color: #adb5bd;
+    }
+  }
+
+  .btn-primary-orange {
+    background-color: #f0653d;
+    border-color: #f0653d;
+    color: white;
+    border-radius: 6px;
+
+    &:hover {
+      // 3. Thay darken($color, 5%) -> color.adjust($color, $lightness: -5%)
+      background-color: color.adjust(#f0653d, $lightness: -5%);
+    }
+  }
+
+  .btn-orange-fill {
+    @extend .btn-primary-orange;
+    padding: 10px 25px;
+  }
+
+  .btn-dark-grey {
+    background-color: #4b4b4b;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 6px;
+
+    &:hover {
+      // 4. Thay darken($color, 10%) -> color.adjust($color, $lightness: -10%)
+      background-color: color.adjust(#4b4b4b, $lightness: -10%);
+    }
+  }
+}
+

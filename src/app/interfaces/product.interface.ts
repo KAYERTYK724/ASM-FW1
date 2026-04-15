@@ -1,6 +1,4 @@
 export interface IProduct {
-[x: string]: any;
-  set: any;
   id : number;
   name : string;
   price : number;

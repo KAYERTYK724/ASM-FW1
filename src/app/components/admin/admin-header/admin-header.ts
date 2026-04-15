@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 //h
 @Component({
   selector: 'app-admin-header',
@@ -7,7 +7,7 @@ import { Component } from "@angular/core";
   styleUrl: './admin-header.scss',
 })
 export class AdminHeader {
-toggleSidebar() {
-throw new Error('Method not implemented.');
-}
+  toggleSidebar() {
+    throw new Error('Method not implemented.');
+  }
 }

@@ -1,0 +1,58 @@
+<div class="container-fluid p-4">
+
+  <div class="d-flex justify-content-between mb-4">
+    <h4 class="fw-bold">Quản lý sản phẩm</h4>
+    <button routerLink="/admin/product-add" class="btn btn-danger">
+      <i class="bi bi-plus"></i> Thêm sản phẩm
+    </button>
+  </div>
+
+  <div class="card shadow-sm p-3">
+
+    <table class="table align-middle">
+
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Hình ảnh</th>
+          <th>Tên sản phẩm</th>
+          <th>Danh mục</th>
+          <th>Giá</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (p of dataListProduct(); track $index) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+
+          <td>
+            <img [src]="p.image" width="60" class="rounded">
+          </td>
+
+          <td>{{ p.name }}</td>
+          <td>{{ p.category?.name }}</td>
+          <td>{{ p.price | currency:'VND' }}</td>
+          <td>
+            <button [routerLink]="['/admin/product-view', p.id]" class="btn btn-sm btn-info me-2">
+              <i class="bi bi-eye"></i>
+            </button>
+
+            <button [routerLink]="['/admin/product-edit', p.id]" class="btn btn-sm btn-warning me-2">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button (click)="onDelete(p.id)" class="btn btn-sm btn-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
