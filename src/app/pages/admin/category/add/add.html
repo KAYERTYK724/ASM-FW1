@@ -1,56 +1,64 @@
-<div class="inventory-container container mt-5">
-  <div class="card shadow-sm border-0 p-4">
+<div class="container-fluid p-4">
+
+  <h4 class="fw-bold mb-4">Thêm danh mục</h4>
+
+  <div class="card p-4 shadow-sm">
 
     <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
 
-      <div class="row">
+      <!-- TÊN -->
+      <div class="mb-3">
+        <label class="form-label">Tên danh mục</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên danh mục">
 
-        <!-- NAME -->
-        <div class="col-md-12 mb-4">
-          <label class="form-label">
-            Tên danh mục <span class="text-danger">*</span>
-          </label>
+        <!-- validate -->
+        @if (isInvalid('name')) {
+        <small class="text-danger">
+          Tên phải có ít nhất 3 ký tự
+        </small>
+        }
+      </div>
 
-          <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên danh mục"
-            [class.is-invalid]="isInvalid('name')" />
+      <!-- DANH MỤC CHA -->
+      <div class="mb-3">
+        <label class="form-label">Danh mục cha</label>
 
-          @if (isInvalid('name')) {
-          <div class="invalid-feedback">
-            @if (categoryForm.get('name')?.errors?.['required']) {
-            Không được để trống
-            }
-            @if (categoryForm.get('name')?.errors?.['minlength']) {
-            Ít nhất 3 ký tự
-            }
-          </div>
+        <select class="form-select" formControlName="parent_id">
+          <option [ngValue]="null">Không có</option>
+
+          @for (c of categories(); track c.id) {
+          @if (!c.parent_id) {
+          <option [ngValue]="c.id">
+            {{ c.name }}
+          </option>
           }
-        </div>
+          }
+        </select>
+      </div>
 
-        <!-- STATUS -->
-        <div class="col-md-12 mb-4">
-          <label class="form-label">Trạng thái</label>
+      <!-- STATUS -->
+      <div class="mb-3">
+        <label class="form-label">Trạng thái</label>
 
-          <select class="form-select" formControlName="status">
-            <option [value]="true">Hiển thị</option>
-            <option [value]="false">Ẩn</option>
-          </select>
-        </div>
-
+        <select class="form-select" formControlName="status">
+          <option [ngValue]="true">Hoạt động</option>
+          <option [ngValue]="false">Ẩn</option>
+        </select>
       </div>
 
       <!-- BUTTON -->
-      <div class="actions-footer mt-3">
-        <button type="submit" class="btn btn-orange-fill me-2"
-          [disabled]="categoryForm.invalid && categoryForm.touched">
-          Thêm danh mục
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-success">
+          Thêm mới
         </button>
 
-        <button type="button" class="btn btn-dark-grey" (click)="categoryForm.reset()">
-          Hủy
+        <button type="button" class="btn btn-secondary" (click)="goToCategory()">
+          Quay lại
         </button>
       </div>
 
     </form>
 
   </div>
+
 </div>

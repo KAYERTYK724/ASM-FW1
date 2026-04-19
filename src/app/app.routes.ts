@@ -58,7 +58,7 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/client/login/login').then((m) => m.Login),
       },
 
-      // 🔐 PROFILE (PHẢI LOGIN)
+      //  PROFILE (PHẢI LOGIN)
       {
         path: 'profile',
         canActivate: [authGuard],
@@ -96,7 +96,7 @@ export const routes: Routes = [
       {
         path: 'category/edit/:id',
         loadComponent: () =>
-          import('./pages/admin/category/edit/edit').then((m) => m.Edit),
+          import('./pages/admin/category/edit/edit').then((m) => m.CategoryEdit),
       },
       {
         path: 'product',
