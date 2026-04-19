@@ -14,7 +14,11 @@ import { NotificationService } from '../../../../services/notification/notificat
   templateUrl: './list.html',
   styleUrls: ['./list.scss'],
 })
+<<<<<<< HEAD
 export class List implements OnInit{
+=======
+export class List {
+>>>>>>> fce904397fd94518b0670247ee6d541b764ec14d
   dataListComment = signal<IComment[]>([]);
   products = signal<any[]>([]);
   users = signal<any[]>([]);

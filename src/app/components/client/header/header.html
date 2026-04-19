@@ -4,7 +4,6 @@
   </div>
 </div>
 
-
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg bg-white border-bottom">
   <div class="container">
@@ -14,6 +13,7 @@
     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item fw-semibold">
@@ -32,8 +32,10 @@
           <a class="nav-link" routerLink="contact">LIÊN HỆ</a>
         </li>
       </ul>
+
       <div class="col-lg-3 col-md-3">
         <div class="d-flex align-items-center justify-content-end gap-3">
+
           <!-- Cart -->
           <a routerLink="cart" class="text-dark fs-5 position-relative">
             <i class="bi bi-bag"></i>
@@ -41,6 +43,7 @@
               0
             </span>
           </a>
+
           <!-- Price -->
           <span class="fw-semibold">
             <span class="text-danger">0</span> VND
@@ -53,6 +56,7 @@
             </a>
 
             <ul class="dropdown-menu dropdown-menu-end">
+<<<<<<< HEAD
               <li>
                 <a class="dropdown-item" routerLink="login">Đăng nhập</a>
               </li>
@@ -68,8 +72,52 @@
               <li>
                 <a class="dropdown-item" href="#">Đăng xuất</a>
               </li>
+=======
+
+              <!-- CHƯA LOGIN -->
+              @if(!isLoggedIn()){
+                <li>
+                  <a class="dropdown-item" routerLink="login">Đăng nhập</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="register">Đăng ký</a>
+                </li>
+              }
+
+              <!-- ĐÃ LOGIN -->
+              @if(isLoggedIn()){
+                <li>
+                  <span class="dropdown-item text-muted">
+                    Xin chào: {{ user()?.email }}
+                  </span>
+                </li>
+
+                <li>
+                  <a class="dropdown-item" routerLink="profile">Hồ sơ</a>
+                </li>
+
+                <!-- ADMIN -->
+                @if(isAdmin()){
+                  <li>
+                    <a class="dropdown-item text-danger" routerLink="/admin">
+                      Quản trị
+                    </a>
+                  </li>
+                }
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li>
+                  <a class="dropdown-item text-danger" (click)="logout()">
+                    Đăng xuất
+                  </a>
+                </li>
+              }
+
+>>>>>>> fce904397fd94518b0670247ee6d541b764ec14d
             </ul>
           </div>
+
         </div>
       </div>
     </div>

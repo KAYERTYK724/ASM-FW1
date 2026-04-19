@@ -5,7 +5,7 @@
 
         <!-- LOGO -->
         <div class="text-center mb-4">
-          <a href="" class="d-inline-flex align-items-center text-decoration-none text-dark fw-bold fs-3">
+          <a class="d-inline-flex align-items-center text-decoration-none text-dark fw-bold fs-3">
             <span class="text-danger">Male</span> fashion<span class="text-danger">.</span>
           </a>
         </div>
@@ -14,30 +14,64 @@
           Đăng nhập vào tài khoản
         </h5>
 
-        <form class="needs-validation" novalidate>
+        <!-- FORM -->
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
           <!-- EMAIL -->
           <div class="mb-3">
-            <label class="form-label">
-              Địa chỉ Email
-            </label>
-            <input type="email" class="form-control" placeholder="email@example.com" required autofocus>
-            <div class="invalid-feedback">
-              Vui lòng nhập email hợp lệ.
-            </div>
-          </div>
-          <!-- PASSWORD -->
-          <div class="mb-3">
-            <label class="form-label d-flex justify-content-between">
-              Mật khẩu
-            </label>
-            <input type="password" class="form-control" placeholder="Nhập mật khẩu" required minlength="6">
-            <div class="invalid-feedback">
-              Mật khẩu tối thiểu 6 ký tự.
-            </div>
+            <label class="form-label">Địa chỉ Email</label>
+            <input 
+              type="email"
+              formControlName="email"
+              class="form-control"
+              placeholder="email@example.com"
+            >
+
+            <!-- VALIDATE -->
+            @if(submitted() && f['email'].errors){
+              <div class="text-danger small mt-1">
+                @if(f['email'].errors['required']){
+                  <div>Email không được để trống</div>
+                }
+                @if(f['email'].errors['email']){
+                  <div>Email không hợp lệ</div>
+                }
+              </div>
+            }
           </div>
 
+          <!-- PASSWORD -->
+          <div class="mb-3">
+            <label class="form-label">Mật khẩu</label>
+            <input 
+              type="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Nhập mật khẩu"
+            >
+
+            <!-- VALIDATE -->
+            @if(submitted() && f['password'].errors){
+              <div class="text-danger small mt-1">
+                @if(f['password'].errors['required']){
+                  <div>Password không được để trống</div>
+                }
+                @if(f['password'].errors['minlength']){
+                  <div>Password tối thiểu 6 ký tự</div>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- ERROR LOGIN -->
+          @if(errorMessage()){
+            <p class="text-danger text-center">
+              {{ errorMessage() }}
+            </p>
+          }
+
           <!-- BUTTON -->
-          <button class="btn btn-login w-100">
+          <button class="btn btn-login w-100" type="submit">
             Đăng nhập
           </button>
         </form>
@@ -45,10 +79,11 @@
         <!-- SIGNUP -->
         <div class="text-center mt-4 small text-muted">
           Bạn chưa có tài khoản?
-          <a href="register" class="signup-link">
+          <a routerLink="/register" class="signup-link">
             Đăng ký
           </a>
         </div>
+
       </div>
     </div>
   </div>
