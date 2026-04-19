@@ -1,0 +1,93 @@
+<nav class="breadcrumb-section py-4 bg-light-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="fw-bold mb-2">Check Out</h2>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="./index.html text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="./shop.html text-decoration-none">Shop</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Check Out</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="checkout-section py-5">
+  <div class="container">
+    <form (submit)="handleSubmit($event)" class="checkout-form">
+      <div class="row g-5">
+        <div class="col-lg-8">
+
+          <h4 class="section-title mb-4 pb-2 border-bottom">THANH TOÁN</h4>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Tên<span>*</span></label>
+              <input type="text" class="form-control custom-input"
+                (input)="form.update(f => ({...f, name: $any($event.target).value}))">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">SĐT<span>*</span></label>
+              <input type="tel" class="form-control custom-input"
+                (input)="form.update(f => ({...f, phone: $any($event.target).value}))">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email<span>*</span></label>
+              <input type="email" class="form-control custom-input"
+                (input)="form.update(f => ({...f, email: $any($event.target).value}))">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Địa chỉ<span>*</span></label>
+              <input type="text" class="form-control custom-input"
+                (input)="form.update(f => ({...f, address: $any($event.target).value}))">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="order-summary p-4 bg-light shadow-sm">
+            <h4 class="order-title mb-4 border-bottom pb-3">ĐƠN HÀNG CỦA BẠN</h4>
+
+            <div class="d-flex justify-content-between fw-bold mb-3 border-bottom pb-2">
+              <span>Product</span>
+              <span>Total</span>
+            </div>
+
+            <ul class="list-unstyled order-products border-bottom pb-3">
+              @for (item of cartItems(); track item.id) {
+                <li class="d-flex justify-content-between mb-2">
+                  <span class="text-muted">
+                    {{ item.product?.name }} x{{ item.quantity }}
+                  </span>
+                  <span class="fw-bold">
+                    {{ item.price * item.quantity | number }}đ
+                  </span>
+                </li>
+              }
+            </ul>
+
+            <div class="totals mb-4 border-bottom pb-3">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-bold">Subtotal</span>
+                <span class="text-danger fw-bold">
+                  {{ totalPrice() | number }}đ
+                </span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="fw-bold fs-5">Total</span>
+                <span class="text-danger fw-bold fs-5">
+                  {{ totalPrice() | number }}đ
+                </span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-dark w-100 py-3 rounded-0 fw-bold letter-spacing-1">PLACE
+              ORDER</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

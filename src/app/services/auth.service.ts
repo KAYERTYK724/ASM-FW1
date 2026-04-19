@@ -1,23 +1,23 @@
-import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { isPlatformBrowser } from "@angular/common";
-import { API_URL } from "../enviroment/enviroment";
-import { API_ENDPOINTS } from "../configs/end-point.config";
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
+import { API_URL } from '../enviroment/enviroment';
+import { API_ENDPOINTS } from '../configs/end-point.config';
 
 interface LoginResponse {
+  status: number;
   message: string;
   token: string;
-  user: any;
+  data: any; // ✅ đổi từ user → data
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
   constructor(
     private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
   private isBrowser(): boolean {
@@ -26,13 +26,10 @@ export class AuthService {
 
   // LOGIN
   login(form: { email: string; password: string }) {
-    return this.http.post<LoginResponse>(
-      API_URL + API_ENDPOINTS.auth.login,
-      {
-        email: form.email?.trim(),
-        password: form.password,
-      }
-    );
+    return this.http.post<LoginResponse>(API_URL + API_ENDPOINTS.auth.login, {
+      email: form.email?.trim(),
+      password: form.password,
+    });
   }
 
   // SAVE AUTH

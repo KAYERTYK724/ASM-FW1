@@ -1,0 +1,119 @@
+// Variables
+$primary-color: #111111;
+$accent-color: #e53637; // Màu đỏ giá tiền
+$border-color: #e1e1e1;
+$bg-light: #f3f2ee;
+$text-muted: #b7b7b7;
+
+// Mixins
+@mixin letter-spacing($val) {
+  letter-spacing: $val;
+}
+
+// Global Styles
+body {
+  font-family: 'Montserrat', sans-serif; // Đảm bảo bạn đã import font này
+  color: $primary-color;
+}
+
+.bg-light-gray { background-color: #f3f2ee; }
+
+// Breadcrumb
+.breadcrumb-section {
+  h2 { font-weight: 700; }
+  .breadcrumb-item {
+    font-size: 14px;
+    a { color: #111; }
+    &.active { color: $text-muted; }
+    &::before { content: ">"; }
+  }
+}
+
+// Forms
+.checkout-section {
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 8px;
+    span { color: $accent-color; }
+  }
+
+  .custom-input {
+    height: 50px;
+    border: 1px solid $border-color;
+    border-radius: 0;
+    padding-left: 20px;
+    font-size: 14px;
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: $text-muted;
+    }
+  }
+
+  .coupon-alert {
+    background-color: #f3f2ee !important;
+    border-top: 3px solid #7fad39 !important; // Màu xanh lá như trong hình
+    font-size: 14px;
+    a { color: $accent-color; text-decoration: none; }
+  }
+}
+
+// Order Summary Box
+.order-summary {
+  background-color: #f3f2ee;
+  border-radius: 2px;
+
+  .order-title {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .order-products {
+    li {
+      font-size: 14px;
+      padding: 10px 0;
+    }
+  }
+
+  .text-danger {
+    color: $accent-color !important;
+  }
+
+  .letter-spacing-1 {
+    @include letter-spacing(2px);
+  }
+
+  .btn-dark {
+    background-color: $primary-color;
+    border: none;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
+}
+
+// Custom Checkbox Style
+.form-check-input {
+  border-radius: 0;
+  border-color: #d7d7d7;
+
+  &:checked {
+    background-color: $primary-color;
+    border-color: $primary-color;
+  }
+}

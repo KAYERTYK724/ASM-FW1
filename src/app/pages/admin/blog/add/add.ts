@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   Component,
   OnInit,
@@ -130,14 +129,3 @@ export class Add implements OnInit {
     }
   }
 }
-=======
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-add',
-  imports: [],
-  templateUrl: './add.html',
-  styleUrl: './add.scss',
-})
-export class Add {}
->>>>>>> fce904397fd94518b0670247ee6d541b764ec14d

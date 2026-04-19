@@ -7,12 +7,11 @@ import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule], // 🔥 thêm cái này
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.html',
-  styleUrls: ['./login.scss'], // 🔥 sửa styleUrl -> styleUrls
+  styleUrls: ['./login.scss'],
 })
 export class Login implements OnInit {
-
   submitted = signal(false);
   errorMessage = signal('');
   loginForm!: FormGroup;
@@ -20,13 +19,13 @@ export class Login implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -42,39 +41,31 @@ export class Login implements OnInit {
 
     const data = {
       email: this.loginForm.value.email || '',
-      password: this.loginForm.value.password || ''
+      password: this.loginForm.value.password || '',
     };
 
     this.authService.login(data).subscribe({
       next: (res: any) => {
+        console.log('RES LOGIN:', res);
 
-        // ❌ check response an toàn hơn
-        if (!res?.token) {
+        if (!res?.token || !res?.user) {
           this.errorMessage.set('Đăng nhập thất bại');
           return;
         }
 
-        const user = {
-          email: res.user?.email,
-          role: res.user?.role
-        };
+        // ❌ SAI: const user = { email: res.user?.email, role: res.user?.role };
+        // ✅ ĐÚNG: Lấy nguyên object user từ BE vì đã có id rồi
+        this.authService.saveAuth(res.token, res.user);
 
-        // 🔥 lưu auth
-        this.authService.saveAuth(res.token, user);
-
-        // 🔥 điều hướng theo role
-        if (user.role?.toLowerCase() === 'admin') {
+        if (res.user.role?.toLowerCase() === 'admin') {
           this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/']);
         }
-
       },
       error: (err) => {
-        this.errorMessage.set(
-          err?.error?.message || 'Sai email hoặc password'
-        );
-      }
+        this.errorMessage.set(err?.error?.message || 'Sai email hoặc password');
+      },
     });
   }
 }

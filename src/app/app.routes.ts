@@ -41,14 +41,16 @@ export const routes: Routes = [
         path: 'contact',
         loadComponent: () => import('./pages/client/contact/contact').then((m) => m.Contact),
       },
-
-      // 🔐 CART (PHẢI LOGIN)
       {
         path: 'cart',
         canActivate: [authGuard],
         loadComponent: () => import('./pages/client/cart/cart').then((m) => m.Cart),
       },
-
+      {
+        path: 'checkout',
+        canActivate: [authGuard],
+        loadComponent: () => import('./pages/client/checkout/checkout').then((m) => m.Checkout),
+      },
       {
         path: 'register',
         loadComponent: () => import('./pages/client/register/register').then((m) => m.Register),
@@ -57,16 +59,8 @@ export const routes: Routes = [
         path: 'login',
         loadComponent: () => import('./pages/client/login/login').then((m) => m.Login),
       },
-<<<<<<< HEAD
       {
         path: 'profile',
-=======
-
-      // 🔐 PROFILE (PHẢI LOGIN)
-      {
-        path: 'profile',
-        canActivate: [authGuard],
->>>>>>> fce904397fd94518b0670247ee6d541b764ec14d
         loadComponent: () => import('./pages/client/profile/profile').then((m) => m.Profile),
       },
     ],
@@ -127,7 +121,6 @@ export const routes: Routes = [
         path: 'comment',
         loadComponent: () =>
           import('./pages/admin/comment/list/list').then((m) => m.List),
-<<<<<<< HEAD
       },
       {
         path: 'blog',
@@ -143,8 +136,6 @@ export const routes: Routes = [
         path: 'blog-edit/:id',
         loadComponent: () =>
           import('./pages/admin/blog/edit/edit').then((m) => m.Edit),
-=======
->>>>>>> fce904397fd94518b0670247ee6d541b764ec14d
       }
     ],
   },

@@ -5,7 +5,20 @@ class CommentController {
   // 📌 Lấy danh sách comment
   static async get(req, res) {
     try {
-      const comments = await CommentModel.findAll();
+      const comments = await CommentModel.findAll({
+        include: [
+          {
+            model: Product,
+            as: 'product',
+            attributes: ['id', 'name'],
+          },
+          {
+            model: User,
+            as: 'user',
+            attributes: ['id', 'name'],
+          },
+        ],
+      });
 
       res.status(200).json({
         status: 200,

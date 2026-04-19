@@ -1,8 +1,6 @@
 import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommentService } from '../../../../services/comment.service';
-import { ProductService } from '../../../../services/product.service';
-import { UserService } from '../../../../services/user.service';
 import { IComment } from '../../../../interfaces/comment.interface';
 import { RouterLink } from '@angular/router';
 import { NotificationService } from '../../../../services/notification/notification.service';
@@ -14,19 +12,10 @@ import { NotificationService } from '../../../../services/notification/notificat
   templateUrl: './list.html',
   styleUrls: ['./list.scss'],
 })
-<<<<<<< HEAD
-export class List implements OnInit{
-=======
-export class List {
->>>>>>> fce904397fd94518b0670247ee6d541b764ec14d
+export class List implements OnInit {
   dataListComment = signal<IComment[]>([]);
-  products = signal<any[]>([]);
-  users = signal<any[]>([]);
-
   constructor(
     private commentService: CommentService,
-    private productService: ProductService,
-    private userService: UserService,
     private noti: NotificationService,
   ) {}
 
@@ -36,23 +25,11 @@ export class List {
 
   fetchData = async () => {
     try {
-      const [cmtRes, productRes, userRes] = await Promise.all([
-        this.commentService.list(),
-        this.productService.list(),
-        this.userService.list(),
-      ]);
+      const cmtRes = await this.commentService.list()
+      this.dataListComment.set(cmtRes.data.data);
 
-      this.products.set(productRes.data.data);
-      this.users.set(userRes.data.data);
-
-      const comments = cmtRes.data.data.map((cmt: any) => ({
-        ...cmt,
-        product: this.products().find((p) => p.id == cmt.product_id),
-        user: this.users().find((u) => u.id == cmt.user_id),
-      }));
-
-      this.dataListComment.set(comments);
     } catch (error) {
+      console.log(error);
       this.noti.show('Lỗi tải dữ liệu', 'danger');
     }
   };

@@ -8,5 +8,6 @@ router.post('/order-details/add', OrderDetailController.create);
 router.get('/order-details/:id', OrderDetailController.getById);
 router.put('/order-details/:id', OrderDetailController.update);
 router.delete('/order-details/:id', OrderDetailController.delete);
+router.get('/order-details/cart/:user_id', OrderDetailController.getCartByUser);
 
 module.exports = router;

@@ -6,44 +6,40 @@ const { User } = require("../models");
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.status(400).json({
-        message: "Email hoặc mật khẩu không chính xác!"
-      });
+      return res.status(400).json({ message: "Email hoặc mật khẩu không chính xác!" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) {
-      return res.status(400).json({
-        message: "Email hoặc mật khẩu không chính xác!"
-      });
+      return res.status(400).json({ message: "Email hoặc mật khẩu không chính xác!" });
     }
 
     const token = jwt.sign(
-      {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role
-      },
+      { id: user.id, name: user.name, email: user.email, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
+    // ✅ PHẢI CÓ id ở đây
     return res.status(200).json({
       message: "Đăng nhập thành công!",
-      token
+      token,
+      user: {
+        id: user.id,  // QUAN TRỌNG NHẤT
+        username: user.username,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        phone: user.phone
+      }
     });
 
   } catch (error) {
     console.log(error);
-    return res.status(500).json({
-      message: "Lỗi server"
-    });
+    return res.status(500).json({ message: "Lỗi server" });
   }
 };
 
@@ -68,7 +64,7 @@ const verifyToken = (req, res, next) => {
 
 // ================= CHECK ADMIN =================
 const isAdmin = (req, res, next) => {
-  if (req.user.role !== 'admin') {
+  if (req.user.role!== 'admin') {
     return res.status(403).json({ message: "Không có quyền" });
   }
   next();

@@ -10,6 +10,7 @@ const userRoutes = require('./routes/userRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const orderDetailRoutes = require('./routes/orderDetailRoutes');
 const blogRoutes = require('./routes/blogRoutes');
+require('./models/associations');
 app.use(express.json());
 
 app.use(
