@@ -1,10 +1,10 @@
 const UserModel = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET || "123456";
 
 class UserController {
-  // 📌 Lấy danh sách user
+
   static async get(req, res) {
     try {
       const users = await UserModel.findAll();
@@ -46,7 +46,7 @@ class UserController {
 
       const user = await UserModel.create({
         username,
-        password,
+        password, // model tự hash
         email,
         name,
         phone,
@@ -63,7 +63,7 @@ class UserController {
     }
   }
 
-  // 📌 Cập nhật user
+  // Cập nhật user
   static async update(req, res) {
     try {
       const { id } = req.params;
@@ -76,12 +76,17 @@ class UserController {
       const { username, password, email, name, phone, status, role } = req.body;
 
       user.username = username;
-      user.password = password;
       user.email = email;
       user.name = name;
       user.phone = phone;
       user.status = status;
       user.role = role;
+
+      // nếu có password mới thì hash
+      if (password) {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(password, salt);
+      }
 
       await user.save();
 
@@ -94,7 +99,7 @@ class UserController {
     }
   }
 
-  // 📌 Xóa user
+
   static async delete(req, res) {
     try {
       const { id } = req.params;
@@ -114,11 +119,11 @@ class UserController {
     }
   }
 
+
   static async register(req, res) {
     try {
       const { name, email, password, username, phone } = req.body;
 
-      // 🚨 validate
       if (!username || !email || !password) {
         return res.status(400).json({ message: 'Thiếu username hoặc email hoặc password' });
       }
@@ -128,15 +133,12 @@ class UserController {
         return res.status(400).json({ message: 'Email đã tồn tại!' });
       }
 
-      // 🔐 hash password
-      const hashedPassword = await bcrypt.hash(password, 10);
-
       const user = await UserModel.create({
         name,
         email,
         username,
-        password: hashedPassword,
-        phone, 
+        password,
+        phone,
       });
 
       res.status(201).json({
@@ -148,34 +150,56 @@ class UserController {
     }
   }
 
+  //LOGIN
   static async login(req, res) {
     try {
       const { email, password } = req.body;
 
-      const user = await User.findOne({ where: { email } });
+      if (!email || !password) {
+        return res.status(400).json({ message: 'Thiếu email hoặc password' });
+      }
+
+      //mới sửa ở đây nè khánh
+      const user = await UserModel.findOne({ where: { email } });
+
       if (!user) {
         return res.status(400).json({ message: 'Email hoặc mật khẩu không chính xác!' });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
+
       if (!isMatch) {
         return res.status(400).json({ message: 'Email hoặc mật khẩu không chính xác!' });
       }
 
       const token = jwt.sign(
-        { id: user.id, name: user.name, email: user.email, role: user.role },
+        {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        },
         JWT_SECRET,
-        { expiresIn: '1h' },
+        { expiresIn: '1h' }
       );
+
       return res.status(200).json({
         message: 'Đăng nhập thành công!',
         token,
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        },
       });
+
     } catch (error) {
       console.error('Lỗi server:', error);
-      return res
-        .status(500)
-        .json({ message: 'Lỗi server, vui lòng thử lại!', error: error.message });
+      return res.status(500).json({
+        message: 'Lỗi server, vui lòng thử lại!',
+        error: error.message,
+      });
     }
   }
 }

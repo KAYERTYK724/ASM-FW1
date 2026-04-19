@@ -1,15 +1,15 @@
 import { Component, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule], // 🔥 thêm cái này
   templateUrl: './login.html',
-  styleUrl: './login.scss',
+  styleUrls: ['./login.scss'], // 🔥 sửa styleUrl -> styleUrls
 })
 export class Login implements OnInit {
 
@@ -36,33 +36,45 @@ export class Login implements OnInit {
 
   login() {
     this.submitted.set(true);
+    this.errorMessage.set('');
 
     if (this.loginForm.invalid) return;
 
-    this.authService.login(this.loginForm.value)
-      .then((res: any) => {
+    const data = {
+      email: this.loginForm.value.email || '',
+      password: this.loginForm.value.password || ''
+    };
 
-        //  
-        const token = res.token;
+    this.authService.login(data).subscribe({
+      next: (res: any) => {
 
-        const decoded: any = jwtDecode(token);
+        // ❌ check response an toàn hơn
+        if (!res?.token) {
+          this.errorMessage.set('Đăng nhập thất bại');
+          return;
+        }
 
         const user = {
-          email: decoded.email,
-          role: decoded.role
+          email: res.user?.email,
+          role: res.user?.role
         };
 
-        this.authService.saveAuth(token, user);
+        // 🔥 lưu auth
+        this.authService.saveAuth(res.token, user);
 
-        if (decoded.role === 'admin') {
+        // 🔥 điều hướng theo role
+        if (user.role?.toLowerCase() === 'admin') {
           this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/']);
         }
 
-      })
-      .catch(() => {
-        this.errorMessage.set('Sai email hoặc password');
-      });
+      },
+      error: (err) => {
+        this.errorMessage.set(
+          err?.error?.message || 'Sai email hoặc password'
+        );
+      }
+    });
   }
 }
