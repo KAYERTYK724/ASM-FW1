@@ -78,8 +78,8 @@
 
           <div class="description-section">
             <h5 class="fw-bold border-bottom pb-2 mb-3">Mô tả sản phẩm</h5>
-            <p class="text-secondary" style="white-space: pre-line; line-height: 1.6;">
-              {{ data.description || 'Không có mô tả cho sản phẩm này.' }}
+            <p class="text-secondary" style="white-space: pre-line; line-height: 1.6;" [innerHTML]="data.description">
+              <!-- {{ data.description || 'Không có mô tả cho sản phẩm này.' }} -->
             </p>
           </div>
         </div>

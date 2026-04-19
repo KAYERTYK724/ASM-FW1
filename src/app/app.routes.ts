@@ -110,6 +110,21 @@ export const routes: Routes = [
         path: 'comment',
         loadComponent: () =>
           import('./pages/admin/comment/list/list').then((m) => m.List),
+      },
+      {
+        path: 'blog',
+        loadComponent: () =>
+          import('./pages/admin/blog/list/list').then((m) => m.List),
+      },
+      {
+        path: 'blog-add',
+        loadComponent: () =>
+          import('./pages/admin/blog/add/add').then((m) => m.Add),
+      },
+      {
+        path: 'blog-edit/:id',
+        loadComponent: () =>
+          import('./pages/admin/blog/edit/edit').then((m) => m.Edit),
       }
     ],
   },

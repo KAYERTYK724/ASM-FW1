@@ -14,7 +14,7 @@ import { NotificationService } from '../../../../services/notification/notificat
   templateUrl: './list.html',
   styleUrls: ['./list.scss'],
 })
-export class List {
+export class List implements OnInit{
   dataListComment = signal<IComment[]>([]);
   products = signal<any[]>([]);
   users = signal<any[]>([]);

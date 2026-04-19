@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Output, signal, Input, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CloudinaryService } from '../../../services/upload/cloud.service';
 
@@ -47,6 +47,10 @@ import { CloudinaryService } from '../../../services/upload/cloud.service';
 export class ImageUploadComponent {
   imageUrls = signal<string[]>([]);
   @Output() imagesChanged = new EventEmitter<string[]>();
+
+  @Input() set images(value: string[]) {
+    this.imageUrls.set(value ?? []);
+  }
 
   constructor(private cloudinary: CloudinaryService) {}
 

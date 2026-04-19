@@ -60,31 +60,7 @@
         <div class="col-lg-8">
 
           <div class="blog-text">
-            <p>{{ blog.content }}</p>
-
-          </div>
-
-          <!-- QUOTE -->
-          <div class="quote-wrapper">
-            <div class="quote-box position-relative">
-
-              <!-- ICON -->
-              <div class="quote-icon">
-                <i class="bi bi-quote"></i>
-              </div>
-
-              <!-- TEXT -->
-              <p class="quote-text fw-semibold">
-                “Khi thiết kế một quảng cáo cho một sản phẩm cụ thể, cần nghiên cứu kỹ
-                nhiều yếu tố như vị trí hiển thị để đạt hiệu quả tối ưu.”
-              </p>
-
-              <!-- AUTHOR -->
-              <h6 class="quote-author">
-                _ NGUYỄN VĂN A _
-              </h6>
-
-            </div>
+            <p [innerHTML]="blog.content"></p>
           </div>
 
           <!-- NAV -->
@@ -108,36 +84,7 @@
                 </a>
               </div>
             </div>
-
           </div>
-
-          <!-- COMMENT -->
-          <div class="comment-box text-center">
-            <h5>Để lại bình luận</h5>
-
-            <form>
-              <div class="row">
-                <div class="col-md-4">
-                  <input type="text" placeholder="Tên">
-                </div>
-                <div class="col-md-4">
-                  <input type="email" placeholder="Email">
-                </div>
-                <div class="col-md-4">
-                  <input type="text" placeholder="Số điện thoại">
-                </div>
-
-                <div class="col-12">
-                  <textarea placeholder="Nội dung bình luận"></textarea>
-                </div>
-
-                <div class="col-12">
-                  <button type="submit">Gửi bình luận</button>
-                </div>
-              </div>
-            </form>
-          </div>
-
         </div>
       </div>
     </div>

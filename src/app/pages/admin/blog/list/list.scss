@@ -1,0 +1,12 @@
+.text-cut {
+  max-width: 440px;     // giới hạn chiều rộng
+  white-space: nowrap;  // không xuống dòng
+  overflow: hidden;
+  text-overflow: ellipsis; // hiện ...
+}
+.text-cut-title{
+  max-width: 400px;     // giới hạn chiều rộng
+  white-space: nowrap;  // không xuống dòng
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

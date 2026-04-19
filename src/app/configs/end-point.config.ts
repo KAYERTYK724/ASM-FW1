@@ -34,6 +34,23 @@ export const API_ENDPOINTS = {
     DELETE: (id: number) => `/comments/${id}`,
   },
 
+  // 🧾 ORDER
+  ORDER: {
+    LIST: "/orders/list",
+    GET_BY_ID: (id: number) => `/orders/${id}`,
+    ADD: "/orders/add",
+    UPDATE: (id: number) => `/orders/${id}`,
+    DELETE: (id: number) => `/orders/${id}`,
+  },
+
+  ORDER_DETAIL: {
+    LIST: "/order-details/list",
+    GET_BY_ID: (id: number) => `/order-details/${id}`,
+    ADD: "/order-details/add",
+    UPDATE: (id: number) => `/order-details/${id}`,
+    DELETE: (id: number) => `/order-details/${id}`,
+  },
+
   USER: {
     LIST : "/users/list",
     REGISTER: '/users/register',

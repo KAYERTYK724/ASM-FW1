@@ -56,7 +56,9 @@
 
         <div class="col-12 mb-4">
           <label class="form-label fw-bold">Mô tả <span class="text-danger">*</span></label>
-          <textarea class="form-control" rows="4" formControlName="description" [class.is-invalid]="isInvalid('description')"></textarea>
+          @if (isBrowser && Editor) {
+           <ckeditor formControlName="description" [class.is-invalid]="isInvalid('description')" [editor]="Editor"></ckeditor>
+          }
         </div>
       </div>
 

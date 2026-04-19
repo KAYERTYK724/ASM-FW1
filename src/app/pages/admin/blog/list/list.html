@@ -1,1 +1,56 @@
-<p>list works!</p>
+<div class="container-fluid p-4">
+  <div class="d-flex justify-content-between mb-4">
+    <h4 class="fw-bold">Quản lý bài viết</h4>
+    <a routerLink="/admin/blog-add" class="btn btn-danger">
+      <i class="bi bi-plus me-1"></i>
+      Thêm bài viết
+    </a>
+  </div>
+
+  <div class="card shadow-sm p-3">
+
+    <table class="table align-middle">
+
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Tiêu đề</th>
+          <th>Hình ảnh</th>
+          <th>Nội dung</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (b of dataListBlog(); track b.id) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td class="text-cut-title">{{ b.title }}</td>
+          <td>
+            <img [src]="b.image" width="60" class="rounded">
+          </td>
+          <td class="text-cut">
+            {{ b.content }}
+          </td>
+          <td>
+            <button  class="btn btn-sm btn-info me-2">
+              <i class="bi bi-eye"></i>
+            </button>
+
+            <button [routerLink]="['/admin/blog-edit', b.id]" class="btn btn-sm btn-warning me-2">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button (click)="onDelete(b.id)"  class="btn btn-sm btn-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

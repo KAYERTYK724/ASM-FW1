@@ -1,7 +1,7 @@
 export interface IBlog {
   id: number;
   title: string;
-  image: string;
+  image?: string;
   content: string;
   created_at: string;
 }

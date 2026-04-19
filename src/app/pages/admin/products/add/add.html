@@ -62,16 +62,26 @@
 
         <div class="col-12 mb-4">
           <label class="form-label">Mô tả <span class="text-danger">*</span></label>
-          <textarea class="form-control" rows="4" formControlName="description"
-            placeholder="Nhập mô tả sản phẩm" [class.is-invalid]="isInvalid('description')"></textarea>
-          @if (isInvalid('description')) {
-            <div class="invalid-feedback">Mô tả không được để trống (tối đa 500 ký tự)</div>
-          }
+            @if (isBrowser && Editor) {
+              <ckeditor
+                formControlName="description"
+                [editor]="Editor">
+              </ckeditor>
+            }
+
+            @if (isInvalid('description')) {
+              <div class="invalid-feedback d-block">
+                @if (productForm.get('description')?.hasError('required')) { Mô tả không được để trống }
+                @if (productForm.get('description')?.hasError('maxlength')) {
+                  Nội dung quá dài! Hiện tại: {{ productForm.get('description')?.value?.length }} / 5000
+                }
+              </div>
+            }
         </div>
       </div>
 
       <div class="actions-footer mt-3">
-        <button type="submit" class="btn btn-orange-fill me-2" [disabled]="productForm.invalid && productForm.touched">
+        <button type="submit" class="btn btn-orange-fill me-2">
           Thêm sản phẩm
         </button>
         <button type="button" class="btn btn-dark-grey" (click)="productForm.reset()">Hủy</button>

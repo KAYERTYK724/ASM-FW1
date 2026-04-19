@@ -3,6 +3,7 @@ import { IProduct } from '../../../interfaces/product.interface';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../services/product.service';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -13,11 +14,13 @@ import { ProductService } from '../../../services/product.service';
 export class DetailProduct implements OnInit {
 
   product: IProduct | null = null;
+
   dataListProduct = signal<IProduct[]>([]);
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    private cartService: CartService,
     private cdr: ChangeDetectorRef
   ) {}
 

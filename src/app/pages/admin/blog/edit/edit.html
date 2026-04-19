@@ -1,1 +1,42 @@
-<p>edit works!</p>
+<div class="container mt-5">
+  <div class="card p-4 shadow-sm">
+
+    <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+
+      <!-- TITLE -->
+      <div class="mb-3">
+        <label>Tiêu đề</label>
+        <input type="text" class="form-control"
+          formControlName="title"
+          [class.is-invalid]="isInvalid('title')">
+      </div>
+
+      <!-- IMAGE -->
+      <div class="mb-3">
+        <label>Ảnh</label>
+
+        <app-image-upload
+          [images]="blogImages"
+          (imagesChanged)="handleImagesUpdate($event)">
+        </app-image-upload>
+      </div>
+
+      <!-- CKEDITOR -->
+      <div class="mb-3">
+        <label>Nội dung</label>
+
+        <ckeditor
+          *ngIf="isEditorReady"
+          [editor]="Editor"
+          formControlName="content">
+        </ckeditor>
+      </div>
+
+      <button class="btn btn-primary">
+        Cập nhật
+      </button>
+
+    </form>
+
+  </div>
+</div>
