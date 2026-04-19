@@ -34,4 +34,15 @@ const Category = connection.define(
   },
 );
 
+//  QUAN HỆ CHA - CON
+Category.belongsTo(Category, {
+  as: 'parent',
+  foreignKey: 'parent_id',
+});
+
+Category.hasMany(Category, {
+  as: 'children',
+  foreignKey: 'parent_id',
+});
+
 module.exports = Category;

@@ -11,39 +11,63 @@
 
   <div class="card shadow-sm p-3">
 
-    <table class="table align-middle">
+    <table class="table align-middle table-hover">
 
       <thead class="table-light">
         <tr>
-          <th>#</th>
+          <th width="50">#</th>
           <th>Tên danh mục</th>
-          <th>Trạng thái</th>
-          <th>Thao tác</th>
+          <th>Danh mục cha</th>
+          <th width="150">Trạng thái</th>
+          <th width="150">Thao tác</th>
         </tr>
       </thead>
 
       <tbody>
-        @for (c of dataListCategory(); track $index) {
+        @for (c of dataListCategory(); track c.id) {
         <tr>
+
+          <!-- STT -->
           <td>{{ $index + 1 }}</td>
 
-          <td>{{ c.name }}</td>
-
+          <!-- TÊN (có indent nếu là con) -->
           <td>
-            <span class="badge" [ngClass]="c.status ? 'bg-success' : 'bg-secondary'">
+            <span *ngIf="c.parent" class="text-muted me-1">--</span>
+            {{ c.name }}
+          </td>
+
+          <!-- CHA -->
+          <td>
+            @if (c.parent) {
+              {{ c.parent.name }}
+            } @else {
+              <span class="text-muted">Không có</span>
+            }
+          </td>
+
+          <!-- STATUS -->
+          <td>
+            <span class="badge rounded-pill px-3 py-2"
+                  [ngClass]="c.status ? 'bg-success' : 'bg-secondary'">
               {{ c.status ? 'Hoạt động' : 'Ẩn' }}
             </span>
           </td>
 
+          <!-- ACTION -->
           <td>
-            <button [routerLink]="['/admin/category/edit', c.id]" class="btn btn-sm btn-warning me-2">
+            <button
+              [routerLink]="['/admin/category/edit', c.id]"
+              class="btn btn-sm btn-warning me-2">
               <i class="bi bi-pencil-square"></i>
             </button>
 
-            <button (click)="onDelete(c.id)" class="btn btn-sm btn-danger">
+            <button
+              (click)="onDelete(c.id)"
+              class="btn btn-sm btn-danger">
               <i class="bi bi-trash"></i>
             </button>
           </td>
+
         </tr>
         }
       </tbody>

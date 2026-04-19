@@ -1,7 +1,6 @@
 import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryService } from '../../../../services/category.service';
-import { ICategory } from '../../../../interfaces/category.interface';
 import { RouterLink } from "@angular/router";
 import { NotificationService } from '../../../../services/notification/notification.service';
 
@@ -14,25 +13,32 @@ import { NotificationService } from '../../../../services/notification/notificat
 })
 export class Category implements OnInit {
 
-  dataListCategory = signal<ICategory[]>([]);
+  dataListCategory = signal<any[]>([]);
 
   constructor(
     private categoryService: CategoryService,
     private noti: NotificationService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.fetchData();
   }
 
-  //  FIX CHUẨN
   fetchData = async () => {
     try {
       const res = await this.categoryService.list();
 
-      // axios: data nằm ở res.data.data
       if (res.status === 200) {
-        this.dataListCategory.set(res.data.data);
+        const data = res.data.data;
+
+        // sort nhẹ cho đẹp
+        data.sort((a: any, b: any) => {
+          if (!a.parent_id && b.parent_id) return -1;
+          if (a.parent_id && !b.parent_id) return 1;
+          return 0;
+        });
+
+        this.dataListCategory.set(data);
       }
 
     } catch (error) {
@@ -40,7 +46,6 @@ export class Category implements OnInit {
     }
   };
 
-  // DELETE C
   onDelete = async (id: number) => {
     const confirmDelete = confirm('Bạn có chắc chắn muốn xóa không?');
 

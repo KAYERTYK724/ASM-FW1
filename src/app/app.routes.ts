@@ -95,7 +95,7 @@ export const routes: Routes = [
       {
         path: 'category/edit/:id',
         loadComponent: () =>
-          import('./pages/admin/category/edit/edit').then((m) => m.Edit),
+          import('./pages/admin/category/edit/edit').then((m) => m.CategoryEdit),
       },
       {
         path: 'product',

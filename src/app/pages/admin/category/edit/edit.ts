@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../../../services/category.service';
 import { NotificationService } from '../../../../services/notification/notification.service';
@@ -8,74 +8,89 @@ import { NotificationService } from '../../../../services/notification/notificat
 @Component({
   selector: 'app-category-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './edit.html',
-  styleUrl: './edit.scss',
+  styleUrls: ['./edit.scss'],
 })
-export class Edit implements OnInit {
+export class CategoryEdit implements OnInit {
 
-  categoryForm: FormGroup;
-  categoryId: number | null = null;
+  categoryId!: number;
+
+  category = {
+    name: '',
+    parent_id: null as number | null,
+    status: true
+  };
+
+  listCategory = signal<any[]>([]);
 
   constructor(
-    private fb: FormBuilder,
-    private categoryService: CategoryService,
     private route: ActivatedRoute,
-    public router: Router,
+    private router: Router,
+    private categoryService: CategoryService,
     private noti: NotificationService
-  ) {
-    this.categoryForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      status: [true]
-    });
-  }
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.categoryId = Number(this.route.snapshot.paramMap.get('id'));
 
-    if (this.categoryId) {
-      this.loadCategory(this.categoryId);
-    }
+    this.loadCategories();
+    this.loadDetail();
   }
 
-  async loadCategory(id: number) {
+  loadCategories = async () => {
     try {
-      const res = await this.categoryService.getById(id);
+      const res = await this.categoryService.list();
 
-      //  API bạn: data nằm trong res.data
-      const category = res.data;
-
-      this.categoryForm.patchValue({
-        name: category.name,
-        status: category.status ?? true
-      });
+      if (res.status === 200) {
+        this.listCategory.set(res.data.data);
+      }
 
     } catch (error) {
-      this.noti.show('Không tìm thấy danh mục!', 'danger');
-      this.router.navigate(['/admin/category']);
+      this.noti.show('Lỗi tải danh mục', 'danger');
     }
-  }
+  };
 
-  isInvalid(controlName: string) {
-    const control = this.categoryForm.get(controlName);
-    return control?.invalid && (control?.touched || control?.dirty);
-  }
+  loadDetail = async () => {
+    try {
+      const res = await this.categoryService.getById(this.categoryId);
 
-  async onSubmit() {
-    this.categoryForm.markAllAsTouched();
+      if (res.status === 200) {
+        const data = res.data.data;
 
-    if (this.categoryForm.valid && this.categoryId) {
-      try {
-        const payload = this.categoryForm.value;
-
-        await this.categoryService.update(this.categoryId, payload);
-
-        this.noti.show('Cập nhật danh mục thành công!', 'success');
-        this.router.navigate(['/admin/category']);
-
-      } catch (error: any) {
-        this.noti.show('Lỗi khi cập nhật danh mục', 'danger');
+        this.category = {
+          name: data.name || '',
+          parent_id: data.parent_id ?? null,
+          status: data.status ?? true
+        };
       }
+
+    } catch (error) {
+      this.noti.show('Không tìm thấy danh mục', 'danger');
     }
-  }
+  };
+
+  onSubmit = async () => {
+    try {
+      const payload = {
+        name: this.category.name,
+        parent_id: this.category.parent_id || null,
+        status: this.category.status
+      };
+
+      const res = await this.categoryService.update(this.categoryId, payload);
+
+      if (res.status === 200) {
+        this.noti.show('Cập nhật thành công', 'success');
+        this.router.navigate(['/admin/category']);
+      }
+
+    } catch (error) {
+      this.noti.show('Lỗi cập nhật', 'danger');
+    }
+    
+  };
+  goToCategory() {
+  this.router.navigate(['/admin/category']);
+}
 }
