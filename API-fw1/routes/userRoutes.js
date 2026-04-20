@@ -10,6 +10,7 @@ router.post('/users/login', UserController.login);
 
 //  USER ADMIN ONLY
 router.get('/users/list', UserController.get);
+router.get('/users/profile', UserController.profile);
 
 router.post('/users/add', verifyToken, isAdmin, UserController.create);
 

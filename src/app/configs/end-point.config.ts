@@ -53,6 +53,7 @@ export const API_ENDPOINTS = {
   },
 
   USER: {
+    PROFILE : '/users/profile',
     LIST: "/users/list",
     REGISTER: '/users/register',
     LOGIN: '/users/login',

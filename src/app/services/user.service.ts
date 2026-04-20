@@ -1,14 +1,34 @@
-import axios from "axios";
-import { API_URL } from "../enviroment/enviroment";
-import { API_ENDPOINTS } from "../configs/end-point.config";
-import { Injectable } from '@angular/core';
+import axios from 'axios';
+import { API_URL } from '../enviroment/enviroment';
+import { API_ENDPOINTS } from '../configs/end-point.config';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  list(){
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  list() {
     return axios.get(API_URL + API_ENDPOINTS.USER.LIST);
+  }
+
+  getProfile() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return Promise.reject('SSR environment');
+    }
+
+    const token = localStorage.getItem('access_token');
+
+    if (!token) {
+      return Promise.reject('No token found');
+    }
+
+    return axios.get(API_URL + API_ENDPOINTS.USER.PROFILE, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
   // Register a new user
   register(data: any) {

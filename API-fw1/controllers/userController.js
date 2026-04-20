@@ -1,10 +1,9 @@
 const UserModel = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.JWT_SECRET || "123456";
+const JWT_SECRET = process.env.JWT_SECRET || '123456';
 
 class UserController {
-
   static async get(req, res) {
     try {
       const users = await UserModel.findAll();
@@ -39,7 +38,24 @@ class UserController {
     }
   }
 
-  // 📌 Thêm user
+  static async profile(req, res) {
+    try {
+      const userId = req.user.id; // từ verifyToken
+
+      const user = await UserModel.findByPk(userId);
+
+      if (!user) {
+        return res.status(404).json({ message: 'Không tìm thấy user' });
+      }
+
+      res.status(200).json({
+        data: user,
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
   static async create(req, res) {
     try {
       const { username, password, email, name, phone, status, role } = req.body;
@@ -99,7 +115,6 @@ class UserController {
     }
   }
 
-
   static async delete(req, res) {
     try {
       const { id } = req.params;
@@ -118,7 +133,6 @@ class UserController {
       res.status(500).json({ error: error.message });
     }
   }
-
 
   static async register(req, res) {
     try {
@@ -180,7 +194,7 @@ class UserController {
           role: user.role,
         },
         JWT_SECRET,
-        { expiresIn: '1h' }
+        { expiresIn: '1h' },
       );
 
       return res.status(200).json({
@@ -193,7 +207,6 @@ class UserController {
           role: user.role,
         },
       });
-
     } catch (error) {
       console.error('Lỗi server:', error);
       return res.status(500).json({

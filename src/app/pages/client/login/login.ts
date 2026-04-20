@@ -48,14 +48,24 @@ export class Login implements OnInit {
       next: (res: any) => {
         console.log('RES LOGIN:', res);
 
-        if (!res?.token || !res?.user) {
-          this.errorMessage.set('Đăng nhập thất bại');
+        const token =
+          res?.token ||
+          res?.data?.token ||
+          res?.data?.accessToken;
+
+        const user = res?.user || res?.data?.user;
+
+
+        if (!token || !user) {
+          this.errorMessage.set('Đăng nhập thất bại - sai format API');
+          console.log('LOGIN RESPONSE FORMAT:', res);
           return;
         }
 
         // ❌ SAI: const user = { email: res.user?.email, role: res.user?.role };
         // ✅ ĐÚNG: Lấy nguyên object user từ BE vì đã có id rồi
         this.authService.saveAuth(res.token, res.user);
+        console.log('TOKEN SAU LOGIN:', localStorage.getItem('access_token'));
 
         if (res.user.role?.toLowerCase() === 'admin') {
           this.router.navigate(['/admin']);
