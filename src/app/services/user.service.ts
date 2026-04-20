@@ -10,12 +10,10 @@ export class UserService {
   list(){
     return axios.get(API_URL + API_ENDPOINTS.USER.LIST);
   }
-
   // Register a new user
   register(data: any) {
     return axios.post(API_URL + API_ENDPOINTS.USER.REGISTER, data);
   }
-
   // Login và lưu token
   async login(data: any) {
     const response = await axios.post(API_URL + API_ENDPOINTS.USER.LOGIN, data);

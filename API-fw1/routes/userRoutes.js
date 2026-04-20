@@ -9,7 +9,7 @@ router.post('/users/register', UserController.register);
 router.post('/users/login', UserController.login);
 
 //  USER ADMIN ONLY
-router.get('/users/list', verifyToken, isAdmin, UserController.get);
+router.get('/users/list', UserController.get);
 
 router.post('/users/add', verifyToken, isAdmin, UserController.create);
 

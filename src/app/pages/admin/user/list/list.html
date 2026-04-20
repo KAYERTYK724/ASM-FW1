@@ -1,1 +1,53 @@
-<p>list works!</p>
+<div class="container-fluid p-4">
+
+  <div class="d-flex justify-content-between mb-4">
+    <h4 class="fw-bold">Quản lý người dùng</h4>
+  </div>
+
+  <!-- LOADING -->
+  @if (loading()) {
+    <p>Đang tải dữ liệu...</p>
+  }
+
+  <!-- TABLE -->
+  @if (!loading()) {
+    <div class="card shadow-sm p-3">
+      <table class="table table-hover align-middle">
+
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Vai trò</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @if (users().length) {
+            @for (user of users(); track user.id; let i = $index) {
+              <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                  <span class="badge bg-primary">
+                    {{ user.role || 'user' }}
+                  </span>
+                </td>
+              </tr>
+            }
+          } @else {
+            <tr>
+              <td colspan="4" class="text-center text-muted">
+                Không có người dùng
+              </td>
+            </tr>
+          }
+        </tbody>
+
+      </table>
+    </div>
+  }
+
+</div>

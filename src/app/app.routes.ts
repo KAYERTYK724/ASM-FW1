@@ -147,6 +147,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/admin/order/view/view').then((m) => m.View),
       },
+      {
+        path: 'user',
+        loadComponent: () =>
+          import('./pages/admin/user/list/list').then((m) => m.List),
+      }
     ],
   },
 
