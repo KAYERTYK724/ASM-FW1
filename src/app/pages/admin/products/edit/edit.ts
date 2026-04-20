@@ -28,6 +28,7 @@ export class Edit implements OnInit {
     public router: Router,
     private noti: NotificationService
   ) {
+<<<<<<< HEAD
     this.productForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       category_id: ['', Validators.required],
@@ -36,6 +37,31 @@ export class Edit implements OnInit {
       status: [1, Validators.required],
       description: ['', [Validators.required, Validators.maxLength(500)]]
     });
+=======
+    this.productForm = this.fb.group(
+      {
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        category_id: ['', Validators.required],
+        price: [null, [Validators.required, Validators.min(1000)]],
+        sale_price: [null, [Validators.min(0)]],
+        status: [1, Validators.required],
+        description: ['', [Validators.required, Validators.maxLength(5000)]],
+      },
+      {
+        validators: this.salePriceValidator,
+      },
+    );
+  }
+
+  salePriceValidator(form: FormGroup) {
+    const price = form.get('price')?.value;
+    const sale = form.get('sale_price')?.value;
+
+    if (sale && price && sale >= price) {
+      return { invalidSalePrice: true };
+    }
+    return null;
+>>>>>>> 2a9020f (chi tiết đơn hàng)
   }
 
   ngOnInit() {

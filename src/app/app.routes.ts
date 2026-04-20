@@ -122,7 +122,36 @@ export const routes: Routes = [
         path: 'comment',
         loadComponent: () =>
           import('./pages/admin/comment/list/list').then((m) => m.List),
+<<<<<<< HEAD
       }
+=======
+      },
+      {
+        path: 'blog',
+        loadComponent: () =>
+          import('./pages/admin/blog/list/list').then((m) => m.List),
+      },
+      {
+        path: 'blog-add',
+        loadComponent: () =>
+          import('./pages/admin/blog/add/add').then((m) => m.Add),
+      },
+      {
+        path: 'blog-edit/:id',
+        loadComponent: () =>
+          import('./pages/admin/blog/edit/edit').then((m) => m.Edit),
+      },
+      {
+        path: 'order',
+        loadComponent: () =>
+          import('./pages/admin/order/list/list').then((m) => m.List),
+      },
+      {
+        path: 'order-view/:id',
+        loadComponent: () =>
+          import('./pages/admin/order/view/view').then((m) => m.View),
+      },
+>>>>>>> 2a9020f (chi tiết đơn hàng)
     ],
   },
 

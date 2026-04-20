@@ -34,6 +34,27 @@ export const API_ENDPOINTS = {
     DELETE: (id: number) => `/comments/${id}`,
   },
 
+<<<<<<< HEAD
+=======
+  ORDER: {
+    LIST: "/orders/list",
+    GET_BY_ID: (id: number) => `/orders/${id}`,
+    ADD: "/orders/add",
+    UPDATE: (id: number) => `/orders/${id}`,
+    DELETE: (id: number) => `/orders/${id}`,
+    CHECKOUT: "/orders/checkout"
+  },
+
+  ORDER_DETAIL: {
+    LIST: "/order-details/list",
+    GET_BY_ID: (id: number) => `/order-details/${id}`,
+    GET_BY_USER: (userId: number) => `/order-details/cart/${userId}`,
+    ADD: "/order-details/add",
+    UPDATE: (id: number) => `/order-details/${id}`,
+    DELETE: (id: number) => `/order-details/${id}`,
+  },
+
+>>>>>>> 2a9020f (chi tiết đơn hàng)
   USER: {
     LIST : "/users/list",
     REGISTER: '/users/register',

@@ -6,15 +6,16 @@
 
   <div class="card shadow-sm p-3">
 
-    <table class="table align-middle">
+    <table class="table table-bordered align-middle text-center">
 
-      <thead class="table-light">
+      <thead class="table-dark">
         <tr>
           <th>#</th>
           <th>Nội dung</th>
-          <th>Tên sản phẩm</th>
+          <th>Sản phẩm</th>
           <th>Người dùng</th>
           <th>Ngày</th>
+          <th>Trạng thái</th>
           <th>Thao tác</th>
         </tr>
       </thead>
@@ -22,19 +23,57 @@
       <tbody>
         @for (cmt of dataListComment(); track $index) {
         <tr>
+
           <td>{{ $index + 1 }}</td>
-          <td>{{ cmt.content}}</td>
-          <td>{{ cmt.product?.name }}</td>
-          <td>{{ cmt.user?.name }}</td>
-          <td>{{ cmt.date | date:'yyyy-MM-dd' }}</td>
+
+          <td class="text-start">{{ cmt.content }}</td>
+
+          <!-- 🔥 FIX: fallback mọi trường hợp -->
           <td>
-            <button [routerLink]="['/admin/comment-view', cmt.id]" class="btn btn-sm btn-info me-2">
-              <i class="bi bi-eye"></i>
+            {{ cmt.product?.name || cmt.Product?.name || ('ID: ' + cmt.product_id) }}
+          </td>
+
+          <td>
+            {{ cmt.user?.name || cmt.User?.name || ('ID: ' + cmt.user_id) }}
+          </td>
+
+          <td>
+            {{ (cmt.date || cmt.createdAt) | date:'yyyy-MM-dd' }}
+          </td>
+
+          <td>
+            <span class="badge"
+                  [ngClass]="cmt.status == 1 || cmt.status === true ? 'bg-success' : 'bg-secondary'">
+              {{ (cmt.status == 1 || cmt.status === true) ? 'Hiển thị' : 'Ẩn' }}
+            </span>
+          </td>
+
+          <td>
+            <button [routerLink]="['/admin/comment-view', cmt.id]"
+                    class="btn btn-sm btn-info me-2">
+              Xem
             </button>
 
+            <button class="btn btn-sm btn-danger me-2"
+                    (click)="delete(cmt.id)">
+              Xóa
+            </button>
+
+            <button class="btn btn-sm btn-warning"
+                    (click)="toggleStatus(cmt)">
+              Ẩn/Hiện
+            </button>
           </td>
+
         </tr>
         }
+
+        @if (dataListComment().length === 0) {
+        <tr>
+          <td colspan="7">Không có dữ liệu</td>
+        </tr>
+        }
+
       </tbody>
 
     </table>

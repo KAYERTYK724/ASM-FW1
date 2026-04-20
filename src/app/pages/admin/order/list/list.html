@@ -1,0 +1,43 @@
+<div class="container-fluid p-4">
+
+  <div class="d-flex justify-content-between mb-4">
+    <h4 class="fw-bold">Quản lý đơn hàng</h4>
+  </div>
+
+  <div class="card shadow-sm p-3">
+
+    <table class="table align-middle">
+
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Khách hàng</th>
+          <th>Số điện thoại</th>
+          <th>Địa chỉ</th>
+          <th>Phương thức thanh toán</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (order of orders(); track order.id) {
+        <tr>
+          <td>{{ order.id }}</td>
+          <td>{{ order.name }}</td>
+          <td>{{ order.phone }}</td>
+          <td>{{ order.address }}</td>
+          <td>{{ order.payments }}</td>
+          <td>
+            <button [routerLink]="['/admin/order-view', order.id]"  class="btn btn-sm btn-info me-2">
+              <i class="bi bi-eye"></i>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

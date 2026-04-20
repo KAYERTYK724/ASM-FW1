@@ -1,4 +1,7 @@
 const OrderModel = require('../models/orderModel');
+const Product = require('../models/productModel');
+const OrderDetail = require('../models/orderDetailModel');
+const User = require('../models/userModel');
 
 class OrderController {
 
@@ -22,7 +25,29 @@ class OrderController {
         try {
             const { id } = req.params;
 
+<<<<<<< HEAD
             const order = await OrderModel.findByPk(id);
+=======
+      const order = await OrderModel.findByPk(id, {
+        include: [
+          {
+            model: OrderDetail,
+            as: 'orderDetails',
+            include: [
+              {
+                model: Product,
+                as: 'product',
+              },
+            ],
+          },
+          {
+            model: User,
+            as: 'user',
+            attributes: ['email'], // chỉ lấy email cho nhẹ
+          },
+        ],
+      });
+>>>>>>> 2a9020f (chi tiết đơn hàng)
 
             if (!order) {
                 return res.status(404).json({ message: "Id không tồn tại" });
@@ -50,6 +75,7 @@ class OrderController {
                 user_id
             } = req.body;
 
+<<<<<<< HEAD
             const order = await OrderModel.create({
                 name,
                 phone,
@@ -58,15 +84,41 @@ class OrderController {
                 order_status,
                 user_id
             });
+=======
+      const order = await OrderModel.findOne({
+        where: { user_id, order_status: 'pending' },
+      });
+>>>>>>> 2a9020f (chi tiết đơn hàng)
 
             res.status(201).json({
                 message: "Thêm mới thành công",
                 order
             });
 
+<<<<<<< HEAD
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
+=======
+      // update thông tin
+      order.name = name;
+      order.phone = phone;
+      order.address = address;
+      order.payments = payments;
+      order.order_status = 'confirmed';
+      order.payment_status = payments === 'cod' ? 'pending' : 'paid';
+
+      await order.save();
+
+      return res.status(200).json({
+        status: 200,
+        message: 'Đặt hàng thành công',
+        data: order,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: 'Lỗi server' });
+>>>>>>> 2a9020f (chi tiết đơn hàng)
     }
 
     // 📌 Cập nhật đơn hàng
@@ -117,11 +169,27 @@ class OrderController {
                 return res.status(404).json({ message: "Id không tồn tại" });
             }
 
+<<<<<<< HEAD
             await order.destroy();
 
             res.status(200).json({
                 message: "Xóa thành công"
             });
+=======
+      const { order_status } = req.body;
+
+      // 🔥 COD LOGIC
+      let payment_status = order.payment_status;
+
+      if (order_status === 'completed') {
+        payment_status = 'paid';
+      } else {
+        payment_status = 'pending';
+      }
+
+      order.order_status = order_status;
+      order.payment_status = payment_status;
+>>>>>>> 2a9020f (chi tiết đơn hàng)
 
         } catch (error) {
             res.status(500).json({ error: error.message });

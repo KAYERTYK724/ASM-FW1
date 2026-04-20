@@ -3,6 +3,7 @@ import { IProduct } from '../../../interfaces/product.interface';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../services/product.service';
+import { CommentService } from '../../../services/comment.service'; 
 
 @Component({
   selector: 'app-detail-product',
@@ -15,9 +16,13 @@ export class DetailProduct implements OnInit {
   product: IProduct | null = null;
   dataListProduct = signal<IProduct[]>([]);
 
+  // THÊM
+  comments = signal<any[]>([]);
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    private commentService: CommentService, //  thêm
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -25,6 +30,7 @@ export class DetailProduct implements OnInit {
     this.route.paramMap.subscribe(async (params) => {
       const id = Number(params.get('id'));
       await this.fetchData(id);
+      await this.loadComments(id); // gọi comment
     });
   }
 
@@ -43,6 +49,22 @@ export class DetailProduct implements OnInit {
       if (list.status === 200) {
         this.dataListProduct.set(list.data.data);
       }
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  //  LOAD COMMENT
+  async loadComments(productId: number) {
+    try {
+      const res = await this.commentService.getByProduct(productId);
+
+      const data = res.data?.data || res.data || [];
+
+      this.comments.set(data);
+
+      console.log('COMMENTS:', data); // debug
 
     } catch (error) {
       console.error(error);
