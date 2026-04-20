@@ -1,4 +1,7 @@
 const OrderModel = require('../models/orderModel');
+const Product = require('../models/productModel');
+const OrderDetail = require('../models/orderDetailModel');
+const User = require('../models/userModel');
 
 class OrderController {
   // 📌 Lấy danh sách đơn hàng
@@ -21,7 +24,25 @@ class OrderController {
     try {
       const { id } = req.params;
 
-      const order = await OrderModel.findByPk(id);
+      const order = await OrderModel.findByPk(id, {
+        include: [
+          {
+            model: OrderDetail,
+            as: 'orderDetails',
+            include: [
+              {
+                model: Product,
+                as: 'product',
+              },
+            ],
+          },
+          {
+            model: User,
+            as: 'user',
+            attributes: ['email'], // chỉ lấy email cho nhẹ
+          },
+        ],
+      });
 
       if (!order) {
         return res.status(404).json({ message: 'Id không tồn tại' });
@@ -41,7 +62,7 @@ class OrderController {
       const { user_id, name, phone, address, payments } = req.body;
 
       const order = await OrderModel.findOne({
-        where: { user_id, order_status: 'pending' }
+        where: { user_id, order_status: 'pending' },
       });
 
       if (!order) {
@@ -61,9 +82,8 @@ class OrderController {
       return res.status(200).json({
         status: 200,
         message: 'Đặt hàng thành công',
-        data: order
+        data: order,
       });
-
     } catch (error) {
       console.log(error);
       return res.status(500).json({ message: 'Lỗi server' });
@@ -103,14 +123,19 @@ class OrderController {
         return res.status(404).json({ message: 'Id không tồn tại' });
       }
 
-      const { name, phone, payments, payment_status, order_status, user_id } = req.body;
+      const { order_status } = req.body;
 
-      order.name = name;
-      order.phone = phone;
-      order.payments = payments;
-      order.payment_status = payment_status;
+      // 🔥 COD LOGIC
+      let payment_status = order.payment_status;
+
+      if (order_status === 'completed') {
+        payment_status = 'paid';
+      } else {
+        payment_status = 'pending';
+      }
+
       order.order_status = order_status;
-      order.user_id = user_id;
+      order.payment_status = payment_status;
 
       await order.save();
 

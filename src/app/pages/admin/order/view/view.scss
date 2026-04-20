@@ -1,0 +1,90 @@
+.order-detail-page {
+
+  .card {
+    border-radius: 14px;
+  }
+
+  .box {
+    background: #f8f9fa;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+  }
+
+  h3 {
+    font-weight: 600;
+  }
+
+  .table {
+    th {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+
+    tr {
+      transition: 0.2s;
+
+      &:hover {
+        background: #f9fafb;
+      }
+    }
+  }
+
+  .total-row {
+    background: #f1f3f5;
+  }
+
+  .badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* Badge màu */
+  .payment-status {
+    &.paid {
+      background: #d1e7dd;
+      color: #0f5132;
+    }
+
+    &.unpaid {
+      background: #fff3cd;
+      color: #664d03;
+    }
+  }
+
+  .order-status {
+    &.processing {
+      background: #cff4fc;
+      color: #055160;
+    }
+
+    &.shipping {
+      background: #e2e3ff;
+      color: #3730a3;
+    }
+
+    &.done {
+      background: #d1e7dd;
+      color: #0f5132;
+    }
+
+    &.cancel {
+      background: #f8d7da;
+      color: #842029;
+    }
+  }
+
+  button {
+    border-radius: 8px;
+  }
+
+  select {
+    border-radius: 8px;
+  }
+}

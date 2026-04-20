@@ -19,8 +19,8 @@
           <label class="form-label">Danh mục <span class="text-danger">*</span></label>
           <select class="form-select" formControlName="category_id" [class.is-invalid]="isInvalid('category_id')">
             <option value="" disabled>-- Chọn danh mục --</option>
-            @for (cat of categories(); track cat.id) {
-              <option [value]="cat.id">{{ cat.parent_id ? '— ' : '' }}{{ cat.name }}</option>
+            @@for (cat of categories().filter(c => c.parent_id !== null); track cat.id) {
+              <option [value]="cat.id">-- {{ cat.name }}</option>
             }
           </select>
           @if (isInvalid('category_id')) {
@@ -39,8 +39,10 @@
         <div class="col-md-6 mb-4">
           <label class="form-label">Giá giảm (Sale)</label>
           <input type="number" class="form-control" formControlName="sale_price" [class.is-invalid]="isInvalid('sale_price')">
-          @if (isInvalid('sale_price')) {
-            <div class="invalid-feedback">Giá giảm không được nhỏ hơn 0</div>
+          @if (productForm.errors?.['invalidSalePrice']) {
+            <div class="text-danger">
+              Giá giảm phải nhỏ hơn giá gốc
+            </div>
           }
         </div>
 

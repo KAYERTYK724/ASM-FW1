@@ -136,7 +136,17 @@ export const routes: Routes = [
         path: 'blog-edit/:id',
         loadComponent: () =>
           import('./pages/admin/blog/edit/edit').then((m) => m.Edit),
-      }
+      },
+      {
+        path: 'order',
+        loadComponent: () =>
+          import('./pages/admin/order/list/list').then((m) => m.List),
+      },
+      {
+        path: 'order-view/:id',
+        loadComponent: () =>
+          import('./pages/admin/order/view/view').then((m) => m.View),
+      },
     ],
   },
 

@@ -48,9 +48,9 @@
                     <div class="accordion-body py-2">
                       <ul class="list-unstyled ps-3">
                         @for (child of getChildCategories(parent.id); track child.id) {
-                          <li (click)="selectedCategoryId.set(child.id)">
-                            {{ child.name }}
-                          </li>
+                        <li (click)="selectedCategoryId.set(child.id)">
+                          {{ child.name }}
+                        </li>
                         }
                       </ul>
                     </div>
@@ -197,13 +197,21 @@
               <div class="product-info">
                 <h6>{{ p.name }}</h6>
                 <div class="price">
+                  @if (p.sale_price && p.sale_price > 0) {
+                  <!-- Có giảm giá -->
                   <span class="old text-muted text-decoration-line-through">
                     {{ p.price | number:'1.0-0' }} VND
                   </span>
 
                   <span class="new text-danger fw-bold">
-                    {{ (p.sale_price || p.price) | number:'1.0-0' }} VND
+                    {{ p.sale_price | number:'1.0-0' }} VND
                   </span>
+                  } @else {
+                  <!-- Không giảm giá -->
+                  <span class="new text-dark fw-bold">
+                    {{ p.price | number:'1.0-0' }} VND
+                  </span>
+                  }
                 </div>
               </div>
             </div>

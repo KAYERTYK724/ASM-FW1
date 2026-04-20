@@ -46,7 +46,7 @@ export const API_ENDPOINTS = {
   ORDER_DETAIL: {
     LIST: "/order-details/list",
     GET_BY_ID: (id: number) => `/order-details/${id}`,
-    GET_BY_USER: (userId: number) => `/order-details/cart/${userId}`, // ✅ Thêm dòng này
+    GET_BY_USER: (userId: number) => `/order-details/cart/${userId}`,
     ADD: "/order-details/add",
     UPDATE: (id: number) => `/order-details/${id}`,
     DELETE: (id: number) => `/order-details/${id}`,
