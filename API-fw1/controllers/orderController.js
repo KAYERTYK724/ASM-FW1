@@ -24,6 +24,8 @@ class OrderController {
     try {
       const { id } = req.params;
 
+
+
       const order = await OrderModel.findByPk(id, {
         include: [
           {
@@ -44,6 +46,7 @@ class OrderController {
         ],
       });
 
+
       if (!order) {
         return res.status(404).json({ message: 'Id không tồn tại' });
       }
@@ -61,15 +64,30 @@ class OrderController {
     try {
       const { user_id, name, phone, address, payments } = req.body;
 
+
+            const order = await OrderModel.create({
+                name,
+                phone,
+                payments,
+                payment_status,
+                order_status,
+                user_id
+            });
+
       const order = await OrderModel.findOne({
         where: { user_id, order_status: 'pending' },
       });
+
 
       if (!order) {
         return res.status(404).json({ message: 'Không có giỏ hàng' });
       }
 
-      // update thông tin
+
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+
       order.name = name;
       order.phone = phone;
       order.address = address;
@@ -87,6 +105,7 @@ class OrderController {
     } catch (error) {
       console.log(error);
       return res.status(500).json({ message: 'Lỗi server' });
+
     }
   }
 
@@ -123,10 +142,17 @@ class OrderController {
         return res.status(404).json({ message: 'Id không tồn tại' });
       }
 
+
       const { order_status } = req.body;
 
       // 🔥 COD LOGIC
       let payment_status = order.payment_status;
+ await order.destroy();
+
+            res.status(200).json({
+                message: "Xóa thành công"
+            });
+
 
       if (order_status === 'completed') {
         payment_status = 'paid';

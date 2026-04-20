@@ -1,6 +1,7 @@
 import { IUser } from "./user.interface";
 
 export interface IComment {
+createdAt: string|number|Date;
   id: number;
   content: string;
   date: string;        // timestamp -> string

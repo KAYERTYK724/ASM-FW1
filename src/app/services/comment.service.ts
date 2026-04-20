@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-
 export class CommentService {
 
   list(){
@@ -27,5 +26,10 @@ export class CommentService {
 
   delete(id: number){
     return axios.delete(API_URL + API_ENDPOINTS.COMMENT.DELETE(id));
+  }
+
+  // THÊM HÀM NÀY
+  getByProduct(productId: number){
+    return axios.get(API_URL + API_ENDPOINTS.COMMENT.LIST + '?product_id=' + productId);
   }
 }

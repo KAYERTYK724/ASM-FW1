@@ -16,6 +16,9 @@ export class DetailProduct implements OnInit {
 
   dataListProduct = signal<IProduct[]>([]);
 
+  // THÊM
+  comments = signal<any[]>([]);
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -46,6 +49,22 @@ export class DetailProduct implements OnInit {
       .catch((error) => {
         console.error(error);
       });
+  }
+
+  //  LOAD COMMENT
+  async loadComments(productId: number) {
+    try {
+      const res = await this.commentService.getByProduct(productId);
+
+      const data = res.data?.data || res.data || [];
+
+      this.comments.set(data);
+
+      console.log('COMMENTS:', data); // debug
+
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   relatedProducts(): IProduct[] {

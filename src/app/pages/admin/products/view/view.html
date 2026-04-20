@@ -61,7 +61,44 @@
                 {{ data.price | number }}đ
               </span>
             </div>
-            }
+
+          </div>
+
+          <div class="price-section bg-light p-3 rounded-3 mb-4">
+            <div class="row align-items-center">
+              <div class="col-6">
+                <small class="text-muted d-block">Giá bán hiện tại</small>
+                <span class="h2 fw-bold text-primary mb-0">{{ data.price | number }}đ</span>
+              </div>
+              @if (data.sale_price && data.sale_price > 0) {
+                <div class="col-6 border-start">
+                  <small class="text-muted d-block">Giá gốc (chưa giảm)</small>
+                  <span class="h4 text-decoration-line-through text-muted">{{ data.sale_price | number }}đ</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="info-grid row g-4 mb-4">
+            <div class="col-sm-6">
+              <div class="p-3 border rounded">
+                <small class="text-muted d-block mb-1">Mã sản phẩm (ID)</small>
+                <span class="fw-bold">#{{ data.id }}</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="p-3 border rounded">
+                <small class="text-muted d-block mb-1">Ngày tạo</small>
+                <span class="fw-bold">{{ data.created_at | date:'dd/MM/yyyy HH:mm' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="description-section">
+            <h5 class="fw-bold border-bottom pb-2 mb-3">Mô tả sản phẩm</h5>
+            <p class="text-secondary" style="white-space: pre-line; line-height: 1.6;">
+              {{ data.description || 'Không có mô tả cho sản phẩm này.' }}
+            </p>
           </div>
         </div>
 
